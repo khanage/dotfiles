@@ -23,27 +23,43 @@
      company-mode
      html
      javascript
+     ;; (haskell :variables
+     ;;          haskell-enable-ghci-ng-support t
+     ;;          hindent-style "chris-done"
+     ;;          haskell-stylish-on-save t
+     ;;          haskell-process-path-stack "stack"
+     ;;          haskell-process-args-stack-ghci '("--with-ghc" "ghci-ng")
+     ;;          haskell-process-type 'stack-ghci)
      (haskell :variables
               haskell-enable-ghci-ng-support t
-              haskell-enable-shm-support t
-              haskell-process-path-stack "stack"
-              haskell-process-args-stack-ghci '("--with-ghc" "ghci-ng")
-              haskell-process-type 'stack-ghci)
+              haskell-process-type 'stack-ghci
+              haskell-stylish-on-save t)
+
+     php
+     purescript
      git
      markdown
      org
      themes-megapack
      (shell :variables
             shell-default-height 30
-            shell-default-term-shell "/bin/bash")
+            shell-default-term-shell "/bin/zsh")
      syntax-checking
      version-control
+     (scala :variables
+            scala-enable-eldoc t)
+     python
+     windows-scripts
+     clojure
+     csharp
+     dockerfile
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ox-reveal
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -76,15 +92,15 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(soft-charcoal)
+   dotspacemacs-themes '(zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Inconsolata for Powerline"
+                               :size 14
                                :weight normal
-                               :width normal
+                               :width expanded
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -120,7 +136,7 @@ before layers configuration."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX."
    dotspacemacs-fullscreen-use-non-native nil
@@ -163,7 +179,31 @@ before layers configuration."
 
 (defun dotspacemacs/user-config ()
 
-  (add-to-list 'exec-path "~/.cabal/bin/")
+  (add-to-list 'exec-path "~/.local/bin")
+
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+  (setq org-mobile-inbox-for-pull "~/Dropbox/org/flagged.org")
+  (setq org-directory "~/Dropbox/org")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (sh . t)
+     (haskell . t)
+     (sql . t)
+     (js . t)))
+
+  (spacemacs/add-to-hook 'org-mode-hook
+                         '((defun kt/org-mode-hook ()
+                             (progn
+                               (load-library 'ox-reveal)
+                               (setq org-reveal-root "https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js")
+                               (toggle-truncate-lines))
+                             )))
+
+  (customize-set-variable 'psc-ide-executable "~/.local/bin/psc-ide")
+
+  (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
+  (setq-default omnisharp-server-executable-path "/Users/khan/build/omnisharp-server/OmniSharp/bin/Debug/OmniSharp")
 
   (dolist (mode '(erc-mode comint-mode shell-mode term-mode eshell-mode inferior-emacs-lisp-mode))
    (setq evil-insert-state-modes (remove mode evil-insert-state-modes)))
@@ -187,8 +227,22 @@ before layers configuration."
 (defun dotspacemacs/config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
-layers configuration."
-)
+layers configuration.")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(send-mail-function (quote mailclient-send-it))
+ '(sp-base-key-bindings (quote sp)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(haskell-process-log t))

@@ -1,0 +1,112 @@
+////////////////  Default Keybinds ////////////////
+define command_mode BindingModeSwitcher
+
+kwmc mode command_mode prefix on
+kwmc mode command_mode timeout 1.0
+kwmc mode command_mode restore default
+kwmc mode command_mode color 0xDDCC22DD
+
+kwmc bindsym ctrl-l mode activate command_mode
+kwmc bindsym command_mode-esc activate default
+
+// Quit Kwm
+kwmc bindsym cmd+alt+ctrl-q quit
+
+// Launch iTerm2 as a quick and dirty term
+kwmc bindsym cmd+ctrl-return exec open -na ~/.local/bin/iterm-wrapper.app
+
+// Main apps to switch about with
+kwmc bindsym cmd+ctrl-e exec open /usr/local/opt/emacs-mac/Emacs.app
+kwmc bindsym cmd+ctrl-t exec open /Applications/iTerm2.app
+kwmc bindsym cmd+ctrl-l exec open /Applications/Slack.app
+kwmc bindsym cmd+ctrl-b exec open /Applications/Google\ Chrome.app
+kwmc bindsym cmd+ctrl-s exec open /Applications/Skype.app
+kwmc bindsym cmd+ctrl-g exec open /Applications/GitKraken.app
+kwmc bindsym cmd+ctrl-m exec open /Applications/Microsoft\ Outlook.app
+kwmc bindsym cmd+ctrl-o exec open /Applications/Microsoft\ Remote\ Desktop.app
+kwmc bindsym cmd+ctrl-i exec open /Applications/IntelliJ\ IDEA\ 15.app
+
+// Set Temporary Window Container
+//kwmc bindsym command_mode-f window -z fullscreen
+//kwmc bindsym command_mode-d window -z parent
+//kwmc bindsym command_mode-w window -t focused
+
+// Give Focus To Window
+kwmc bindsym command_mode-h window -f west
+kwmc bindsym command_mode-l window -f east
+kwmc bindsym command_mode-j window -f south
+kwmc bindsym command_mode-k window -f north
+kwmc bindsym command_mode-m window -s mark
+// Swap Focused Window
+kwmc bindsym command_mode+cmd-h window -s west
+kwmc bindsym command_mode+cmd-j window -s south
+kwmc bindsym command_mode+cmd-k window -s north
+kwmc bindsym command_mode+cmd-l window -s east
+
+// Give Focus To Screen
+kwmc bindsym command_mode-1 display -f 0
+kwmc bindsym command_mode-2 display -f 1
+// Move Focused Window To Screen
+kwmc bindsym command_mode+ctrl-1 window -m display 0
+kwmc bindsym command_mode+ctrl-2 window -m display 1
+
+// Change focus to space
+kwmc bindsym command_mode-left space -fExperimental left
+kwmc bindsym command_mode-right space -fExperimental right
+// Move Focused Window To Space
+kwmc bindsym command_mode+ctrl-left window -m space left
+kwmc bindsym command_mode+ctrl-right window -m space right
+
+// Set Space Tiling Mode
+kwmc bindsym cmd+ctrl+shift-a space -t bsp
+kwmc bindsym cmd+ctrl+shift-d space -t float
+// Rotate Window-Tree By 90* (Clockwise)
+kwmc bindsym cmd+ctrl-r tree rotate 90
+
+// Modify Container
+//kwmc bindsym command_mode+cmd+alt-s window -c split-mode toggle
+kwmc bindsym command_mode+cmd+alt-h window -c reduce 0.05
+kwmc bindsym command_mode+cmd+alt-l window -c expand 0.05
+//kwmc bindsym command_mode+cmd+alt-< window -c type toggle
+
+// Increase Container Gaps
+kwmc bindsym command_mode-x space -g increase horizontal
+kwmc bindsym command_mode-y space -g increase vertical
+// Decrease Container Gaps
+kwmc bindsym command_mode+shift-x space -g decrease horizontal
+kwmc bindsym command_mode+shift-y space -g decrease vertical
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
