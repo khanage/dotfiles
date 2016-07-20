@@ -23,6 +23,7 @@
      company-mode
      html
      javascript
+     typescript
      ;; (haskell :variables
      ;;          haskell-enable-ghci-ng-support t
      ;;          hindent-style "chris-done"

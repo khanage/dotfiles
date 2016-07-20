@@ -7,7 +7,7 @@ render: (output) ->
 
   icon = if (power == "'AC") then "🔌" else "🔋"
 
-  "<i>#{icon}</i><span>#{percentage}<span>"
+  "<span>#{percentage}<span><i>#{icon}</i>"
 
 style: """
   -webkit-font-smoothing: antialiased
@@ -15,6 +15,6 @@ style: """
   top: 4px
   box-shadow: 0 4px 2px -2px #FABD2F
   padding: 0px 3px 2px 3px
-  right: 145px
+  right: 142px
   color: #D5C4A1
 """

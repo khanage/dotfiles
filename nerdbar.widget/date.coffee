@@ -11,6 +11,6 @@ style: """
   font: 16px Osaka-Mono
   padding:0px 3px 3px 3px
   box-shadow: 0 4px 2px -2px #B16286;
-  right: 60px
+  right: 58px
   top: 6px
 """
