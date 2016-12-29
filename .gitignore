@@ -1,3 +1,7 @@
 *.elc
-
+*.hi
+*.o
+*.errors
 .cask
+.stack-work/
+xmonad/xmonad-x86_64-linux
