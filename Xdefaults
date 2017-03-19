@@ -1,22 +1,19 @@
 urxvt*font:             xft:Inconsolata:pixelsize=16
 urxvt*termName:         rxvt
-urxvt*background:       #000000
+urxvt*background:       rgba:0000/0000/0000/c800
 urxvt*foreground:       #cccccc
 urxvt*scrollBar:        false
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
 urxvt*perl-ext-common:  default,matcher
-urxvt*urlLauncher:      /opt/mozilla/bin/firefox
+urxvt*urlLauncher:      /usr/bin/firefox
 urxvt*matcher.button:   1
+
+URxvt.transparent: true
+URxvt.shading: 15
 
 Xft*dpi:                96
 Xft*antialias:          true
 Xft*hinting:            full
-
-urxvt*background:       rgba:0000/0000/0000/cccc
-
-URxvt.transparent:   true
-URxvt.tintColor:     black
-URxvt.shading:       18 
  
 URxvt*color0:      #000000
 URxvt*color1:      #9e1828
@@ -34,3 +31,18 @@ URxvt*color12:     #4186be
 URxvt*color13:     #cf9ebe
 URxvt*color14:     #71bebe
 URxvt*color15:     #ffffff
+
+rofi.color-enabled: true
+rofi.color-window: #282828, #282828, #268bd2
+rofi.color-normal: #282828, #ffffff, #282828, #268bd2, #ffffff
+rofi.color-active: #282828, #268bd2, #282828, #268bd2, #205171
+rofi.color-urgent: #282828, #f3843d, #282828, #268bd2, #ffc39c
+
+rofi.font: Hack Bold 13
+rofi.modi: window,run,ssh
+rofi.key-run: SuperL+p
+
+rofi.terminal:          urxvt
+!rofi.run-shell-command: /usr/bin/termite -e '{cmd}'
+rofi.ssh-client:        ssh
+!rofi.ssh-command: {terminal} -e "{ssh-client} {host}"

@@ -1,3 +1,5 @@
 #!/bin/bash
+
+polybar example &
+
 VBoxClient-all &
-xmobar ~/dotfiles/xmonad/xmobar.hs &

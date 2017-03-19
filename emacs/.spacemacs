@@ -24,7 +24,6 @@
      emacs-lisp
      html
      javascript
-     nixos
      typescript
      ;; (haskell :variables
      ;;          haskell-enable-ghci-ng-support t

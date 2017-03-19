@@ -12,23 +12,24 @@ import qualified XMonad.StackSet              as S
 import           XMonad.Util.EZConfig         (additionalKeys)
 import           XMonad.Util.NamedWindows     (getName)
 import           XMonad.Util.Run              (spawnPipe)
+import           XMonad.Hooks.EwmhDesktops
 
 main = do
-  xmproc <- spawnPipe "xmobar /home/khan/.xmonad/xmobar.hs"
-  xmonad $ defaultConfig
+  xmproc <- spawnPipe "xmobar -A 100 /home/khan/.xmonad/xmobar.hs"
+  xmonad $ ewmh def
 	{ manageHook = manageHook defaultConfig <+> manageDocks
         , terminal = "urxvt"
-	-- , layoutHook = avoidStruts  $  layoutHook defaultConfig
-        , layoutHook = avoidStruts $ smartSpacing 50 $ Tall 1 (3/100) (1/2)
+        , layoutHook = avoidStruts $ smartSpacingWithEdge 15 $ Tall 1 (3/100) (1/2)
         , handleEventHook = handleEventHook defaultConfig <+> docksEventHook
 	, logHook = customLogWithPP xmobarPP
 			{ ppOutput = hPutStrLn xmproc
-			, ppTitle = xmobarColor "green" "" . shorten 50
+			, ppTitle = xmobarColor "#69EFAD" "" . shorten 50
 			}
       	} `additionalKeys`
            [ ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 2+")
            , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 2-")
            , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
+           , ((mod1Mask, xK_p), spawn "rofi -show run")
            ]
 -- | Format the current status using the supplied pretty-printing format,
 --   and write it to stdout.
