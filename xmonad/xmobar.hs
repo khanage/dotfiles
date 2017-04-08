@@ -3,6 +3,7 @@ Config {
    , bgColor =      "#0C0C0C"
    , fgColor =      "#9B26AF"
    , position =     BottomW C 95
+   , alpha = 100
    , border =       BottomB
    , borderColor = "#8B169F"
    , sepChar =  "%"
