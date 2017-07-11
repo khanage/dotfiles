@@ -19,7 +19,7 @@ kwmc config add-role AXDialog iTerm2
 
 kwmc rule owner="Steam" properties={float="true"}
 kwmc rule owner="happybird" properties={float="true"}
-kwmc rule owner="IntelliJ IDEA 15" properties={float="true"}
+kwmc rule owner="IntelliJ IDEA" properties={float="true"}
 kwmc rule owner="Stellaris" properties={float="true"}
 
 # Enable border for focused window
@@ -61,7 +61,7 @@ kwmc bind cmd+ctrl-s sys open /Applications/Skype.app
 kwmc bind cmd+ctrl-g sys open /Applications/GitKraken.app
 kwmc bind cmd+ctrl-m sys open /Applications/Microsoft\ Outlook.app
 kwmc bind cmd+ctrl-o sys open /Applications/Microsoft\ Remote\ Desktop.app
-kwmc bind cmd+ctrl-i sys open /Applications/IntelliJ\ IDEA\ 15.app
+kwmc bind cmd+ctrl-i sys open /Applications/IntelliJ\ IDEA.app
 
 # Set Temporary Window Container
 #kwmc bind prefix-f window -z fullscreen

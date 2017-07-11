@@ -1,16 +1,16 @@
-command: "date +\"%a %d %b\""
+command: "~/.local/bin/nice-date"
 
-refreshFrequency: 10000
+refreshFrequency: '10s'
 
 render: (output) ->
   "#{output}"
 
 style: """
   -webkit-font-smoothing: antialiased
+  font: 16px Helvetica
+  bottom: 0px
   color: #D5C4A1
-  font: 16px Osaka-Mono
-  padding:0px 3px 3px 3px
-  box-shadow: 0 4px 2px -2px #B16286;
-  right: 58px
-  top: 6px
+  padding:4px 3px 3px 3px
+  width: 300px
+  margin:0 auto
 """

@@ -2,21 +2,21 @@
 define command_mode BindingModeSwitcher
 
 kwmc mode command_mode prefix on
-kwmc mode command_mode timeout 1.0
+kwmc mode command_mode timeout 3.0
 kwmc mode command_mode restore default
-kwmc mode command_mode color 0xDDCC22DD
+kwmc mode command_mode color 0xFF551A8B
 
 kwmc bindsym ctrl-l mode activate command_mode
-kwmc bindsym command_mode-esc activate default
+kwmc bindsym command_mode-escape mode activate default
 
 // Quit Kwm
-kwmc bindsym cmd+alt+ctrl-q quit
+// kwmc bindsym cmd+alt+ctrl-q quit
 
 // Launch iTerm2 as a quick and dirty term
 kwmc bindsym cmd+ctrl-return exec open -na ~/.local/bin/iterm-wrapper.app
 
 // Main apps to switch about with
-kwmc bindsym cmd+ctrl-e exec open /usr/local/opt/emacs-mac/Emacs.app
+kwmc bindsym cmd+ctrl-e exec open /Applications/Emacs.app
 kwmc bindsym cmd+ctrl-t exec open /Applications/iTerm2.app
 kwmc bindsym cmd+ctrl-l exec open /Applications/Slack.app
 kwmc bindsym cmd+ctrl-b exec open /Applications/Google\ Chrome.app
@@ -24,7 +24,7 @@ kwmc bindsym cmd+ctrl-s exec open /Applications/Skype.app
 kwmc bindsym cmd+ctrl-g exec open /Applications/GitKraken.app
 kwmc bindsym cmd+ctrl-m exec open /Applications/Microsoft\ Outlook.app
 kwmc bindsym cmd+ctrl-o exec open /Applications/Microsoft\ Remote\ Desktop.app
-kwmc bindsym cmd+ctrl-i exec open /Applications/IntelliJ\ IDEA\ 15.app
+kwmc bindsym cmd+ctrl-i exec open /Applications/IntelliJ\ IDEA.app
 
 // Set Temporary Window Container
 //kwmc bindsym command_mode-f window -z fullscreen

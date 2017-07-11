@@ -12,16 +12,16 @@ kwmc config lock-to-container on
 kwmc config cycle-focus on
 
 kwmc config split-ratio 0.5
-kwmc config spawn rigt
+kwmc config spawn right
 
 kwmc config border focused on
 kwmc config border focused size 2
-kwmc config border focused color 0xDDD5C4A1
+kwmc config border focused color 0xAAD5C4A1
 kwmc config border focused radius 6
 
-kwmc config border marked on
+kwmc config border marked off
 kwmc config border marked size 2
-kwmc config border marked color 0xDDCC5577
+kwmc config border marked color 0xAACC5577
 kwmc config border marked radius 6
 
 include binds

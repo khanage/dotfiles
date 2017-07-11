@@ -1,18 +1,20 @@
-command: "echo $(/usr/local/bin/kwmc query focused) | awk '{for (i=2; i<=NF; i++) print $i}'"
+command: "~/.local/bin/current-application"
 
-refreshFrequency: 1000 # ms
+refreshFrequency: 100 # ms
 
 render: (output) ->
-  "#{output}"
+  output
+
 
 style: """
   -webkit-font-smoothing: antialiased
+  font: 16px Helvetica
   color: #D6E7EE
-  font: 12px "Meslo LG S for Powerline"
   height: 16px
-  left: 10px
+  left: 650px
+  padding: 0px 0px 5px 0px
+  bottom: 0px
   overflow: hidden
   text-overflow: ellipsis
-  top: 4px
   width: 1000px
 """

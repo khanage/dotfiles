@@ -2,6 +2,6 @@ kwmc rule owner="iTerm2" properties={role="AXDialog"}
 
 kwmc rule owner="Steam" properties={float="true"}
 kwmc rule owner="happybird" properties={float="true"}
-kwmc rule owner="IntelliJ IDEA 15" properties={float="true"}
+kwmc rule owner="IntelliJ IDEA" properties={float="true"}
 kwmc rule owner="Stellaris" properties={float="true"}
 

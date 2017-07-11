@@ -1,20 +1,20 @@
-command: "pmset -g batt | tr -d '\n' | cut -f1 -d';' | awk '{print $4\":\"$7}'"
+command: "pmset -g batt | tr -d '\n' | cut -f1 -d';' | awk '{print $4\":\"$8}'"
 
-refreshFrequency: 2000 # ms
+refreshFrequency: '10s'
 
 render: (output) ->
   [power,percentage,...] = output.split ':'
 
   icon = if (power == "'AC") then "🔌" else "🔋"
 
-  "<span>#{percentage}<span><i>#{icon}</i>"
+  "<i>#{icon}</i><span>#{percentage}<span>"
 
 style: """
   -webkit-font-smoothing: antialiased
-  font: 14px Osaka-Mono
-  top: 4px
-  box-shadow: 0 4px 2px -2px #FABD2F
-  padding: 0px 3px 2px 3px
-  right: 142px
+  span { font: 16px Helvetica }
+  i    { font: 14px Helvetica; padding-right: 10px }
+  right: 120px
+  padding-bottom: 8px
+  bottom: 0px
   color: #D5C4A1
 """
