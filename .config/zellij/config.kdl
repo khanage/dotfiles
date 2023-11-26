@@ -6,6 +6,11 @@ keybinds {
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Ctrl p" { SwitchToMode "Pane"; }
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt l" { MoveFocus "Right"; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -33,7 +38,7 @@ keybinds {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+        bind "w" { ToggleFloatingPanes; SwitchToMode "Locked"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
@@ -220,7 +225,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -253,6 +258,7 @@ plugins {
 // Default: default
 //
 // theme "default"
+theme "catppuccin-mocha" // or latte, frappe and macchiato
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -262,7 +268,7 @@ plugins {
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
-// default_mode "locked"
+default_mode "locked"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
@@ -289,7 +295,7 @@ plugins {
 //
 // copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
-// copy_command "pbcopy"                     // osx
+copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.

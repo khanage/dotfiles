@@ -2,7 +2,7 @@
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
+=====================================================================ini
 
 Kickstart.nvim is *not* a distribution.
 
@@ -228,8 +228,26 @@ require('lazy').setup({
     }
   },
 
-  'christoomey/vim-tmux-navigator',
+  {
+    'Lilja/zellij.nvim',
+    opts = {
+      vimTmuxNavigatorKeybinds = true,
+    }
+  },
 
+  -- {
+  --   "https://git.sr.ht/~swaits/zellij-nav.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   keys = {
+  --     { "<c-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left" } },
+  --     { "<c-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down" } },
+  --     { "<c-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up" } },
+  --     { "<c-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
+  --   },
+  --   opts = {},
+  -- },
+  --
   'tpope/vim-surround',
 
   'vim-scripts/ReplaceWithRegister',
@@ -407,8 +425,8 @@ end, { desc = '[S]earch nvim [C]onfig' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json',
-    'html', 'c_sharp', 'bicep', 'make' },
+  ensure_installed = { 'lua', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json', 'haskell',
+    'html', 'c_sharp', 'bicep', 'make', 'dockerfile', 'kdl' },
 
   sync_install = false,
 
@@ -420,10 +438,10 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<M-space>',
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
     },
   },
   textobjects = {
@@ -536,11 +554,9 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   rust_analyzer = {
-    settings = {
-      ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy",
-        }
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
       }
     }
   },
@@ -551,7 +567,7 @@ local servers = {
   terraformls = {},
   bicep = {},
   azure_pipelines_ls = {},
-
+  hls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -624,8 +640,8 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-N>'] = cmp.mapping.select_prev_item(),
     ['<C-h>'] = cmp.mapping.scroll_docs(-4),
     ['<C-l>'] = cmp.mapping.scroll_docs(4),
     ['<C-Tab>'] = cmp.mapping.complete {},
@@ -708,7 +724,7 @@ require('nvim-tree').setup({
   on_attach = nvim_tree_on_attach,
 })
 
-keymap.set('n', '<leader>o', function() require('nvim-tree.api').tree.toggle({ find = true }) end,
+keymap.set('n', '<leader>o', function() require('nvim-tree.api').tree.toggle({ find_file = true }) end,
   { desc = "nvim-tree: [O]pen the file tree", noremap = true, nowait = true })
 
 require("catppuccin").setup({
