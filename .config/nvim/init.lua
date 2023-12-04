@@ -102,7 +102,10 @@ require('lazy').setup({
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
+      {
+        'hrsh7th/cmp-nvim-lsp',
+        event = { "InsertEnter", "CmdlineEnter" },
+      },
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
@@ -381,6 +384,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 local telescope = require('telescope')
+local telescope_actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
@@ -388,6 +392,7 @@ telescope.setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<esc>'] = telescope_actions.close,
       },
     },
   },
@@ -585,9 +590,9 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, {
-    border = "single",
+    border = "rounded",
     focusable = true,
-    focus = true
+    focus = true,
   }
 )
 
