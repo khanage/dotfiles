@@ -265,7 +265,6 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim'
     }
-
   },
 
   require "kickstart.plugins.autoformat",
@@ -800,8 +799,9 @@ crates.setup({
     vim.keymap.set('n', '<leader>cd', crates.show_dependencies_popup, { desc = 'Crate dependenciese', buffer = bufnr })
 
     vim.keymap.set('n', '<leader>cu', crates.update_crate, { desc = 'Crate update', buffer = bufnr })
-    vim.keymap.set('v', '<leader>cu', crates.update_crates, { desc = 'Update crates', buffer = bufnr })
+    vim.keymap.set('v', '<leader>cU', crates.upgrade_crate, { desc = 'Upgrade crates', buffer = bufnr })
     vim.keymap.set('n', '<leader>ca', crates.update_all_crates, { desc = 'Update all crates', buffer = bufnr })
+    vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, { desc = 'Upgrade all crates', buffer = bufnr })
 
     vim.keymap.set('n', '<leader>ce', crates.expand_plain_crate_to_inline_table,
       { desc = 'Expand crate to table', buffer = bufnr })
