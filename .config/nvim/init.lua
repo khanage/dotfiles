@@ -177,7 +177,7 @@ require('lazy').setup({
   'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -257,15 +257,6 @@ require('lazy').setup({
 
   'mbbill/undotree',
 
-  'simrat39/rust-tools.nvim',
-
-  {
-    'saecki/crates.nvim',
-    tag = 'v0.4.0',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    }
-  },
 
   require "kickstart.plugins.autoformat",
   require "kickstart.plugins.debug",
@@ -282,7 +273,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -500,50 +491,6 @@ keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic 
 keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- [[ Configure LSP ]]
---  This function gets run when an LSP connects to a particular buffer.
-local lsp_on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -556,13 +503,6 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy",
-      }
-    }
-  },
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   csharp_ls = {
@@ -577,6 +517,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  rust_analyzer = {}
 }
 
 -- Setup neovim lua configuration
@@ -596,6 +537,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
+local lsp_on_attach = require('custom.lsp').lsp_on_attach
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
@@ -618,6 +560,8 @@ mason_lspconfig.setup_handlers {
               or lspconfig.util.root_pattern(".git")(startpath)
         end
       }
+    elseif (server_name == 'rust_analyzer')
+    then
     else
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
@@ -747,70 +691,41 @@ require("catppuccin").setup({
 
 vim.cmd.colorscheme "catppuccin"
 
--- Setup rust tools
-local rt = require("rust-tools")
+-- -- Setup rust tools
+-- local rt = require("rust-tools")
+-- --
+-- -- Update this path
+-- local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/'
+-- local codelldb_path = extension_path .. 'adapter/codelldb'
+-- local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+-- local this_os = vim.loop.os_uname().sysname;
 --
--- Update this path
-local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/'
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb'
-local this_os = vim.loop.os_uname().sysname;
-
--- The path in windows is different
-if this_os:find "Windows" then
-  codelldb_path = extension_path .. "adapter\\codelldb.exe"
-  liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
-else
-  -- The liblldb extension is .so for linux and .dylib for macOS
-  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
-end
-
-rt.setup({
-  server = {
-    on_attach = function(x, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-      vim.keymap.set("v", "<C-i>", rt.hover_range.hover_range, { buffer = bufnr })
-
-      lsp_on_attach(x, bufnr)
-    end,
-  },
-  dap = {
-    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
-  },
-})
-
--- Configure crates
-
-local crates = require('crates')
-crates.setup({
-  popup = {
-    autofocus = true,
-  },
-  on_attach = function(_, bufnr)
-    vim.keymap.set('n', '<leader>ct', crates.toggle, { desc = '[C]rates [t]oggle', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cr', crates.reload, { desc = '[C]rates reload', buffer = bufnr })
-
-    vim.keymap.set('n', '<leader>cv', crates.show_versions_popup, { desc = 'Crate version', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cf', crates.show_features_popup, { desc = 'Crate features', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cd', crates.show_dependencies_popup, { desc = 'Crate dependenciese', buffer = bufnr })
-
-    vim.keymap.set('n', '<leader>cu', crates.update_crate, { desc = 'Crate update', buffer = bufnr })
-    vim.keymap.set('v', '<leader>cU', crates.upgrade_crate, { desc = 'Upgrade crates', buffer = bufnr })
-    vim.keymap.set('n', '<leader>ca', crates.update_all_crates, { desc = 'Update all crates', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, { desc = 'Upgrade all crates', buffer = bufnr })
-
-    vim.keymap.set('n', '<leader>ce', crates.expand_plain_crate_to_inline_table,
-      { desc = 'Expand crate to table', buffer = bufnr })
-
-    vim.keymap.set('n', '<leader>cH', crates.open_homepage, { desc = 'Crate homepage', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cR', crates.open_repository, { desc = 'Crate repository', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cD', crates.open_documentation, { desc = 'Crate documentation', buffer = bufnr })
-    vim.keymap.set('n', '<leader>cC', crates.open_crates_io, { desc = 'Open crates io', buffer = bufnr })
-  end
-})
+-- -- The path in windows is different
+-- if this_os:find "Windows" then
+--   codelldb_path = extension_path .. "adapter\\codelldb.exe"
+--   liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+-- else
+--   -- The liblldb extension is .so for linux and .dylib for macOS
+--   liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+-- end
+--
+-- rt.setup({
+--   server = {
+--     on_attach = function(x, bufnr)
+--       -- Hover actions
+--       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+--       -- Code action groups
+--       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+--       vim.keymap.set("v", "<C-i>", rt.hover_range.hover_range, { buffer = bufnr })
+--
+--       lsp_on_attach(x, bufnr)
+--     end,
+--   },
+--   dap = {
+--     adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+--   },
+-- })
+require("lsp-inlayhints").setup()
 -- Configure indent blank lines
 
 local highlight = {
