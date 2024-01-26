@@ -42,8 +42,6 @@ return {
         liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
       end
 
-      vim.notify("heeeeyyyyy")
-
       vim.g.rustaceanvim = function()
         return {
           inlay_hints = {
@@ -58,7 +56,6 @@ return {
             on_attach = function(client, bufnr)
               require('custom.lsp').lsp_on_attach(client, bufnr)
               require("lsp-inlayhints").on_attach(client, bufnr)
-              vim.notify("heeeeyyyyy")
 
               vim.keymap.set('n', '<leader>cc', function() vim.cmd.RustLsp('openCargo') end,
                 { desc = "Open [C]argo", buffer = true })
