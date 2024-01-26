@@ -7,13 +7,16 @@ return {
       'lvimuser/lsp-inlayhints.nvim',
       {
         'saecki/crates.nvim',
-        tag = 'v0.4.0',
+        tag = 'stable',
         dependencies = {
           'nvim-lua/plenary.nvim'
-        }
+        },
       },
     },
     config = function()
+      local lsp_inlayhints = require('lsp-inlayhints')
+      lsp_inlayhints.setup()
+
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
       vim.api.nvim_create_autocmd("LspAttach", {
         group = "LspAttach_inlayhints",
@@ -24,7 +27,7 @@ return {
 
           local bufnr = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          require("lsp-inlayhints").on_attach(client, bufnr)
+          lsp_inlayhints.on_attach(client, bufnr)
         end,
       })
 
@@ -50,12 +53,12 @@ return {
           tools = {
             hover_actions = {
               autofocus = true,
-            }
+            },
+            reload_workspace_from_cargo_toml = true,
           },
           server = {
             on_attach = function(client, bufnr)
               require('custom.lsp').lsp_on_attach(client, bufnr)
-              require("lsp-inlayhints").on_attach(client, bufnr)
 
               vim.keymap.set('n', '<leader>cc', function() vim.cmd.RustLsp('openCargo') end,
                 { desc = "Open [C]argo", buffer = true })
@@ -77,7 +80,8 @@ return {
                   command = "clippy",
                   extraArgs = { "--no-deps" },
                 }
-              }
+              },
+              standalone = false,
             },
             dap = {
               adapter = require('rustaceanvim.config').get_codelldb_adapter(codelldb_path, liblldb_path)
@@ -85,8 +89,6 @@ return {
           }
         }
       end
-
-      -- Configure crates
 
       local crates = require('crates')
       crates.setup({
@@ -105,17 +107,21 @@ return {
           vim.keymap.set('n', '<leader>cu', crates.update_crate, { desc = 'Crate update', buffer = bufnr })
           vim.keymap.set('v', '<leader>cU', crates.upgrade_crate, { desc = 'Upgrade crates', buffer = bufnr })
           vim.keymap.set('n', '<leader>ca', crates.update_all_crates, { desc = 'Update all crates', buffer = bufnr })
-          vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, { desc = 'Upgrade all crates', buffer = bufnr })
+          vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates,
+            { desc = 'Upgrade all crates', buffer = bufnr })
 
           vim.keymap.set('n', '<leader>ce', crates.expand_plain_crate_to_inline_table,
             { desc = 'Expand crate to table', buffer = bufnr })
 
           vim.keymap.set('n', '<leader>cH', crates.open_homepage, { desc = 'Crate homepage', buffer = bufnr })
           vim.keymap.set('n', '<leader>cR', crates.open_repository, { desc = 'Crate repository', buffer = bufnr })
-          vim.keymap.set('n', '<leader>cD', crates.open_documentation, { desc = 'Crate documentation', buffer = bufnr })
+          vim.keymap.set('n', '<leader>cD', crates.open_documentation,
+            { desc = 'Crate documentation', buffer = bufnr })
+
           vim.keymap.set('n', '<leader>cC', crates.open_crates_io, { desc = 'Open crates io', buffer = bufnr })
         end
       })
     end
+
   },
 }

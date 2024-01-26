@@ -1,42 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================ini
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-
-  And then you can explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -59,14 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -93,82 +47,115 @@ require('lazy').setup({
     },
   },
 
+  -- Useful plugin to show you pending keybinds.
+  'folke/which-key.nvim',
+
   {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds LSP completion capabilities
-      {
-        'hrsh7th/cmp-nvim-lsp',
-        event = { "InsertEnter", "CmdlineEnter" },
-      },
-
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-    },
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      integrations = {
+        cmp = true,
+        dap = true,
+        dap_ui = true,
+        nvimtree = true,
+        treesitter = true,
+        treesitter_context = true,
+        mason = true,
+        rainbow_delimiters = true,
+        which_key = true,
+        neogit = true,
+        telescope = {
+          enabled = true,
+        },
+        indent_blankline = {
+          enabled = true,
+          scope_color = "mocha",
+          colored_indent_levels = true,
+        },
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
+      }
+    }
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
-  -- {
-  --   'lewis6991/gitsigns.nvim',
-  --   opts = {
-  --     -- See `:help gitsigns.txt`
-  --     signs = {
-  --       add = { text = '+' },
-  --       change = { text = '~' },
-  --       delete = { text = '_' },
-  --       topdelete = { text = '‾' },
-  --       changedelete = { text = '~' },
-  --     },
-  --     on_attach = function(bufnr)
-  --       vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
-  --
-  --       -- don't override the built-in and fugitive keymaps
-  --       local gs = package.loaded.gitsigns
-  --       vim.keymap.set({ 'n', 'v' }, ']c', function()
-  --         if vim.wo.diff then return ']c' end
-  --         vim.schedule(function() gs.next_hunk() end)
-  --         return '<Ignore>'
-  --       end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
-  --       vim.keymap.set({ 'n', 'v' }, '[c', function()
-  --         if vim.wo.diff then return '[c' end
-  --         vim.schedule(function() gs.prev_hunk() end)
-  --         return '<Ignore>'
-  --       end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
-  --     end,
-  --   },
-  -- },
-
-  { "catppuccin/nvim",      name = "catppuccin" },
+  { 'akinsho/bufferline.nvim', dependencies = 'nvim-tree/nvim-web-devicons' },
 
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      theme = 'catppuccin',
-      section_separators = { right = '', left = '' },
-      component_separators = { right = '', left = '' },
-      sections = {
-        lualine_c = {
-          {
-            'filename',
-            path = 1
-          },
-          {
-            'buffers',
-            show_modified_status = false,
-          },
-        }
-      },
+    dependencies = {
+      'arkav/lualine-lsp-progress'
     },
+    -- See `:help lualine.txt`
+    config = function()
+      local lualine = require('lualine')
+      lualine.setup({
+        options = {
+          theme = 'catppuccin',
+          section_separators = '',
+          component_separators = '',
+        },
+        sections = {
+          lualine_a = { { 'mode', separator = { right = '' } } },
+          lualine_b = {
+            { 'filetype', icon_only = true },
+            {
+              'filename',
+              path = 3
+            },
+            {
+              'diagnostics',
+              sources = { 'nvim_diagnostic', 'nvim_lsp' }
+            },
+            'location'
+          },
+          lualine_c = {},
+          lualine_x = { {
+            'lsp_progress',
+            separators = {
+              component = ' ',
+              progress = ' | ',
+              percentage = { pre = '', post = '%% ' },
+              title = { pre = '', post = ': ' },
+              lsp_client_name = { pre = '[', post = ']' },
+              spinner = { pre = '', post = '' },
+              message = { pre = '(', post = ')', commenced = 'In Progress', completed = 'Completed' },
+            },
+            display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
+            timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+            spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+          }
+          },
+          lualine_y = { 'diff' },
+          lualine_z = { { 'branch', separator = { left = '' } } },
+        },
+      })
+
+      vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        group = "lualine_augroup",
+        pattern = "LspProgressStatusUpdated",
+        callback = lualine.refresh,
+      })
+    end
   },
 
   -- Add indentation guides even on blank lines
@@ -177,7 +164,7 @@ require('lazy').setup({
   'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',  opts = {} },
+  { 'numToStr/Comment.nvim',   opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -231,48 +218,15 @@ require('lazy').setup({
     }
   },
 
-  {
-    'Lilja/zellij.nvim',
-    opts = {
-      vimTmuxNavigatorKeybinds = true,
-    }
-  },
-
-  -- {
-  --   "https://git.sr.ht/~swaits/zellij-nav.nvim",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   keys = {
-  --     { "<c-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left" } },
-  --     { "<c-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down" } },
-  --     { "<c-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up" } },
-  --     { "<c-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
-  --   },
-  --   opts = {},
-  -- },
-  --
   'tpope/vim-surround',
 
   'vim-scripts/ReplaceWithRegister',
 
   'mbbill/undotree',
 
-
   require "kickstart.plugins.autoformat",
   require "kickstart.plugins.debug",
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'custom.plugins' },
 }, {})
 
@@ -320,6 +274,7 @@ vim.o.completeopt = 'menu,menuone,noselect,preview'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+require("bufferline").setup()
 
 -- NvimTree
 vim.g.loaded_netrw = 1
@@ -420,8 +375,16 @@ end, { desc = '[S]earch nvim [C]onfig' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json', 'haskell',
-    'html', 'c_sharp', 'bicep', 'make', 'dockerfile', 'kdl' },
+  ensure_installed = {
+    'lua', 'rust', 'tsx', 'javascript', 'typescript',
+    'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json', 'haskell',
+    'html', 'c_sharp', 'bicep', 'make', 'dockerfile', 'kdl',
+    'bash', 'terraform'
+  },
+
+  ignore_install = {},
+
+  modules = {},
 
   sync_install = false,
 
@@ -505,8 +468,7 @@ local servers = {
   -- pyright = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-  csharp_ls = {
-  },
+  csharp_ls = {},
   terraformls = {},
   bicep = {},
   azure_pipelines_ls = {},
@@ -538,6 +500,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 local lsp_on_attach = require('custom.lsp').lsp_on_attach
+local lsp_config = require('lspconfig')
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
@@ -547,13 +510,13 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     if (server_name == 'csharp_ls')
     then
-      require('lspconfig')[server_name].setup {
+      lsp_config[server_name].setup {
         capabilities = capabilities,
         on_attach = lsp_on_attach,
         settings = servers[server_name],
         filetypes = (servers[server_name] or {}).filetypes,
         root_dir = function(startpath)
-          local lspconfig = require('lspconfig')
+          local lspconfig = lsp_config
           return lspconfig.util.root_pattern("*.sln")(startpath)
               or lspconfig.util.root_pattern("*.csproj")(startpath)
               or lspconfig.util.root_pattern("*.fsproj")(startpath)
@@ -563,7 +526,7 @@ mason_lspconfig.setup_handlers {
     elseif (server_name == 'rust_analyzer')
     then
     else
-      require('lspconfig')[server_name].setup {
+      lsp_config[server_name].setup {
         capabilities = capabilities,
         on_attach = lsp_on_attach,
         settings = servers[server_name],
@@ -571,57 +534,6 @@ mason_lspconfig.setup_handlers {
       }
     end
   end
-}
-
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-N>'] = cmp.mapping.select_prev_item(),
-    ['<C-h>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-l>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Tab>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'crates' },
-  },
 }
 
 -- [[ Configure nvim-tree ]]
@@ -675,58 +587,9 @@ keymap.set('n', '<leader>o', function() require('nvim-tree.api').tree.toggle({ f
   { desc = "nvim-tree: [O]pen the file tree", noremap = true, nowait = true })
 
 require("catppuccin").setup({
-  integrations = {
-    cmp = true,
-    nvimtree = true,
-    treesitter = true,
-    treesitter_context = false,
-    mason = false,
-    rainbow_delimiters = true,
-    which_key = false,
-    telescope = {
-      enabled = true,
-    }
-  }
 })
 
 vim.cmd.colorscheme "catppuccin"
-
--- -- Setup rust tools
--- local rt = require("rust-tools")
--- --
--- -- Update this path
--- local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/'
--- local codelldb_path = extension_path .. 'adapter/codelldb'
--- local liblldb_path = extension_path .. 'lldb/lib/liblldb'
--- local this_os = vim.loop.os_uname().sysname;
---
--- -- The path in windows is different
--- if this_os:find "Windows" then
---   codelldb_path = extension_path .. "adapter\\codelldb.exe"
---   liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
--- else
---   -- The liblldb extension is .so for linux and .dylib for macOS
---   liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
--- end
---
--- rt.setup({
---   server = {
---     on_attach = function(x, bufnr)
---       -- Hover actions
---       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
---       -- Code action groups
---       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
---       vim.keymap.set("v", "<C-i>", rt.hover_range.hover_range, { buffer = bufnr })
---
---       lsp_on_attach(x, bufnr)
---     end,
---   },
---   dap = {
---     adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
---   },
--- })
-require("lsp-inlayhints").setup()
--- Configure indent blank lines
 
 local highlight = {
   "RainbowRed",
@@ -751,9 +614,9 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 vim.g.rainbow_delimiters = { highlight = highlight }
-require("ibl").setup { scope = { highlight = highlight } }
 
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+require("ibl").setup { scope = { highlight = highlight } }
 
 -- This module contains a number of default definitions
 local rainbow_delimiters = require 'rainbow-delimiters'
