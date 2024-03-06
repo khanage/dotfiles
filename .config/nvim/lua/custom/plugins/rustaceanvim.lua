@@ -73,6 +73,7 @@ return {
                   allFeatures = true,
                   loadOutDirsFromCheck = true,
                   runBuildScripts = true,
+                  target = 'all-targets'
                 },
                 -- Add clippy lints for Rust.
                 checkOnSave = {
