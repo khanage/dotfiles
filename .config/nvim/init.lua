@@ -472,14 +472,13 @@ local servers = {
   terraformls = {},
   bicep = {},
   azure_pipelines_ls = {},
-  hls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-  rust_analyzer = {}
+  rust_analyzer = {},
 }
 
 -- Setup neovim lua configuration
