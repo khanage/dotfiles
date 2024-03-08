@@ -224,6 +224,8 @@ require('lazy').setup({
 
   'mbbill/undotree',
 
+  { "mistricky/codesnap.nvim", build = "make" },
+
   require "kickstart.plugins.autoformat",
   require "kickstart.plugins.debug",
 
@@ -632,6 +634,9 @@ vim.g.rainbow_delimiters = {
   },
   highlight = highlight,
 }
+
+local codesnap = require('codesnap')
+codesnap.setup({})
 
 -- Window management
 
