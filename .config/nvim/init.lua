@@ -381,7 +381,7 @@ require('nvim-treesitter.configs').setup {
     'lua', 'rust', 'tsx', 'javascript', 'typescript',
     'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json', 'haskell',
     'html', 'c_sharp', 'bicep', 'make', 'dockerfile', 'kdl',
-    'bash', 'terraform'
+    'bash', 'terraform', 'purescript'
   },
 
   ignore_install = {},
