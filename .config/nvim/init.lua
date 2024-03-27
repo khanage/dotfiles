@@ -224,7 +224,7 @@ require('lazy').setup({
 
   'mbbill/undotree',
 
-  { "mistricky/codesnap.nvim", build = "make" },
+  { "mistricky/codesnap.nvim", build = "make build_generator_debug", version = "^1" },
 
   require "kickstart.plugins.autoformat",
   require "kickstart.plugins.debug",

@@ -103,7 +103,7 @@ return {
           vim.keymap.set('n', '<leader>cv', crates.show_versions_popup, { desc = 'Crate version', buffer = bufnr })
           vim.keymap.set('n', '<leader>cf', crates.show_features_popup, { desc = 'Crate features', buffer = bufnr })
           vim.keymap.set('n', '<leader>cd', crates.show_dependencies_popup,
-            { desc = 'Crate dependenciese', buffer = bufnr })
+            { desc = 'Crate dependencies', buffer = bufnr })
 
           vim.keymap.set('n', '<leader>cu', crates.update_crate, { desc = 'Crate update', buffer = bufnr })
           vim.keymap.set('v', '<leader>cU', crates.upgrade_crate, { desc = 'Upgrade crates', buffer = bufnr })

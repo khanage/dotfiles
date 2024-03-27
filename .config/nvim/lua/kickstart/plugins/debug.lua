@@ -18,6 +18,7 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'ldelossa/nvim-dap-projects',
+    'nvim-neotest/nvim-nio'
   },
   config = function()
     local dap = require 'dap'
