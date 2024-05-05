@@ -3,6 +3,7 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^3',
     ft = { 'rust', 'toml' },
+    lazy = false,
     dependencies = {
       'lvimuser/lsp-inlayhints.nvim',
       {
@@ -63,7 +64,7 @@ return {
               vim.keymap.set('n', '<leader>cc', function() vim.cmd.RustLsp('openCargo') end,
                 { desc = "Open [C]argo", buffer = bufnr })
               vim.keymap.set('n', '<leader>a', function() vim.cmd.RustLsp('codeAction') end,
-                { desc = 'Codein [A]ction', silent = true, buffer = bufnr }
+                { desc = 'Code [A]ction', silent = true, buffer = bufnr }
               )
               vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open [E]rror float', buffer = bufnr })
             end,
