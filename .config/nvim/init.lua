@@ -652,7 +652,7 @@ keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "[T]ab [p]rev" })
 keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "[B]uffer [n]ext" })
 keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "[B]uffer [p]revious" })
 keymap.set("n", "<leader>bs", ":bs<CR>", { desc = "[B]uffer [s]how" })
-keymap.set("n", "<leader>bx", ":bd<CR>", { desc = "[B]uffer (x) kill" })
+keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "[B]uffer (x) kill" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
