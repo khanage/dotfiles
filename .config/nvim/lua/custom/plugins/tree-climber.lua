@@ -18,13 +18,13 @@ return {
     vim.keymap.set({ 'v', 'o' }, 'in', function() tree_climber.select_node({ highlight = true }) end,
       { noremap = true, silent = true, desc = "TS: Select node" })
 
-    vim.keymap.set('n', '<c-k>', function() tree_climber.swap_prev({ highlight = true }) end,
+    vim.keymap.set('n', '<leader>sp', function() tree_climber.swap_prev({ highlight = true }) end,
       { noremap = true, silent = true, desc = "TS: Swap previous" })
 
-    vim.keymap.set('n', '<c-j>', function() tree_climber.swap_next({ highlight = true }) end,
+    vim.keymap.set('n', '<leader>sn', function() tree_climber.swap_next({ highlight = true }) end,
       { noremap = true, silent = true, desc = "TS: Swap next" })
 
-    vim.keymap.set('n', '<c-h>', function() tree_climber.highlight_node({ highlight = true }) end,
+    vim.keymap.set('n', '<leader>hn', function() tree_climber.highlight_node({ highlight = true }) end,
       { noremap = true, silent = true, desc = "TS: Highlight node" })
   end
 }
