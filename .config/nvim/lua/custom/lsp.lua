@@ -18,7 +18,8 @@ M.lsp_on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>a', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
+  vim.keymap.set('v', '<c-a>', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code [A]ction' })
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')

@@ -1,4 +1,3 @@
--- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -401,7 +400,7 @@ require('nvim-treesitter.configs').setup {
     'lua', 'rust', 'tsx', 'javascript', 'typescript',
     'vimdoc', 'vim', 'yaml', 'toml', 'sql', 'json', 'haskell',
     'html', 'c_sharp', 'bicep', 'make', 'dockerfile', 'kdl',
-    'bash', 'terraform', 'purescript'
+    'bash', 'terraform', 'purescript', 'c'
   },
 
   ignore_install = {},
@@ -485,7 +484,7 @@ keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnosti
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = { filetypes = { 'c', 'h' } },
   -- gopls = {},
   -- pyright = {},
   tsserver = {},

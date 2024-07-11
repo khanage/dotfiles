@@ -203,7 +203,7 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
     }
     shared_except "normal" "locked" {
-        bind "Enter" { SwitchToMode "Normal"; }
+        bind "Enter" "Esc" { SwitchToMode "Locked"; }
     }
     shared_except "pane" "locked" {
         bind "Ctrl p" { SwitchToMode "Pane"; }
