@@ -189,6 +189,7 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'smartpde/telescope-recent-files',
@@ -205,6 +206,27 @@ require('lazy').setup({
         end,
       },
     },
+    config = function()
+      local telescope = require('telescope')
+      local telescope_actions = require('telescope.actions')
+
+      telescope.setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-u>'] = false,
+              ['<C-d>'] = false,
+              ['<esc>'] = telescope_actions.close,
+            },
+          },
+        },
+      }
+
+      telescope.load_extension("recent_files")
+
+      -- Enable telescope fzf native, if installed
+      pcall(telescope.load_extension, 'fzf')
+    end
   },
 
   {
@@ -234,7 +256,57 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     dependencies = {
       'kyazdani42/nvim-web-devicons'
-    }
+    },
+    lazy = true,
+    config = function()
+      local nvim_tree = require('nvim-tree')
+
+      -- [[ Configure nvim-tree ]]
+      local HEIGHT_RATIO = 0.8
+      local WIDTH_RATIO = 0.5
+
+      local function nvim_tree_on_attach(bufnr)
+        local api = require 'nvim-tree.api'
+
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = false, nowait = true }
+        end
+
+        api.config.mappings.default_on_attach(bufnr)
+
+        vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
+        vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+      end
+      nvim_tree.setup({
+        view = {
+          float = {
+            enable = true,
+            open_win_config = function()
+              local screen_w = vim.o.columns
+              local screen_h = vim.o.lines - vim.o.cmdheight
+              local window_w = screen_w * WIDTH_RATIO
+              local window_h = screen_h * HEIGHT_RATIO
+              local window_w_int = math.floor(window_w)
+              local window_h_int = math.floor(window_h)
+              local center_x = (screen_w - window_w) / 2
+              local center_y = ((vim.o.lines - window_h) / 2) - vim.o.cmdheight
+              return {
+                border = 'rounded',
+                relative = 'editor',
+                row = center_y,
+                col = center_x,
+                width = window_w_int,
+                height = window_h_int
+              }
+            end,
+          },
+          width = function()
+            return math.floor(vim.o.columns * WIDTH_RATIO)
+          end,
+        },
+        on_attach = nvim_tree_on_attach,
+      })
+    end
   },
 
   'tpope/vim-surround',
@@ -243,7 +315,12 @@ require('lazy').setup({
 
   'mbbill/undotree',
 
-  { "mistricky/codesnap.nvim", build = "make build_generator_debug", version = "^1" },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make build_generator_debug",
+    version = "^1",
+    lazy = true
+  },
 
   require "kickstart.plugins.autoformat",
   require "kickstart.plugins.debug",
@@ -347,27 +424,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-local telescope = require('telescope')
-local telescope_actions = require('telescope.actions')
-
-telescope.setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-        ['<esc>'] = telescope_actions.close,
-      },
-    },
-  },
-}
-
-telescope.load_extension("recent_files")
-
--- Enable telescope fzf native, if installed
-pcall(telescope.load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -394,7 +450,8 @@ end, { desc = '[S]earch nvim [C]onfig' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
+local treesitter = require('nvim-treesitter.configs')
+treesitter.setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
     'lua', 'rust', 'tsx', 'javascript', 'typescript',
@@ -487,7 +544,8 @@ local servers = {
   clangd = { filetypes = { 'c', 'h' } },
   -- gopls = {},
   -- pyright = {},
-  tsserver = {},
+  bashls = { filetypes = { "sh" } },
+  ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   csharp_ls = {},
   terraformls = {},
@@ -499,7 +557,9 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  pylsp = {},
   rust_analyzer = {},
+  ruby_lsp = {},
 }
 
 -- Setup neovim lua configuration
@@ -555,58 +615,8 @@ mason_lspconfig.setup_handlers {
     end
   end
 }
-
--- [[ Configure nvim-tree ]]
-local HEIGHT_RATIO = 0.8
-local WIDTH_RATIO = 0.5
-
-local function nvim_tree_on_attach(bufnr)
-  local api = require 'nvim-tree.api'
-
-  local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = false, nowait = true }
-  end
-
-  api.config.mappings.default_on_attach(bufnr)
-
-  keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
-  keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-end
-
-require('nvim-tree').setup({
-  view = {
-    float = {
-      enable = true,
-      open_win_config = function()
-        local screen_w = vim.o.columns
-        local screen_h = vim.o.lines - vim.o.cmdheight
-        local window_w = screen_w * WIDTH_RATIO
-        local window_h = screen_h * HEIGHT_RATIO
-        local window_w_int = math.floor(window_w)
-        local window_h_int = math.floor(window_h)
-        local center_x = (screen_w - window_w) / 2
-        local center_y = ((vim.o.lines - window_h) / 2) - vim.o.cmdheight
-        return {
-          border = 'rounded',
-          relative = 'editor',
-          row = center_y,
-          col = center_x,
-          width = window_w_int,
-          height = window_h_int
-        }
-      end,
-    },
-    width = function()
-      return math.floor(vim.o.columns * WIDTH_RATIO)
-    end,
-  },
-  on_attach = nvim_tree_on_attach,
-})
-
-keymap.set('n', '<leader>o', function() require('nvim-tree.api').tree.toggle({ find_file = true }) end,
-  { desc = "nvim-tree: [O]pen the file tree", noremap = true, nowait = true })
-
 require("catppuccin").setup({
+  compile_path = vim.fn.stdpath "cache" .. "/catppuccin"
 })
 
 vim.cmd.colorscheme "catppuccin"
@@ -653,9 +663,14 @@ vim.g.rainbow_delimiters = {
   highlight = highlight,
 }
 
-local codesnap = require('codesnap')
-codesnap.setup({})
+vim.keymap.set('v', 'C-s', function()
+  require('codesnap').copy_into_clipboard()
+end, { desc = "codesnap: Save the current selection" })
 
+vim.keymap.set('n', '<leader>o', function() require('nvim-tree.api').tree.toggle({ find_file = true }) end,
+  { desc = "nvim-tree: [O]pen the file tree", noremap = true, nowait = true })
+
+vim.keymap.set("n", "<leader>gg", require('neogit').open, { desc = "[G]o [G]it" })
 -- Window management
 
 keymap.set("n", "<leader>s-", "<C-w>s", { desc = "[S]plit window vertically" })

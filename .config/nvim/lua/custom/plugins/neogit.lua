@@ -9,10 +9,9 @@ return {
   opts = function()
 
   end,
+  lazy = true,
   config = function(_, opts)
     local neogit = require('neogit')
     neogit.setup(opts)
-
-    vim.keymap.set("n", "<leader>gg", require('neogit').open, { desc = "[G]o [G]it" })
   end,
 }
