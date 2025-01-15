@@ -1,6 +1,8 @@
-tags
-test.sh
-.luarc.json
-nvim
-lazy-lock.json
-dotgit/
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
