@@ -7,6 +7,7 @@ keybinds {
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
         bind "Ctrl p" { ToggleFloatingPanes; }
+        bind "Ctrl a" { ToggleFocusFullscreen; }
 
         bind "Ctrl h" {
             MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
