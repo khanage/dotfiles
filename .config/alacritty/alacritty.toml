@@ -1,0 +1,19 @@
+[general]
+live_config_reload = true
+working_directory = "~"
+
+[font]
+normal = { family = "MesloLGS NF", style = "Regular" }
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+	{ key = "v", mods = "Control", action = "Paste" }
+]
+
+[terminal]
+[terminal.shell]
+args = ["--cd ~"]
+program = "wsl"
