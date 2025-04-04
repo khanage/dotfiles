@@ -4,6 +4,7 @@ return {
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
     keys[#keys + 1] = { "<leader>a", vim.lsp.buf.code_action, desc = "Code [A]ction" }
+    keys[#keys + 2] = { "<C-A>", vim.lsp.buf.code_action, mode = { "n", "v" }, desc = "Code [A]ction" }
 
     setup = {
       csharp_ls = function(_server, opts)
