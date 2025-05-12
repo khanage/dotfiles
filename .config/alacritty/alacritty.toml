@@ -1,19 +1,17 @@
 [general]
 live_config_reload = true
-working_directory = "~"
 
 [font]
-normal = { family = "MesloLGS NF", style = "Regular" }
+normal = { family = "GoMono Nerd Font Mono", style = "Regular" }
+size = 12
 
 [selection]
 save_to_clipboard = true
 
 [keyboard]
-bindings = [
-	{ key = "v", mods = "Control", action = "Paste" }
-]
+bindings = [{ key = "v", mods = "Control", action = "Paste" }]
 
-[terminal]
-[terminal.shell]
-args = ["--cd ~"]
-program = "wsl"
+# [terminal]
+# [terminal.shell]
+# args = ["--cd ~"]
+# program = "wsl"
