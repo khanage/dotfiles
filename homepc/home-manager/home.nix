@@ -96,7 +96,7 @@
     shellAliases = {
       ls = "lsd -A";
       nbs = "sudo nixos-rebuild switch --flake ~/dotfiles/homepc";
-      nfu = "sudo nix flake update --flake ~/dotfiles/homepc";
+      nfu = "sudo nix flake update --flake ~/dotfiles/homepc && git -C ~/dotfiles commit -am 'chore: update flake lock' && git -C ~/dotfiles commit";
     };
   };
 
