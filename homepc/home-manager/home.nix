@@ -48,6 +48,9 @@
       kubectl
       wl-clipboard
       cliphist
+      beam28Packages.elixir
+      beam28Packages.elixir-ls
+      beam28Packages.erlang
       # bevy_cli.packakges.${pkgs.system}.bevy_cli
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
