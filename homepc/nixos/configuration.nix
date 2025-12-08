@@ -131,6 +131,8 @@
 
   hardware.xone.enable = true;
 
+  hardware.keyboard.zsa.enable = true;
+
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
     wantedBy = ["multi-user.target"];
