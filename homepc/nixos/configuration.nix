@@ -75,7 +75,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.khan = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio" "gamemode"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "audio" "gamemode" "openrazer"]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
@@ -115,6 +115,7 @@
     vulkan-tools
     bluez
     xow_dongle-firmware
+    openrazer-daemon
   ];
 
   hardware.graphics = {
