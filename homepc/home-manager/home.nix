@@ -32,7 +32,6 @@
       lsd
       fd
       ripgrep
-      bat
       kdePackages.dolphin
       discord-ptb
       lazygit
@@ -235,6 +234,14 @@
     };
 
     nvf = (import ./nvf.nix) pkgs;
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "Nord";
+        pager = "";
+      };
+    };
   };
 
   dconf = {
