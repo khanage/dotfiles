@@ -72,7 +72,7 @@
 
         rust = {
           enable = true;
-          crates.enable = true;
+          extensions.crates-nvim.enable = true;
           dap.enable = true;
           lsp.opts = ''
             ['rust-analyzer'] = {
