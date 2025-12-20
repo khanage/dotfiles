@@ -22,7 +22,7 @@
     system = "x86_64-linux";
   in {
     nixosConfigurations = {
-      home-pc = nixpkgs.lib.nixosSystem {
+      homepc = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit system;};
         modules = [
           ./nixos/configuration.nix

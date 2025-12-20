@@ -50,8 +50,9 @@
       beam28Packages.elixir
       beam28Packages.elixir-ls
       beam28Packages.erlang
-      wally-cli
       polychromatic
+      keymapp
+      hypridle
       # bevy_cli.packakges.${pkgs.system}.bevy_cli
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
@@ -75,6 +76,7 @@
       #   org.gradle.daemon.idletimeout=3600000
       # '';
       ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
+      ".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
     };
 
     # Home Manager can also manage your environment variables through
@@ -256,35 +258,6 @@
         switch-to-workspace-2 = ["<Super>2"];
         switch-to-workspace-3 = ["<Super>3"];
         switch-to-workspace-4 = ["<Super>4"];
-      };
-    };
-  };
-
-  services = {
-    hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
-          lock_cmd = "pidof hyprlock || hyprlock";
-        };
-
-        listener = [
-          {
-            timeout = 120;
-            on-timeout = "hyprlock";
-          }
-          {
-            timeout = 300;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-          {
-            timeout = 1800;
-            on-timeout = "systemctl suspend";
-          }
-        ];
       };
     };
   };

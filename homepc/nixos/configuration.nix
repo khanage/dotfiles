@@ -47,10 +47,16 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "khan";
+  };
+
   services.displayManager.gdm = {
     enable = true;
     wayland = true;
     banner = "Aloha";
+    autoLogin.delay = 5;
   };
 
   services.desktopManager.gnome = {
