@@ -22,7 +22,7 @@
   };
 
   networking = {
-    hostName = "home-pc"; # Define your hostname.
+    hostName = "homepc"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
     enableIPv6 = false;
   };
