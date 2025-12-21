@@ -60,6 +60,7 @@
         home-manager.darwinModules.home-manager
         {
           home-manager = {
+            backupFileExtension = ".bak";
             useGlobalPkgs = true;
             useUserPackages = true;
             sharedModules = [nvf.homeManagerModules.default];
