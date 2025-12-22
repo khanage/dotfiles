@@ -25,6 +25,15 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
   # Flake outputs
@@ -32,6 +41,7 @@
     self,
     home-manager,
     nvf,
+    nix-homebrew,
     ...
   } @ inputs: let
     # The values for `username` and `system` supplied here are used to construct the hostname
@@ -69,6 +79,43 @@
             users.${username} = ./home-manager/work.nix;
           };
         }
+
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            # Install Homebrew under the default prefix
+            enable = true;
+
+            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+            enableRosetta = true;
+
+            # User owning the Homebrew prefix
+            user = "khanthompson";
+
+            # Optional: Declarative tap management
+            taps = {
+              "homebrew/homebrew-core" = inputs.homebrew-core;
+              "homebrew/homebrew-cask" = inputs.homebrew-cask;
+            };
+
+            # Optional: Enable fully-declarative tap management
+            #
+            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+            mutableTaps = false;
+          };
+        }
+
+        # Optional: Align homebrew taps config with nix-homebrew
+        ({config, ...}: {
+          homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+        })
+
+        # nix-homebrew.darwinModules
+        # {
+        #   pkgs = [
+        #     "hammerspoon"
+        #   ];
+        # }
 
         # In addition to adding modules in the style above, you can also
         # add modules inline like this. Delete this if unnecessary.

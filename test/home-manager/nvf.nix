@@ -55,7 +55,10 @@
         enableTreesitter = true;
 
         bash.enable = true;
-        csharp.enable = true;
+        csharp = {
+          enable = true;
+          lsp.servers = ["roslyn_ls"];
+        };
         lua.enable = true;
         nix = {
           enable = true;
