@@ -63,12 +63,10 @@
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        # Add the determinate nix-darwin module
         inputs.determinate.darwinModules.default
-        # Apply the modules output by this flake
         self.darwinModules.base
         self.darwinModules.nixConfig
-        # Apply any other imported modules here
+
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -99,36 +97,17 @@
             };
 
             # Optional: Enable fully-declarative tap management
-            #
-            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
             mutableTaps = false;
           };
         }
 
-        # Optional: Align homebrew taps config with nix-homebrew
         ({config, ...}: {
-          homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+          homebrew = {
+            enable = true;
+            taps = builtins.attrNames config.nix-homebrew.taps;
+            casks = ["hammerspoon"];
+          };
         })
-
-        # nix-homebrew.darwinModules
-        # {
-        #   pkgs = [
-        #     "hammerspoon"
-        #   ];
-        # }
-
-        # In addition to adding modules in the style above, you can also
-        # add modules inline like this. Delete this if unnecessary.
-        (
-          {
-            config,
-            pkgs,
-            lib,
-            ...
-          }: {
-            # Inline nix-darwin configuration
-          }
-        )
       ];
     };
 
