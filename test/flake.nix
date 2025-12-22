@@ -12,6 +12,11 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Determinate 3.* module
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +54,7 @@
       inherit system;
       modules = [
         # Add the determinate nix-darwin module
-        # inputs.determinate.darwinModules.default
+        inputs.determinate.darwinModules.default
         # Apply the modules output by this flake
         self.darwinModules.base
         self.darwinModules.nixConfig
