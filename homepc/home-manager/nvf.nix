@@ -109,8 +109,9 @@
       telescope = {
         enable = true;
         mappings = {
+          buffers = "<leader><leader>";
           diagnostics = "<leader>sd";
-          findFiles = "<leader><leader>";
+          findFiles = "<leader>ff";
           liveGrep = "<leader>sg";
           lspDefinitions = "<leader>sd";
           lspDocumentSymbols = "<leader>ss";
@@ -125,6 +126,9 @@
             setup = {fzf = {fuzzy = true;};};
           }
         ];
+        setupOpts = {
+          defaults.file_ignore_patterns = ["%.lock"];
+        };
       };
 
       visuals = {
@@ -148,11 +152,19 @@
         noice.enable = true;
       };
 
+      utility.snacks-nvim.enable = true;
+
       mini.pairs = {
         enable = true;
 
         setupOpts = {
-          mappings = {"'" = false;};
+          mappings = {
+            "'" = false;
+            "{" = {
+              action = "closeopen";
+              pair = "{};";
+            };
+          };
         };
       };
     };
