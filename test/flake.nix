@@ -12,11 +12,6 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Determinate 3.* module
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
