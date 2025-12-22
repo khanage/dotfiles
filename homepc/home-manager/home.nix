@@ -205,7 +205,7 @@
         name = "GoMono Nerd Font";
         size = 12;
       };
-      themeFile = "tokyo_night_moon";
+      themeFile = "Nord";
       settings = {
         copy_on_select = "clipboard";
       };
