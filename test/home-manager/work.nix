@@ -48,6 +48,7 @@
       #   org.gradle.daemon.idletimeout=3600000
       # '';
       # ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
+      ".hammerspoon/init.lua".source = ./conf/hammerspoon.lua;
     };
 
     # Home Manager can also manage your environment variables through
