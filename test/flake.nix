@@ -49,7 +49,7 @@
       inherit system;
       modules = [
         # Add the determinate nix-darwin module
-        inputs.determinate.darwinModules.default
+        # inputs.determinate.darwinModules.default
         # Apply the modules output by this flake
         self.darwinModules.base
         self.darwinModules.nixConfig
