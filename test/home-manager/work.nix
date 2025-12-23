@@ -37,18 +37,10 @@
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
-
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-      # ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
       ".hammerspoon/init.lua".source = ./conf/hammerspoon.lua;
+      ".config/nixpkgs/config.nix".text = ''
+        { allowUnfree = true; }
+      '';
     };
 
     # Home Manager can also manage your environment variables through
@@ -88,6 +80,10 @@
     home-manager.enable = true;
     k9s.enable = true;
     bottom.enable = true;
+
+    vscode = {
+      enable = true;
+    };
 
     alacritty = {
       enable = true;

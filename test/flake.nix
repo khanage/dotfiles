@@ -55,10 +55,7 @@
     # Your system type (Apple Silicon)
     system = "aarch64-darwin";
   in {
-    # inputs.nixpkgs.allowUnfreePredicate = pkg:
-    #   builtins.elem (inputs.nixpkgs.lib.getName pkg) [
-    #     "obsidian"
-    #   ];
+    nixpkgs.config.allowUnfree = true;
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
       inherit system;
