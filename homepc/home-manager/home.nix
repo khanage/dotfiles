@@ -108,7 +108,7 @@
       nbs = "sudo nixos-rebuild switch --flake ${dotfiles}/homepc";
       nfu = "sudo nix flake update --flake ${dotfiles}/homepc && git -C ${dotfiles} commit -am 'chore: update flake lock' && git -C ${dotfiles} push";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-      vimdotfiles = "vim --cmd ':cd ${dotfiles}/homepc/' ${dotfiles}/homepc/home-manager/home.nix";
+      vdf = "vim --cmd ':cd ${dotfiles}/homepc/' ${dotfiles}/homepc/home-manager/home.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";
     };
   };
