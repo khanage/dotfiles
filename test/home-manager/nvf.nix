@@ -64,7 +64,6 @@
           enable = true;
           treesitter.enable = true;
         };
-
         elixir = {
           enable = true;
           elixir-tools.enable = true;
@@ -72,7 +71,6 @@
           lsp.enable = true;
           treesitter.enable = true;
         };
-
         rust = {
           enable = true;
           extensions.crates-nvim.enable = true;
@@ -87,6 +85,14 @@
             },
           '';
         };
+        terraform.enable = true;
+        yaml.enable = true;
+        json.enable = true;
+        markdown.enable = true;
+        sql.enable = true;
+        ts.enable = true;
+        hcl.enable = true;
+        haskell.enable = true;
       };
 
       lsp = {

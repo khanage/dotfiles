@@ -32,15 +32,14 @@
       nerd-fonts.iosevka-term
       nerd-fonts.go-mono
       dotnet-sdk
+      azure-cli
+      powershell
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     file = {
       ".hammerspoon/init.lua".source = ./conf/hammerspoon.lua;
-      ".config/nixpkgs/config.nix".text = ''
-        { allowUnfree = true; }
-      '';
     };
 
     # Home Manager can also manage your environment variables through
@@ -67,10 +66,10 @@
       dotfiles = "~/dotfiles";
     in {
       ls = "lsd -A";
-      nbs = "sudo darwin-rebuild switch --flake ${dotfiles}/test";
-      nfu = "sudo nix flake update --flake ${dotfiles}/test && git -C ${dotfiles} commit -am 'chore: update flake lock' && git -C ${dotfiles} push";
+      nbs = "sudo darwin-rebuild switch --flake ${dotfiles}/test && git -C ${dotfiles} commit -am 'chore: update applied' && git -C ${dotfiles} push";
+      nfu = "sudo nix flake update --flake ${dotfiles}/test";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-      vimdotfiles = "vim --cmd ':cd ${dotfiles}/test/' ${dotfiles}/test/home-manager/work.nix";
+      vdf = "vim --cmd ':cd ${dotfiles}/test/' ${dotfiles}/test/home-manager/work.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";
     };
   };
@@ -80,10 +79,6 @@
     home-manager.enable = true;
     k9s.enable = true;
     bottom.enable = true;
-
-    vscode = {
-      enable = true;
-    };
 
     alacritty = {
       enable = true;
@@ -138,6 +133,7 @@
         user.email = "khan.thompson@pointsbet.com";
         init.defaultBranch = "main";
         credential.helper = "store";
+        push.autoSetupRemote = true;
       };
     };
 
