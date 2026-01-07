@@ -55,7 +55,7 @@
     # Your system type (Apple Silicon)
     system = "aarch64-darwin";
   in {
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree1 = true;
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
       inherit system;
@@ -102,7 +102,8 @@
           homebrew = {
             enable = true;
             taps = builtins.attrNames config.nix-homebrew.taps;
-            casks = ["hammerspoon"];
+            brews = ["python@3.13"];
+            casks = ["hammerspoon" "docker-desktop"];
           };
         })
       ];
