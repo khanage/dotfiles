@@ -55,7 +55,6 @@
     # Your system type (Apple Silicon)
     system = "aarch64-darwin";
   in {
-    nixpkgs.config.allowUnfree1 = true;
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
       inherit system;
