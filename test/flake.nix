@@ -102,7 +102,7 @@
             enable = true;
             taps = builtins.attrNames config.nix-homebrew.taps;
             brews = ["python@3.13"];
-            casks = ["hammerspoon" "docker-desktop" "expressvpn"];
+            casks = ["hammerspoon" "docker-desktop"];
           };
         })
       ];
