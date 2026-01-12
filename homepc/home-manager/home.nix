@@ -55,6 +55,7 @@
       hypridle
       xivlauncher
       nodejs_latest
+      texlive.combined.scheme-basic
       # bevy_cli.packakges.${pkgs.system}.bevy_cli
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
@@ -220,6 +221,7 @@
         user.email = "khanage@gmail.com";
         init.defaultBranch = "main";
         credential.helper = "store";
+        pull.ff = "only";
       };
     };
 

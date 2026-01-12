@@ -30,6 +30,7 @@
   time.timeZone = "Australia/Melbourne";
   fonts.packages = with pkgs; [
     nerd-fonts.go-mono
+    nerd-fonts.jetbrains-mono
   ];
 
   # Select internationalisation properties.

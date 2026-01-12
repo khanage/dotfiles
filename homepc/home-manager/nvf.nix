@@ -160,10 +160,10 @@
         setupOpts = {
           mappings = {
             "'" = false;
-            "{" = {
-              action = "closeopen";
-              pair = "{};";
-            };
+            # "{" = {
+            #   action = "closeopen";
+            #   pair = "{};";
+            # };
           };
         };
       };
