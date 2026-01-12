@@ -146,6 +146,7 @@
             FXEnableExtensionChangeWarning = false;
           };
           controlcenter.Bluetooth = true; # Show bluetooth in menu
+          controlcenter.Sound = true;
         };
       };
 
