@@ -80,6 +80,7 @@
       # '';
       ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
       ".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
+      ".config/niri/conf.kdl".source = ./conf/niri/config.kdl;
     };
 
     # Home Manager can also manage your environment variables through

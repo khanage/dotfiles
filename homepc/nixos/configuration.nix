@@ -99,6 +99,9 @@
       enable = true;
       xwayland.enable = true;
     };
+    niri = {
+      enable = true;
+    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -115,7 +118,6 @@
     wget
     git
     kitty
-    lutris
     glfw
     vulkan-headers
     vulkan-loader

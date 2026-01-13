@@ -12,7 +12,7 @@
       };
 
       autoHide = "fullscreen";
-      location = "bottom";
+      location = "top";
       workspaces.showIcons = true;
       launcher.autoDetectIcon = true;
     };
