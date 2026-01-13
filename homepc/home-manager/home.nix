@@ -56,6 +56,7 @@
       xivlauncher
       nodejs_latest
       texlive.combined.scheme-basic
+      xwayland-satellite
       # bevy_cli.packakges.${pkgs.system}.bevy_cli
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
@@ -80,7 +81,7 @@
       # '';
       ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
       ".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
-      ".config/niri/conf.kdl".source = ./conf/niri/config.kdl;
+      # ".config/niri/config.kdl".source = ./conf/niri/config.kdl;
     };
 
     # Home Manager can also manage your environment variables through
@@ -119,6 +120,9 @@
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
+    dms-shell = {
+      enable = true;
+    };
     wofi = {
       enable = true;
       style = ''
