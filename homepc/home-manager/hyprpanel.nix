@@ -2,17 +2,17 @@
   enable = true;
   settings = {
     bar = {
+      location = "top";
       customModules.storage.paths = ["/"];
       layouts = {
         "*" = {
-          left = ["dashboard" "workspaces"];
-          middle = ["media" "clock" "windowtitle"];
-          right = ["volume" "weather" "cpu" "ram" "systray" "notifications"];
+          left = ["dashboard" "workspaces" "media"];
+          middle = ["windowtitle"];
+          right = ["volume" "weather" "cpu" "ram" "systray" "clock" "notifications"];
         };
       };
 
       autoHide = "fullscreen";
-      location = "top";
       workspaces.showIcons = true;
       launcher.autoDetectIcon = true;
     };

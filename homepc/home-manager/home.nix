@@ -120,9 +120,6 @@
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
-    dms-shell = {
-      enable = true;
-    };
     wofi = {
       enable = true;
       style = ''
