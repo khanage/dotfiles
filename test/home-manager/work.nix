@@ -60,6 +60,7 @@
     #
     sessionVariables = {
       EDITOR = "nvim";
+      DOCKER_DEFAULT_PLATFORM = "linux/amd64";
     };
 
     shellAliases = let
