@@ -4,6 +4,7 @@
     vim = {
       viAlias = true;
       vimAlias = true;
+      clipboard.providers.wl-copy.enable = true;
 
       keymaps = [
         {
@@ -11,6 +12,12 @@
           mode = "t";
           silent = true;
           action = "<cmd>ToggleTerm<CR>";
+        }
+        {
+          key = "<Esc>";
+          mode = "n";
+          silent = true;
+          action = "<cmd>:nohl<CR>";
         }
       ];
 
@@ -48,11 +55,13 @@
         enable = true;
         mappings.open = "<C-/>";
         setupOpts.direction = "float";
+        lazygit.enable = true;
       };
 
       languages = {
         enableFormat = true;
         enableTreesitter = true;
+        enableDAP = true;
 
         bash.enable = true;
         csharp.enable = true;
@@ -84,6 +93,8 @@
             },
           '';
         };
+
+        haskell.enable = true;
       };
 
       lsp = {
@@ -127,7 +138,10 @@
           }
         ];
         setupOpts = {
-          defaults.file_ignore_patterns = ["%.lock"];
+          defaults = {
+            file_ignore_patterns = ["%.lock"];
+            color_devicons = true;
+          };
         };
       };
 
