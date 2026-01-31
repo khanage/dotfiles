@@ -81,6 +81,8 @@
     k9s.enable = true;
     bottom.enable = true;
 
+    kitty = (import ./kitty.nix) pkgs;
+
     alacritty = {
       enable = true;
       theme = "Nord";
