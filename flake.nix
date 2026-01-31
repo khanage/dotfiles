@@ -40,6 +40,7 @@
   # Flake outputs
   outputs = {
     self,
+    nixpkgs,
     home-manager,
     nvf,
     nix-homebrew,
@@ -54,11 +55,32 @@
     hostname = "PB-C2WK69P06Y";
 
     # Your system type (Apple Silicon)
-    system = "aarch64-darwin";
+    apple_system = "aarch64-darwin";
+    home_system = "x86_64-linux";
   in {
+    nixosConfigurations = {
+      homepc = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          system = home_system;
+        };
+        modules = [
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              sharedModules = [nvf.homeManagerModules.default];
+              users.khan = ./home-manager/home.nix;
+            };
+          }
+        ];
+      };
+    };
+
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
-      inherit system;
+      inherit apple_system;
       modules = [
         inputs.determinate.darwinModules.default
         self.darwinModules.base
@@ -172,8 +194,8 @@
     };
 
     # Development environment
-    devShells.${system}.default = let
-      pkgs = import inputs.nixpkgs {inherit system;};
+    devShells.${apple_system}.default = let
+      pkgs = import inputs.nixpkgs {inherit apple_system;};
     in
       pkgs.mkShellNoCC {
         packages = with pkgs; [
@@ -183,7 +205,7 @@
             name = "apply-nix-darwin-configuration";
             runtimeInputs = [
               # Make the darwin-rebuild package available in the script
-              inputs.nix-darwin.packages.${system}.darwin-rebuild
+              inputs.nix-darwin.packages.${apple_system}.darwin-rebuild
             ];
             text = ''
               echo "> Applying nix-darwin configuration..."
@@ -196,7 +218,7 @@
             '';
           })
 
-          self.formatter.${system}
+          self.formatter.${apple_system}
         ];
       };
 
@@ -209,6 +231,6 @@
     # git ls-files -z '*.nix' | xargs -0 -r nix fmt
     # To check formatting:
     # git ls-files -z '*.nix' | xargs -0 -r nix develop --command nixfmt --check
-    formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+    formatter.${apple_system} = inputs.nixpkgs.legacyPackages.${apple_system}.nixfmt-rfc-style;
   };
 }
