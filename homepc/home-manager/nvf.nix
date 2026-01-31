@@ -133,6 +133,12 @@
 
         css.enable = true;
         html.enable = true;
+        terraform.enable = true;
+        hcl.enable = true;
+        yaml.enable = true;
+        json.enable = true;
+        markdown.enable = true;
+        sql.enable = true;
         ts.enable = true;
       };
 
