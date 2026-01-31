@@ -1,10 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  stdenv,
+  ...
+}: {
   enable = true;
   settings = {
     vim = {
       viAlias = true;
       vimAlias = true;
-      clipboard.providers.wl-copy.enable = true;
+      clipboard.providers = {} // (lib.optionals stdenv.isLinux {wl-copy.enable = true;});
 
       treesitter = {
         enable = true;
@@ -87,60 +92,61 @@
         lazygit.enable = true;
       };
 
-      languages = {
-        enableFormat = true;
-        enableDAP = true;
-        enableTreesitter = true;
-        enableExtraDiagnostics = true;
+      languages =
+        {
+          enableFormat = true;
+          enableDAP = true;
+          enableTreesitter = true;
+          enableExtraDiagnostics = true;
 
-        bash.enable = true;
-        # csharp.enable = true;
-        lua.enable = true;
-        nix = {
-          enable = true;
-          lsp = {
+          bash.enable = true;
+          lua.enable = true;
+          nix = {
             enable = true;
-            servers = ["nixd"];
+            lsp = {
+              enable = true;
+              servers = ["nixd"];
+            };
           };
-        };
 
-        elixir = {
-          enable = true;
-          elixir-tools.enable = true;
-          format.enable = true;
-          lsp.enable = true;
-        };
+          elixir = {
+            enable = true;
+            elixir-tools.enable = true;
+            format.enable = true;
+            lsp.enable = true;
+          };
 
-        rust = {
-          enable = true;
-          extensions.crates-nvim.enable = true;
-          dap.enable = true;
-          lsp.opts = ''
-            ['rust-analyzer'] = {
-              cargo = {allFeatures = true},
-              diagnostics = { enable = true },
-              checkOnSave = true,
-              procMacro = {
-                enable = true,
+          rust = {
+            enable = true;
+            extensions.crates-nvim.enable = true;
+            dap.enable = true;
+            lsp.opts = ''
+              ['rust-analyzer'] = {
+                cargo = {allFeatures = true},
+                diagnostics = { enable = true },
+                checkOnSave = true,
+                procMacro = {
+                  enable = true,
+                },
               },
-            },
-          '';
-        };
-        haskell = {
-          enable = true;
-          dap.enable = true;
-        };
+            '';
+          };
+          haskell = {
+            enable = true;
+            dap.enable = true;
+          };
 
-        css.enable = true;
-        html.enable = true;
-        terraform.enable = true;
-        hcl.enable = true;
-        yaml.enable = true;
-        json.enable = true;
-        markdown.enable = true;
-        sql.enable = true;
-        ts.enable = true;
-      };
+          css.enable = true;
+          html.enable = true;
+          terraform.enable = true;
+          hcl.enable = true;
+          yaml.enable = true;
+          json.enable = true;
+          markdown.enable = true;
+          sql.enable = true;
+          ts.enable = true;
+        }
+        // (lib.optionals stdenv.isLinux {csharp.enable = true;});
 
       lsp = {
         enable = true;
