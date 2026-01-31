@@ -94,7 +94,7 @@
         enableExtraDiagnostics = true;
 
         bash.enable = true;
-        csharp.enable = true;
+        # csharp.enable = true;
         lua.enable = true;
         nix = {
           enable = true;

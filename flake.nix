@@ -80,7 +80,7 @@
 
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
-      inherit apple_system;
+      system = apple_system;
       modules = [
         inputs.determinate.darwinModules.default
         self.darwinModules.base
@@ -195,7 +195,7 @@
 
     # Development environment
     devShells.${apple_system}.default = let
-      pkgs = import inputs.nixpkgs {inherit apple_system;};
+      pkgs = import inputs.nixpkgs {system = apple_system;};
     in
       pkgs.mkShellNoCC {
         packages = with pkgs; [
