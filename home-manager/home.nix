@@ -215,17 +215,7 @@
       ];
     };
 
-    kitty = {
-      enable = true;
-      font = {
-        name = "GoMono Nerd Font";
-        size = 12;
-      };
-      themeFile = "Nord";
-      settings = {
-        copy_on_select = "clipboard";
-      };
-    };
+    kitty = (import ./kitty.nix) pkgs;
 
     git = {
       enable = true;

@@ -1,0 +1,11 @@
+{pkgs, ...}: {
+  enable = true;
+  font = {
+    name = "GoMono Nerd Font";
+    size = 12;
+  };
+  themeFile = "Nord";
+  settings = {
+    copy_on_select = "clipboard";
+  };
+}
