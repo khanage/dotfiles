@@ -151,12 +151,7 @@
       };
 
       # Nix configuration
-      nixConfig = {
-        config,
-        pkgs,
-        lib,
-        ...
-      }: {
+      nixConfig = {config, ...}: {
         # Let Determinate Nix handle your Nix configuration
         nix.enable = false;
 
