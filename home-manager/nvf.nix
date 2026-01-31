@@ -4,6 +4,12 @@
     vim = {
       viAlias = true;
       vimAlias = true;
+      clipboard.providers.wl-copy.enable = true;
+
+      treesitter = {
+        enable = true;
+        textobjects.enable = true;
+      };
 
       keymaps = [
         {
@@ -11,6 +17,36 @@
           mode = "t";
           silent = true;
           action = "<cmd>ToggleTerm<CR>";
+        }
+        {
+          key = "<Esc>";
+          mode = "n";
+          silent = true;
+          action = "<cmd>:nohl<CR>";
+        }
+        {
+          key = "<C-h>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>h";
+        }
+        {
+          key = "<C-j>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>j";
+        }
+        {
+          key = "<C-k>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>k";
+        }
+        {
+          key = "<C-l>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>l";
         }
       ];
 
@@ -48,36 +84,41 @@
         enable = true;
         mappings.open = "<C-/>";
         setupOpts.direction = "float";
+        lazygit.enable = true;
       };
 
       languages = {
         enableFormat = true;
+        enableDAP = true;
         enableTreesitter = true;
+        enableExtraDiagnostics = true;
 
         bash.enable = true;
-        csharp = {
-          enable = true;
-          lsp.servers = ["roslyn_ls"];
-        };
+        csharp.enable = true;
         lua.enable = true;
         nix = {
           enable = true;
-          treesitter.enable = true;
+          lsp = {
+            enable = true;
+            servers = ["nixd"];
+          };
         };
+
         elixir = {
           enable = true;
           elixir-tools.enable = true;
           format.enable = true;
           lsp.enable = true;
-          treesitter.enable = true;
         };
+
         rust = {
           enable = true;
           extensions.crates-nvim.enable = true;
           dap.enable = true;
           lsp.opts = ''
             ['rust-analyzer'] = {
-              cargo = {allFeature = true},
+              cargo = {allFeatures = true},
+              diagnostics = { enable = true },
               checkOnSave = true,
               procMacro = {
                 enable = true,
@@ -85,14 +126,20 @@
             },
           '';
         };
+        haskell = {
+          enable = true;
+          dap.enable = true;
+        };
+
+        css.enable = true;
+        html.enable = true;
         terraform.enable = true;
+        hcl.enable = true;
         yaml.enable = true;
         json.enable = true;
         markdown.enable = true;
         sql.enable = true;
         ts.enable = true;
-        hcl.enable = true;
-        haskell.enable = true;
       };
 
       lsp = {
@@ -136,13 +183,16 @@
           }
         ];
         setupOpts = {
-          defaults.file_ignore_patterns = ["%.lock"];
+          defaults = {
+            file_ignore_patterns = ["%.lock"];
+            color_devicons = true;
+          };
         };
       };
 
       visuals = {
         fidget-nvim.enable = true;
-
+        rainbow-delimiters.enable = true;
         nvim-web-devicons.enable = true;
       };
 
@@ -158,10 +208,9 @@
       };
 
       ui = {
+        borders.enable = true;
         noice.enable = true;
       };
-
-      utility.snacks-nvim.enable = true;
 
       mini.pairs = {
         enable = true;
@@ -169,10 +218,10 @@
         setupOpts = {
           mappings = {
             "'" = false;
-            "{" = {
-              action = "closeopen";
-              pair = "{};";
-            };
+            # "{" = {
+            #   action = "closeopen";
+            #   pair = "{};";
+            # };
           };
         };
       };
