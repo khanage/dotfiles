@@ -24,6 +24,30 @@
           silent = true;
           action = "<cmd>:nohl<CR>";
         }
+        {
+          key = "<C-h>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>h";
+        }
+        {
+          key = "<C-j>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>j";
+        }
+        {
+          key = "<C-k>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>k";
+        }
+        {
+          key = "<C-l>";
+          mode = "n";
+          silent = true;
+          action = "<C-W>l";
+        }
       ];
 
       options = {
@@ -66,12 +90,18 @@
       languages = {
         enableFormat = true;
         enableDAP = true;
+        enableTreesitter = true;
+        enableExtraDiagnostics = true;
 
         bash.enable = true;
         csharp.enable = true;
         lua.enable = true;
         nix = {
           enable = true;
+          lsp = {
+            enable = true;
+            servers = ["nixd"];
+          };
         };
 
         elixir = {
@@ -87,7 +117,8 @@
           dap.enable = true;
           lsp.opts = ''
             ['rust-analyzer'] = {
-              cargo = {allFeature = true},
+              cargo = {allFeatures = true},
+              diagnostics = { enable = true },
               checkOnSave = true,
               procMacro = {
                 enable = true,
@@ -95,8 +126,14 @@
             },
           '';
         };
+        haskell = {
+          enable = true;
+          dap.enable = true;
+        };
 
-        haskell.enable = true;
+        css.enable = true;
+        html.enable = true;
+        ts.enable = true;
       };
 
       lsp = {
@@ -149,7 +186,7 @@
 
       visuals = {
         fidget-nvim.enable = true;
-
+        rainbow-delimiters.enable = true;
         nvim-web-devicons.enable = true;
       };
 
@@ -165,10 +202,9 @@
       };
 
       ui = {
+        borders.enable = true;
         noice.enable = true;
       };
-
-      utility.snacks-nvim.enable = true;
 
       mini.pairs = {
         enable = true;
