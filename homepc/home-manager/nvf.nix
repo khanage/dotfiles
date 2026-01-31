@@ -6,6 +6,11 @@
       vimAlias = true;
       clipboard.providers.wl-copy.enable = true;
 
+      treesitter = {
+        enable = true;
+        textobjects.enable = true;
+      };
+
       keymaps = [
         {
           key = "<C-/>";
@@ -60,7 +65,6 @@
 
       languages = {
         enableFormat = true;
-        enableTreesitter = true;
         enableDAP = true;
 
         bash.enable = true;
@@ -68,7 +72,6 @@
         lua.enable = true;
         nix = {
           enable = true;
-          treesitter.enable = true;
         };
 
         elixir = {
@@ -76,7 +79,6 @@
           elixir-tools.enable = true;
           format.enable = true;
           lsp.enable = true;
-          treesitter.enable = true;
         };
 
         rust = {
