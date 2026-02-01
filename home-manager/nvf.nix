@@ -9,7 +9,7 @@
     vim = {
       viAlias = true;
       vimAlias = true;
-      clipboard.providers = {} // (lib.optionals stdenv.isLinux {wl-copy.enable = true;});
+      clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;});
 
       treesitter = {
         enable = true;
@@ -146,7 +146,7 @@
           sql.enable = true;
           ts.enable = true;
         }
-        // (lib.optionals stdenv.isLinux {csharp.enable = true;});
+        // (lib.optionalAttrs stdenv.isLinux {csharp.enable = true;});
 
       lsp = {
         enable = true;

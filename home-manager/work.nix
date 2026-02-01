@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  stdenv = pkgs.stdenv;
+in {
   imports = [
   ];
 
@@ -151,7 +157,7 @@
       nix-direnv.enable = true;
     };
 
-    nvf = (import ./nvf.nix) pkgs;
+    nvf = (import ./nvf.nix) {inherit pkgs lib stdenv;};
 
     bat = {
       enable = true;
