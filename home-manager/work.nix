@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  stdenv = pkgs.stdenv;
+  inherit (pkgs) stdenv;
 in {
   imports = [
   ];
