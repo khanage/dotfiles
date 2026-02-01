@@ -5,8 +5,8 @@
   inputs = {
     # Stable Nixpkgs (use 0.1 for unstable)
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/70801e06d9730c";
-      # url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      # url = "github:NixOS/nixpkgs/70801e06d9730c";
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
     # Stable nix-darwin (use 0.1 for unstable)
     nix-darwin = {
