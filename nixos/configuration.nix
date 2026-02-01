@@ -9,7 +9,30 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    # BUG: https://github.com/nixos/nixpkgs/issues/471331
+    overlays = [
+      (_: prev: {
+        xow_dongle-firmware = prev.xow_dongle-firmware.overrideAttrs (_: {
+          installPhase = ''
+            # Create the firmware directory
+            mkdir -p $out/lib/firmware
+
+            # Install the standard bin file (just in case)
+            install -Dm644 xow_dongle.bin $out/lib/firmware/xow_dongle.bin
+
+            ln -s $out/lib/firmware/xow_dongle.bin $out/lib/firmware/xone_dongle_02fe.bin
+
+            # Handle the other model mentioned in the bug report (optional, but safe to keep)
+            if [ -f xow_dongle_045e_02e6.bin ]; then
+              install -Dm644 xow_dongle_045e_02e6.bin $out/lib/firmware/xone_dongle_02e6.bin
+            fi
+          '';
+        });
+      })
+    ];
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -63,16 +86,7 @@
   services.desktopManager.gnome = {
     enable = true;
   };
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # services.pulseaudio.support32Bit = true;
   services.pipewire = {
     enable = true;
     wireplumber.enable = true;
@@ -123,7 +137,6 @@
     vulkan-loader
     vulkan-tools
     bluez
-    xow_dongle-firmware
     openrazer-daemon
   ];
 
