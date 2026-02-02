@@ -126,7 +126,7 @@
             enable = true;
             taps = builtins.attrNames config.nix-homebrew.taps;
             brews = ["python@3.13"];
-            casks = ["hammerspoon" "docker-desktop" "miro"];
+            casks = ["hammerspoon" "docker-desktop" "miro" "kitty"];
           };
         })
       ];
@@ -135,12 +135,7 @@
     # nix-darwin module outputs
     darwinModules = {
       # Some base configuration
-      base = {
-        config,
-        pkgs,
-        lib,
-        ...
-      }: {
+      base = _: {
         # Required for nix-darwin to work
         system.stateVersion = 1;
 
@@ -175,7 +170,7 @@
       };
 
       # Nix configuration
-      nixConfig = {config, ...}: {
+      nixConfig = _: {
         # Let Determinate Nix handle your Nix configuration
         nix.enable = false;
 
