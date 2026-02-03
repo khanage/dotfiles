@@ -122,6 +122,7 @@
         }
 
         ({config, ...}: {
+          nixpkgs.config = {allow_unfree = true;};
           homebrew = {
             enable = true;
             taps = builtins.attrNames config.nix-homebrew.taps;
