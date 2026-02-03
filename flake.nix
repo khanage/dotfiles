@@ -78,7 +78,6 @@
               useUserPackages = true;
               sharedModules = [
                 nvf.homeManagerModules.default
-                paneru.homeManagerModules.paneru
               ];
               users.khan = ./home-manager/home.nix;
             };
@@ -101,7 +100,10 @@
             backupFileExtension = ".bak";
             useGlobalPkgs = true;
             useUserPackages = true;
-            sharedModules = [nvf.homeManagerModules.default];
+            sharedModules = [
+              nvf.homeManagerModules.default
+              paneru.homeModules.paneru
+            ];
             users.${username} = ./home-manager/work.nix;
           };
         }
