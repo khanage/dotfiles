@@ -138,35 +138,37 @@
       # Some base configuration
       base = _: {
         # Required for nix-darwin to work
-        system.stateVersion = 1;
+        system = {
+          stateVersion = 1;
+
+          # Other configuration parameters
+          # See here: https://nix-darwin.github.io/nix-darwin/manual
+          primaryUser = "khanthompson";
+          defaults = {
+            # minimal dock
+            dock = {
+              autohide = true;
+              orientation = "left";
+              show-process-indicators = false;
+              show-recents = false;
+              static-only = true;
+            };
+            # a finder that tells me what I want to know and lets me work
+            finder = {
+              AppleShowAllExtensions = true;
+              ShowPathbar = true;
+              FXEnableExtensionChangeWarning = false;
+            };
+            controlcenter.Bluetooth = true; # Show bluetooth in menu
+            controlcenter.Sound = true;
+          };
+        };
 
         users.users.${username} = {
           name = username;
           home = /Users/khanthompson;
           # See the reference docs for more on user config:
           # https://nix-darwin.github.io/nix-darwin/manual/#opt-users.users
-        };
-
-        # Other configuration parameters
-        # See here: https://nix-darwin.github.io/nix-darwin/manual
-        system.primaryUser = "khanthompson";
-        system.defaults = {
-          # minimal dock
-          dock = {
-            autohide = true;
-            orientation = "left";
-            show-process-indicators = false;
-            show-recents = false;
-            static-only = true;
-          };
-          # a finder that tells me what I want to know and lets me work
-          finder = {
-            AppleShowAllExtensions = true;
-            ShowPathbar = true;
-            FXEnableExtensionChangeWarning = false;
-          };
-          controlcenter.Bluetooth = true; # Show bluetooth in menu
-          controlcenter.Sound = true;
         };
       };
 
