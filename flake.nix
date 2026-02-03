@@ -36,6 +36,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    paneru = {
+      url = "github:karinushka/paneru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
@@ -45,6 +49,7 @@
     home-manager,
     nvf,
     nix-homebrew,
+    paneru,
     ...
   } @ inputs: let
     # The values for `username` and `system` supplied here are used to construct the hostname
@@ -71,7 +76,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [nvf.homeManagerModules.default];
+              sharedModules = [
+                nvf.homeManagerModules.default
+                paneru.homeManagerModules.paneru
+              ];
               users.khan = ./home-manager/home.nix;
             };
           }

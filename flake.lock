@@ -413,6 +413,26 @@
         "type": "github"
       }
     },
+    "paneru": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769898100,
+        "narHash": "sha256-CC8XlfEvAB/J1llfOiHhUtc8e0DEyvUKf/YPQd0WTqc=",
+        "owner": "karinushka",
+        "repo": "paneru",
+        "rev": "cae36d7be8857cb0dff49f54a433b715f98b6f82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "karinushka",
+        "repo": "paneru",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "determinate": "determinate",
@@ -422,7 +442,8 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_2",
-        "nvf": "nvf"
+        "nvf": "nvf",
+        "paneru": "paneru"
       }
     },
     "systems": {
