@@ -144,7 +144,6 @@
           json.enable = true;
           markdown = {
             enable = true;
-            extensions.markview-nvim.enable = true;
           };
           sql.enable = true;
           ts.enable = true;
