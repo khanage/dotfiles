@@ -142,7 +142,10 @@
           hcl.enable = true;
           yaml.enable = true;
           json.enable = true;
-          markdown.enable = true;
+          markdown = {
+            enable = true;
+            extensions.markview-nvim.enable = true;
+          };
           sql.enable = true;
           ts.enable = true;
         }
