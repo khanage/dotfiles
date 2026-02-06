@@ -9,7 +9,10 @@
     vim = {
       viAlias = true;
       vimAlias = true;
-      clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;}) // (lib.optionalAttrs stdenv.isDarwin {pbcopy.enable = true;});
+      clipboard.providers =
+        {}
+        // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;})
+        // (lib.optionalAttrs stdenv.isDarwin {pb-copy.enable = true;});
 
       treesitter = {
         enable = true;
