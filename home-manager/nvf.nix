@@ -105,7 +105,7 @@
             enable = true;
             lsp = {
               enable = true;
-              servers = ["nixd"];
+              servers = ["nil" "nixd"];
             };
           };
 

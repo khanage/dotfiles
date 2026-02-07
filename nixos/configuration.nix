@@ -69,18 +69,20 @@
     videoDrivers = ["nvidia"];
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "khan";
-  };
+  services.displayManager = {
+    # Enable the X11 windowing system.
+    # services.xserver.enable = true;
+    gdm = {
+      enable = true;
+      wayland = true;
+      banner = "Aloha";
+      autoLogin.delay = 5;
+    };
 
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    banner = "Aloha";
-    autoLogin.delay = 5;
+    autoLogin = {
+      enable = true;
+      user = "khan";
+    };
   };
 
   services.desktopManager.gnome = {
@@ -96,7 +98,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.khan = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio" "gamemode" "openrazer"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "audio" "gamemode"]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
@@ -113,20 +115,13 @@
       enable = true;
       xwayland.enable = true;
     };
-    niri = {
-      enable = true;
-    };
+    niri.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            gamemode
-          ];
-      };
+      extraPackages = with pkgs; [gamemode];
     };
     zsh.enable = true;
   };
@@ -148,19 +143,22 @@
 
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
 
   hardware.nvidia = {
+    open = true;
+    nvidiaSettings = true;
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
   };
 
   hardware.xone.enable = true;
 
   hardware.keyboard.zsa.enable = true;
+
+  hardware.openrazer = {enable = true; users = ["khan"]};
 
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
@@ -170,6 +168,8 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+
+  powerManagement.cpuFreqGovernor = "performance";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

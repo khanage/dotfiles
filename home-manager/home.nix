@@ -39,7 +39,6 @@
       freecad-wayland
       mesa-demos
       xh
-      flare-signal
       godot
       godot-export-templates-bin
       imagemagick
