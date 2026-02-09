@@ -62,11 +62,11 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -269,6 +269,15 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "hyprpanel"
+
+spawn-at-startup "hypridle"
+spawn-at-startup "wl-paste --type text --watch cliphist store"
+spawn-at-startup "wl-paste --type image --watch cliphist store"
+spawn-at-startup "hyprpanel"
+
+environment {
+  QT_QPA_PLATFORM "xcb"
+}
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -501,7 +510,7 @@ binds {
     // Touchpad scrolling is continuous, so for these binds it is split into
     // discrete intervals.
     // These binds are also affected by touchpad's natural-scroll, so these
-    // example binds are "inverted", since we have natural-scroll enabled for
+   // example binds are "inverted", since we have natural-scroll enabled for
     // touchpads by default.
     // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
     // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }

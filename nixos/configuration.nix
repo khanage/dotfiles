@@ -158,7 +158,10 @@
 
   hardware.keyboard.zsa.enable = true;
 
-  hardware.openrazer = {enable = true; users = ["khan"]};
+  hardware.openrazer = {
+    enable = true;
+    users = ["khan" "root"];
+  };
 
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
