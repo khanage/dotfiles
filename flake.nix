@@ -7,7 +7,8 @@
     nixpkgs = {
       # https://github.com/nixos/nixpkgs/issues/483584
       # url = "github:NixOS/nixpkgs/70801e06d9730c";
-      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      # url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      url = "github:NixOS/nixpkgs/68b5fdce2dfce2dc676a13ed7a0bfb483bfda3ee";
     };
     # Stable nix-darwin (use 0.1 for unstable)
     nix-darwin = {
