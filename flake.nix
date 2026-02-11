@@ -8,7 +8,6 @@
       # https://github.com/nixos/nixpkgs/issues/483584
       # url = "github:NixOS/nixpkgs/70801e06d9730c";
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      # url = "github:NixOS/nixpkgs/68b5fdce2dfce2dc676a13ed7a0bfb483bfda3ee";
     };
     # Stable nix-darwin (use 0.1 for unstable)
 
@@ -16,7 +15,6 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Determinate 3.* module
-
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     determinate.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -36,6 +34,9 @@
 
     paneru.url = "github:karinushka/paneru";
     paneru.inputs.nixpkgs.follows = "nixpkgs";
+
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Flake outputs
