@@ -154,6 +154,12 @@
           # Other configuration parameters
           # See here: https://nix-darwin.github.io/nix-darwin/manual
           primaryUser = "khanthompson";
+
+          keyboard = {
+            enableKeyMapping = true;
+            remapCapsLockToEscape = true;
+          };
+
           defaults = {
             # minimal dock
             dock = {
