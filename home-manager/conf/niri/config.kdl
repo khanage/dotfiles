@@ -273,7 +273,6 @@ layout {
 spawn-at-startup "hypridle"
 spawn-at-startup "wl-paste --type text --watch cliphist store"
 spawn-at-startup "wl-paste --type image --watch cliphist store"
-spawn-at-startup "hyprpanel"
 
 environment {
   QT_QPA_PLATFORM "xcb"

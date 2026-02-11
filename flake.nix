@@ -7,40 +7,35 @@
     nixpkgs = {
       # https://github.com/nixos/nixpkgs/issues/483584
       # url = "github:NixOS/nixpkgs/70801e06d9730c";
-      # url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      url = "github:NixOS/nixpkgs/68b5fdce2dfce2dc676a13ed7a0bfb483bfda3ee";
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      # url = "github:NixOS/nixpkgs/68b5fdce2dfce2dc676a13ed7a0bfb483bfda3ee";
     };
     # Stable nix-darwin (use 0.1 for unstable)
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     # Determinate 3.* module
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+    determinate.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    paneru = {
-      url = "github:karinushka/paneru";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    homebrew-core.url = "github:homebrew/homebrew-core";
+    homebrew-core.flake = false;
+
+    homebrew-cask.url = "github:homebrew/homebrew-cask";
+    homebrew-cask.flake = false;
+
+    paneru.url = "github:karinushka/paneru";
+    paneru.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Flake outputs
