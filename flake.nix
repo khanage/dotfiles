@@ -177,6 +177,8 @@
             };
             controlcenter.Bluetooth = true; # Show bluetooth in menu
             controlcenter.Sound = true;
+            screencapture.target = "clipboard";
+            spaces.spans-displays = false;
           };
         };
 
