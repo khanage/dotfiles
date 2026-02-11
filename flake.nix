@@ -75,6 +75,7 @@
               useUserPackages = true;
               sharedModules = [
                 nvf.homeManagerModules.default
+                inputs.noctalia.homeModules.default
               ];
               users.khan = ./home-manager/home.nix;
             };

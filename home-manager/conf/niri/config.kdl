@@ -273,9 +273,10 @@ layout {
 spawn-at-startup "hypridle"
 spawn-at-startup "wl-paste --type text --watch cliphist store"
 spawn-at-startup "wl-paste --type image --watch cliphist store"
+spawn-at-startup "noctalia-shell"
 
 environment {
-  QT_QPA_PLATFORM "xcb"
+  QT_QPA_PLATFORM "wayland"
 }
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:

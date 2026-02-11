@@ -114,7 +114,7 @@
     #
     sessionVariables = {
       EDITOR = "nvim";
-      QT_QPA_PLATFORM = "xcb";
+      QT_QPA_PLATFORM = "wayland";
     };
 
     shellAliases = let
@@ -132,6 +132,7 @@
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
+    noctalia-shell = import ./noctalia.nix {};
     wofi = {
       enable = true;
       style = ''
