@@ -40,6 +40,7 @@ in {
       dotnet-sdk
       azure-cli
       powershell
+      fnm
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
