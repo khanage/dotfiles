@@ -131,9 +131,15 @@
               },
             '';
           };
+
           haskell = {
             enable = true;
             dap.enable = true;
+          };
+
+          csharp = {
+            enable = true;
+            lsp.servers = ["roslyn_ls"];
           };
 
           css.enable = true;
@@ -142,9 +148,7 @@
           hcl.enable = true;
           yaml.enable = true;
           json.enable = true;
-          markdown = {
-            enable = true;
-          };
+          markdown.enable = true;
           sql.enable = true;
           ts.enable = true;
         }
