@@ -1,0 +1,8 @@
+; begin auth token 
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/registry/:username=pointsbet 
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/registry/:_password=MzVmSkZKWUM3U2JlbFAxUTlQUTVaWDdma0loMmZyZjd2VWY3SmtRUlhza0dvb043N2dUeUpRUUo5OUNCQUNBQUFBQUZielBDQUFBU0FaRE8xdk5OCg==
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/registry/:email=npm requires email to be set but doesn't use the value
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/:username=pointsbet 
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/:_password=MzVmSkZKWUM3U2JlbFAxUTlQUTVaWDdma0loMmZyZjd2VWY3SmtRUlhza0dvb043N2dUeUpRUUo5OUNCQUNBQUFBQUZielBDQUFBU0FaRE8xdk5OCg==
+//pkgs.dev.azure.com/pointsbet/_packaging/PointsBet/npm/:email=npm requires email to be set but doesn't use the value
+; end auth token

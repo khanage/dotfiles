@@ -47,6 +47,7 @@ in {
     # plain files is through 'home.file'.
     file = {
       ".hammerspoon/init.lua".source = ./conf/hammerspoon.lua;
+      ".npmrc".source = ./conf/npmrc;
     };
 
     # Home Manager can also manage your environment variables through
