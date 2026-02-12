@@ -125,7 +125,7 @@ in {
       enable = true;
       oh-my-zsh = {
         enable = true;
-        plugins = ["git" "direnv" "fzf" "vi-mode"];
+        plugins = ["git" "direnv" "fzf" "vi-mode" "fnm"];
       };
       shellAliases = {
         ls = "lsd -A";
@@ -134,6 +134,9 @@ in {
       };
       plugins = [
       ];
+      initExtra = ''
+        eval "$(fnm env --use-on-cd)"
+      '';
     };
 
     git = {
