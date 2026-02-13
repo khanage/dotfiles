@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   enable = true;
   font = {
     name = "GoMono Nerd Font";
