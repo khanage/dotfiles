@@ -69,6 +69,8 @@
       ghostscript
       wowup-cf
       razergenie
+      dotnet-sdk
+      egl-wayland
       # bevy_cli.packakges.${pkgs.system}.bevy_cli
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
@@ -122,7 +124,7 @@
     in {
       ls = "lsd -A";
       nbs = "sudo nixos-rebuild switch --flake ${dotfiles}";
-      nfu = "sudo nix flake update --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: update flake lock' && git -C ${dotfiles} push";
+      nfu = "sudo nix flake update --flake ${dotfiles}";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
       vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/home-manager/home.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";

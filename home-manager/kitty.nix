@@ -7,5 +7,6 @@ _: {
   themeFile = "Nord";
   settings = {
     copy_on_select = "clipboard";
+    hide_window_decorations = "yes";
   };
 }
