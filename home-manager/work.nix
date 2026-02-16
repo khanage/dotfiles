@@ -40,6 +40,10 @@ in {
       azure-cli
       powershell
       fnm
+      tree-sitter
+      # haskellPackages.cabal
+      # haskellPackages.hoogle
+      # haskellPackages.haskell-debug-adapter
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
