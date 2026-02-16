@@ -150,6 +150,13 @@
                 procMacro = {
                   enable = true,
                 },
+                files = {
+                  excludeDirs = {
+                    ".git",
+                    ".direnv",
+                    "target",
+                  },
+                },
               },
             '';
           };
