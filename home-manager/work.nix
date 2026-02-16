@@ -96,7 +96,10 @@ in {
     k9s.enable = true;
     bottom.enable = true;
 
-    kitty = (import ./kitty.nix) pkgs;
+    kitty = (import ./kitty.nix) {
+      inherit pkgs;
+      darwin = true;
+    };
 
     alacritty = {
       enable = true;
