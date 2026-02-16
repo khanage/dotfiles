@@ -135,7 +135,6 @@
             enable = true;
             elixir-tools.enable = true;
             format.enable = true;
-            lsp.enable = true;
           };
 
           rust = {
@@ -252,7 +251,7 @@
         borders.enable = true;
         noice = {
           enable = true;
-          setupOpts.lsp.lspSignature.enable = true;
+          # setupOpts.lsp.lspSignature.enable = true;
         };
       };
 
