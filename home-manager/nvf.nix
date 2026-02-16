@@ -221,7 +221,10 @@
 
       ui = {
         borders.enable = true;
-        noice.enable = true;
+        noice = {
+          enable = true;
+          setupOpts.lsp.lspSignature.enable = true;
+        };
       };
 
       mini.pairs = {
