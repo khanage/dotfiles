@@ -7,9 +7,9 @@
   enable = true;
   settings = {
     vim = {
-      luaConfigRC.for_debugging = ''
-        vim.lsp.set_log_level("debug")
-      '';
+      # luaConfigRC.for_debugging = ''
+      #   vim.lsp.set_log_level("debug")
+      # '';
       viAlias = true;
       vimAlias = true;
       clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;});
