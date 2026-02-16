@@ -275,6 +275,20 @@ spawn-at-startup "wl-paste --type text --watch cliphist store"
 spawn-at-startup "wl-paste --type image --watch cliphist store"
 spawn-at-startup "noctalia-shell"
 
+spawn-at-startup "kitty"
+spawn-at-startup "firefox"
+spawn-at-startup "steam"
+window-rule {
+  match app-id="steam" at-startup=true
+  open-on-workspace "2"
+}
+
+spawn-at-startup "discordptb"
+window-rule {
+  match app-id="discord-ptb" at-startup=true
+  open-on-workspace "2"
+}
+
 environment {
   QT_QPA_PLATFORM "wayland"
 }
