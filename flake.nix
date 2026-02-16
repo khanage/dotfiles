@@ -235,35 +235,6 @@
       # Add other module outputs here
     };
 
-    # Development environment
-    devShells.${apple_system}.default = let
-      pkgs = import inputs.nixpkgs {system = apple_system;};
-    in
-      pkgs.mkShellNoCC {
-        packages = with pkgs; [
-          # Shell script for applying the nix-darwin configuration.
-          # Run this to apply the configuration in this flake to your macOS system.
-          (writeShellApplication {
-            name = "apply-nix-darwin-configuration";
-            runtimeInputs = [
-              # Make the darwin-rebuild package available in the script
-              inputs.nix-darwin.packages.${apple_system}.darwin-rebuild
-            ];
-            text = ''
-              echo "> Applying nix-darwin configuration..."
-
-              echo "> Running darwin-rebuild switch as root..."
-              sudo darwin-rebuild switch --flake .
-              echo "> darwin-rebuild switch was successful ✅"
-
-              echo "> macOS config was successfully applied 🚀"
-            '';
-          })
-
-          self.formatter.${apple_system}
-        ];
-      };
-
     # Nix formatter
 
     # This applies the formatter that follows RFC 166, which defines a standard format:
