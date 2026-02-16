@@ -45,7 +45,7 @@ in {
       clippy
       rustc
       rustfmt
-      rustPackages.rustPlatform.rustLibSrc
+      rust-analyzer
       # haskellPackages.cabal
       # haskellPackages.hoogle
       # haskellPackages.haskell-debug-adapter
