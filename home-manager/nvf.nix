@@ -169,6 +169,7 @@
 
         csharp = {
           enable = true;
+          lsp.servers = ["csharp_ls"];
         };
 
         css.enable = true;
