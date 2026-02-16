@@ -15,6 +15,7 @@ _: {
         ];
         center = [
           {id = "ActiveWindow";}
+          {id = "Taskbar";}
         ];
         right = [
           {id = "Tray";}
