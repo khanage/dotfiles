@@ -37,11 +37,10 @@ in {
       kubectl
       nerd-fonts.iosevka-term
       nerd-fonts.go-mono
-      dotnet-sdk
+      dotnet-sdk_10
       azure-cli
       powershell
       fnm
-      dotnet-sdk
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
