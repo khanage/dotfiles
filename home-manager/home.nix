@@ -1,7 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-  ];
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home = {
@@ -166,16 +163,9 @@
         vim = "nvim";
         cat = "bat";
       };
-      plugins = [
-        # {
-        #   name = "powerlevel10k";
-        #   src = pkgs.zsh-powerlevel10k;
-        #   file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        # }
-      ];
     };
 
-    kitty = (import ./kitty.nix) pkgs;
+    kitty = import ./kitty.nix pkgs;
 
     git = {
       enable = true;
@@ -188,7 +178,7 @@
       };
     };
 
-    hyprpanel = (import ./hyprpanel.nix) {};
+    hyprpanel = import ./hyprpanel.nix {};
 
     hyprlock = {
       enable = true;
@@ -204,25 +194,13 @@
       nix-direnv.enable = true;
     };
 
-    nvf = (import ./nvf.nix) pkgs;
+    nvf = import ./nvf.nix pkgs;
 
     bat = {
       enable = true;
       config = {
         theme = "Nord";
         pager = "";
-      };
-    };
-  };
-
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/wm/keybindings" = {
-        switch-to-workspace-1 = ["<Super>1"];
-        switch-to-workspace-2 = ["<Super>2"];
-        switch-to-workspace-3 = ["<Super>3"];
-        switch-to-workspace-4 = ["<Super>4"];
       };
     };
   };
