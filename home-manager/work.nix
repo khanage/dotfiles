@@ -75,6 +75,7 @@ in {
     #
     sessionVariables = {
       EDITOR = "nvim";
+      RUST_SRC_PATH = "${pkgs.rustPackages.rustPlatform.rustLibSrc}";
       DOCKER_DEFAULT_PLATFORM = "linux/amd64";
     };
 
