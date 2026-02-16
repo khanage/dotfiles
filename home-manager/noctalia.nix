@@ -3,9 +3,28 @@ _: {
   settings = {
     bar = {
       position = "bottom";
-      density = "compact";
+      density = "spacious";
       showCapsule = false;
       floating = true;
+      widgets = {
+        left = [
+          {id = "Launcher";}
+          {id = "Workspace";}
+          {id = "SystemMonitor";}
+          {id = "MediaMini";}
+        ];
+        center = [
+          {id = "ActiveWindow";}
+        ];
+        right = [
+          {id = "Tray";}
+          {id = "NotificationHistory";}
+          {id = "Volume";}
+          {id = "Brightness";}
+          {id = "Clock";}
+          {id = "ControlCenter";}
+        ];
+      };
     };
     colorSchemes.predefinedScheme = "Nord";
     location = {
