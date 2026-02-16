@@ -8,6 +8,6 @@ _: {
   settings = {
     copy_on_select = "clipboard";
     hide_window_decorations = "yes";
-    background_opacity = 0.8;
+    background_opacity = 0.9;
   };
 }
