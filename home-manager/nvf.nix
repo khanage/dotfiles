@@ -150,6 +150,7 @@
                 procMacro = {
                   enable = true,
                 },
+                files.excludeDirs = [".direnv", ".git", "target"],
               },
             '';
           };
