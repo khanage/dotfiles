@@ -269,6 +269,9 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "hyprpanel"
+workspace "default"
+workspace "games"
+workspace "chats"
 
 spawn-at-startup "hypridle"
 spawn-at-startup "wl-paste --type text --watch cliphist store"
@@ -280,13 +283,13 @@ spawn-at-startup "firefox"
 spawn-at-startup "steam"
 window-rule {
   match app-id="steam" at-startup=true
-  open-on-workspace "2"
+  open-on-workspace "games"
 }
 
 spawn-at-startup "discordptb"
 window-rule {
   match app-id="discord-ptb" at-startup=true
-  open-on-workspace "2"
+  open-on-workspace "games"
 }
 
 environment {
