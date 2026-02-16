@@ -188,7 +188,7 @@
       };
     };
 
-    hyprpanel = import ./hyprpanel.nix;
+    hyprpanel = (import ./hyprpanel.nix) {};
 
     hyprlock = {
       enable = true;

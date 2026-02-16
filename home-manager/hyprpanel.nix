@@ -1,5 +1,5 @@
-{
-  enable = true;
+{enable ? false}: {
+  inherit enable;
   settings = {
     bar = {
       location = "top";
