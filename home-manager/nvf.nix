@@ -70,7 +70,7 @@
               "mode",
               icons_enabled = true,
               separator = {
-                left = \'\',
+                left = "",
                 right = ''
               },
             }
