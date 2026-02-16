@@ -3,7 +3,7 @@ _: {
   settings = {
     bar = {
       position = "bottom";
-      density = "spacious";
+      density = "compact";
       showCapsule = false;
       floating = true;
     };
