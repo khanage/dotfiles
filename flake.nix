@@ -80,89 +80,93 @@
     };
 
     # nix-darwin configuration output
-    darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
-      system = apple_system;
-      modules = [
-        inputs.determinate.darwinModules.default
-        self.darwinModules.base
-        self.darwinModules.nixConfig
-        (_: {
-          nixpkgs.config = {
-            allow_unfree = true;
-          };
-          nixpkgs.overlays = [
-            (
-              final: prev: let
-                name = "rust-analyzer-unwrapped";
-                version = "2026-02-16";
-                src = final.fetchFromGitHub {
-                  owner = "rust-lang";
-                  repo = "rust-analyzer";
-                  rev = "00a9173e57f5c4ba45e380ce065b31afb17436ad";
-                  hash = "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=";
+    darwinConfigurations."${hostname}" = let
+      nixpkgsConfig = _: {
+        nixpkgs.config = {
+          allow_unfree = true;
+        };
+        nixpkgs.overlays = [
+          (
+            final: prev: let
+              name = "rust-analyzer-unwrapped";
+              version = "2026-02-16";
+              src = final.fetchFromGitHub {
+                owner = "rust-lang";
+                repo = "rust-analyzer";
+                rev = "00a9173e57f5c4ba45e380ce065b31afb17436ad";
+                hash = "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=";
+              };
+            in {
+              ${name} = prev.${name}.overrideAttrs (_: rec {
+                inherit version src;
+
+                cargoDeps = prev.rustPlatform.fetchCargoVendor {
+                  inherit src;
+                  name = "rust-analyzer-${version}";
+                  hash = "sha256-1Brx4mvT8683zhrFkfL15/ynfgewyd7WcFFdKvDL3+Q=";
                 };
-              in {
-                ${name} = prev.${name}.overrideAttrs (_: rec {
-                  inherit version src;
+              });
+            }
+          )
+        ];
+      };
+      homebrews = {config, ...}: {
+        homebrew = {
+          enable = true;
+          taps = builtins.attrNames config.nix-homebrew.taps;
+          brews = ["python@3.13" "pngpaste"];
+          casks = ["hammerspoon" "docker-desktop" "miro" "kitty" "dotnet-sdk"];
+        };
+      };
+    in
+      inputs.nix-darwin.lib.darwinSystem {
+        system = apple_system;
+        modules = [
+          inputs.determinate.darwinModules.default
+          self.darwinModules.base
+          self.darwinModules.nixConfig
+          nixpkgsConfig
 
-                  cargoDeps = prev.rustPlatform.fetchCargoVendor {
-                    inherit src;
-                    name = "rust-analyzer-${version}";
-                    hash = "sha256-1Brx4mvT8683zhrFkfL15/ynfgewyd7WcFFdKvDL3+Q=";
-                  };
-                });
-              }
-            )
-          ];
-        })
-
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            backupFileExtension = ".bak";
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            sharedModules = [
-              nvf.homeManagerModules.default
-              paneru.homeModules.paneru
-            ];
-            users.${username} = ./home-manager/work.nix;
-          };
-        }
-
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            # Install Homebrew under the default prefix
-            enable = true;
-
-            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-            enableRosetta = true;
-
-            # User owning the Homebrew prefix
-            user = "khanthompson";
-
-            # Optional: Declarative tap management
-            taps = {
-              "homebrew/homebrew-core" = inputs.homebrew-core;
-              "homebrew/homebrew-cask" = inputs.homebrew-cask;
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = ".bak";
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              sharedModules = [
+                nvf.homeManagerModules.default
+                paneru.homeModules.paneru
+              ];
+              users.${username} = ./home-manager/work.nix;
             };
+          }
 
-            # Optional: Enable fully-declarative tap management
-            mutableTaps = false;
-          };
-        }
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              # Install Homebrew under the default prefix
+              enable = true;
 
-        ({config, ...}: {
-          homebrew = {
-            enable = true;
-            taps = builtins.attrNames config.nix-homebrew.taps;
-            brews = ["python@3.13" "pngpaste"];
-            casks = ["hammerspoon" "docker-desktop" "miro" "kitty" "dotnet-sdk"];
-          };
-        })
-      ];
-    };
+              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+              enableRosetta = true;
+
+              # User owning the Homebrew prefix
+              user = "khanthompson";
+
+              # Optional: Declarative tap management
+              taps = {
+                "homebrew/homebrew-core" = inputs.homebrew-core;
+                "homebrew/homebrew-cask" = inputs.homebrew-cask;
+              };
+
+              # Optional: Enable fully-declarative tap management
+              mutableTaps = false;
+            };
+          }
+
+          homebrews
+        ];
+      };
 
     # nix-darwin module outputs
     darwinModules = {
