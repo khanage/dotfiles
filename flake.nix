@@ -127,7 +127,7 @@
         ({config, ...}: {
           nixpkgs.config = {
             allow_unfree = true;
-            overlays = [
+            overlay = [
               (
                 final: prev: let
                   name = "rust-analyzer-unwrapped";
