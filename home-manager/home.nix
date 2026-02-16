@@ -19,67 +19,72 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = with pkgs; [
-      spotify
-      cargo
-      rustc
-      rust-analyzer
-      rustfmt
-      clippy
-      pkg-config
-      openssl
-      gcc
-      lsd
-      fd
-      ripgrep
-      kdePackages.dolphin
-      discord-ptb
-      lazygit
-      pavucontrol
-      freecad-wayland
-      mesa-demos
-      xh
-      godot
-      godot-export-templates-bin
-      imagemagick
-      gnomeExtensions.system-monitor-tray-indicator
-      kubectl
-      wl-clipboard
-      cliphist
-      beam28Packages.elixir
-      beam28Packages.elixir-ls
-      beam28Packages.erlang
-      polychromatic
-      keymapp
-      hypridle
-      xivlauncher
-      nodejs_latest
-      texlive.combined.scheme-basic
-      xwayland-satellite
-      haskellPackages.ghc
-      haskellPackages.cabal-install
-      haskellPackages.haskell-language-server
-      haskellPackages.cabal2nix
-      haskellPackages.hoogle
-      haskellPackages.fast-tags
-      haskellPackages.ghci-dap
-      haskellPackages.haskell-debug-adapter
-      tree-sitter
-      mermaid-cli
-      ghostscript
-      wowup-cf
-      razergenie
-      dotnet-sdk
-      egl-wayland
-      nix-inspect
-      # bevy_cli.packakges.${pkgs.system}.bevy_cli
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ];
+    packages = with pkgs;
+      [
+        spotify
+        cargo
+        rustc
+        rust-analyzer
+        rustfmt
+        clippy
+        pkg-config
+        openssl
+        gcc
+        lsd
+        fd
+        ripgrep
+        kdePackages.dolphin
+        discord-ptb
+        lazygit
+        pavucontrol
+        freecad-wayland
+        mesa-demos
+        xh
+        godot
+        godot-export-templates-bin
+        imagemagick
+        gnomeExtensions.system-monitor-tray-indicator
+        kubectl
+        wl-clipboard
+        cliphist
+        polychromatic
+        keymapp
+        hypridle
+        xivlauncher
+        nodejs_latest
+        texlive.combined.scheme-basic
+        xwayland-satellite
+        tree-sitter
+        mermaid-cli
+        ghostscript
+        wowup-cf
+        razergenie
+        dotnet-sdk
+        egl-wayland
+        nix-inspect
+        # bevy_cli.packakges.${pkgs.system}.bevy_cli
+        # # You can also create simple shell scripts directly inside your
+        # # configuration. For example, this adds a command 'my-hello' to your
+        # # environment:
+        # (pkgs.writeShellScriptBin "my-hello" ''
+        #   echo "Hello, ${config.home.username}!"
+        # '')
+      ]
+      ++ (with haskellPackages; [
+        ghc
+        cabal-install
+        haskell-language-server
+        cabal2nix
+        hoogle
+        fast-tags
+        ghci-dap
+        haskell-debug-adapter
+      ])
+      ++ (with beam28Packages; [
+        elixir
+        elixir-ls
+        erlang
+      ]);
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
