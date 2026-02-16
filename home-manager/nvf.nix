@@ -14,6 +14,8 @@
       treesitter = {
         enable = true;
         textobjects.enable = true;
+        fold = true;
+        autotagHtml = true;
       };
 
       keymaps = [
@@ -60,8 +62,28 @@
         shiftwidth = 2;
         tabstop = 2;
       };
-
-      statusline.lualine.enable = true;
+      statusline.lualine = {
+        enable = true;
+        activeSection.a = [
+          ''
+            {
+              "mode",
+              icons_enabled = true,
+              separator = {
+                left = \'\',
+                right = ''
+              },
+            }
+          ''
+          ''
+            {
+              "",
+              draw_empty = true,
+              separator = { left = '', right = '' }
+            }
+          ''
+        ];
+      };
 
       autocomplete.nvim-cmp = {
         enable = true;
