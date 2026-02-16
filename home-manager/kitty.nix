@@ -13,7 +13,7 @@
     {
       copy_on_select = "clipboard";
     }
-    // lib.optionalAttrs darwin {
+    // lib.optionalAttrs (! darwin) {
       hide_window_decorations = "yes";
       background_opacity = 0.9;
     };
