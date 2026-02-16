@@ -42,7 +42,9 @@ in {
       fnm
       tree-sitter
       cargo
+      clippy
       rustc
+      rustfmt
       rustPackages.rustPlatform.rustLibSrc
       # haskellPackages.cabal
       # haskellPackages.hoogle
