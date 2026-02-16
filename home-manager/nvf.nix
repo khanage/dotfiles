@@ -117,73 +117,70 @@
         lazygit.enable = true;
       };
 
-      languages =
-        {
-          enableFormat = true;
-          enableDAP = true;
-          enableTreesitter = true;
-          enableExtraDiagnostics = true;
+      languages = {
+        enableFormat = true;
+        enableDAP = true;
+        enableTreesitter = true;
+        enableExtraDiagnostics = true;
 
-          bash.enable = true;
-          lua.enable = true;
-          nix = {
+        bash.enable = true;
+        lua.enable = true;
+        nix = {
+          enable = true;
+          lsp = {
             enable = true;
-            lsp = {
-              enable = true;
-              servers = ["nil" "nixd"];
-            };
+            servers = ["nil" "nixd"];
           };
+        };
 
-          elixir = {
-            enable = true;
-            elixir-tools.enable = true;
-            format.enable = true;
-          };
+        elixir = {
+          enable = true;
+          elixir-tools.enable = true;
+          format.enable = true;
+        };
 
-          rust = {
-            enable = true;
-            extensions.crates-nvim.enable = true;
-            dap.enable = true;
-            lsp.opts = ''
-              ['rust-analyzer'] = {
-                cargo = {allFeatures = true},
-                diagnostics = { enable = true },
-                checkOnSave = true,
-                procMacro = {
-                  enable = true,
-                },
-                files = {
-                  excludeDirs = {
-                    ".git",
-                    ".direnv",
-                    "target",
-                  },
+        rust = {
+          enable = true;
+          extensions.crates-nvim.enable = true;
+          dap.enable = true;
+          lsp.opts = ''
+            ['rust-analyzer'] = {
+              cargo = {allFeatures = true},
+              diagnostics = { enable = true },
+              checkOnSave = true,
+              procMacro = {
+                enable = true,
+              },
+              files = {
+                excludeDirs = {
+                  ".git",
+                  ".direnv",
+                  "target",
                 },
               },
-            '';
-          };
+            },
+          '';
+        };
 
-          haskell = {
-            enable = true;
-            dap.enable = true;
-          };
+        haskell = {
+          enable = true;
+          dap.enable = true;
+        };
 
-          csharp = {
-            enable = true;
-            lsp.servers = ["roslyn_ls"];
-          };
+        csharp = {
+          enable = true;
+        };
 
-          css.enable = true;
-          html.enable = true;
-          terraform.enable = true;
-          hcl.enable = true;
-          yaml.enable = true;
-          json.enable = true;
-          markdown.enable = true;
-          sql.enable = true;
-          ts.enable = true;
-        }
-        // (lib.optionalAttrs stdenv.isLinux {csharp.enable = true;});
+        css.enable = true;
+        html.enable = true;
+        terraform.enable = true;
+        hcl.enable = true;
+        yaml.enable = true;
+        json.enable = true;
+        markdown.enable = true;
+        sql.enable = true;
+        ts.enable = true;
+      };
 
       lsp = {
         enable = true;
