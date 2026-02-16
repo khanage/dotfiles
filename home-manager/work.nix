@@ -41,6 +41,7 @@ in {
       powershell
       fnm
       tree-sitter
+      cargo
       # haskellPackages.cabal
       # haskellPackages.hoogle
       # haskellPackages.haskell-debug-adapter
