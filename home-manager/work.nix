@@ -37,7 +37,6 @@ in {
       kubectl
       nerd-fonts.iosevka-term
       nerd-fonts.go-mono
-      dotnet-sdk_10
       azure-cli
       powershell
       fnm
