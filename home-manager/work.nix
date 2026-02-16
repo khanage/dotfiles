@@ -2,7 +2,7 @@
   pkgs,
   lib,
   ...
-}: let
+} @ inputs: let
   inherit (pkgs) stdenv;
 in {
   imports = [
@@ -96,10 +96,10 @@ in {
     k9s.enable = true;
     bottom.enable = true;
 
-    kitty = (import ./kitty.nix) {
-      inherit pkgs;
-      darwin = true;
-    };
+    kitty = import ./kitty.nix (inputs
+      // {
+        darwin = true;
+      });
 
     alacritty = {
       enable = true;

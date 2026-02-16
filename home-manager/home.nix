@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, ...} @ inputs: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home = {
@@ -155,7 +155,7 @@
       };
     };
 
-    kitty = import ./kitty.nix pkgs;
+    kitty = import ./kitty.nix inputs;
 
     git = {
       enable = true;
