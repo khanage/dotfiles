@@ -42,6 +42,8 @@ in {
       fnm
       tree-sitter
       cargo
+      rustc
+      rustPackages.rustPlatform.rustLibSrc
       # haskellPackages.cabal
       # haskellPackages.hoogle
       # haskellPackages.haskell-debug-adapter
