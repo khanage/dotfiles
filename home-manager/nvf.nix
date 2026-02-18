@@ -181,6 +181,8 @@
         markdown.enable = true;
         sql.enable = true;
         ts.enable = true;
+
+        python.enable = true;
       };
 
       lsp = {
