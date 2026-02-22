@@ -20,6 +20,8 @@
       [
         spotify
         cargo
+        cargo-generate
+        cargo-watch
         rustc
         rust-analyzer
         rustfmt
