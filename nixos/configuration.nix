@@ -119,6 +119,8 @@
     pulse.enable = true;
   };
 
+  services.input-remapper.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.khan = {
     isNormalUser = true;
