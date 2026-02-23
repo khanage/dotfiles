@@ -62,7 +62,6 @@
         nix-inspect
         dotnet-sdk_10
         input-remapper
-        hyprpolkitagent
         # bevy_cli.packakges.${pkgs.system}.bevy_cli
         # # You can also create simple shell scripts directly inside your
         # # configuration. For example, this adds a command 'my-hello' to your
@@ -196,6 +195,24 @@
         theme = "Nord";
         pager = "";
       };
+    };
+  };
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit = {
+      Description = "polkit-gnome-authentication-agent-1";
+      Wants = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 }

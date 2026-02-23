@@ -86,6 +86,8 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
+  security.polkit.enable = true;
+
   services.xserver = {
     enable = true;
     videoDrivers = ["nvidia"];
