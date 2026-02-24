@@ -8,6 +8,7 @@
     "window.autoDetectColorScheme" = true;
     "workbench.preferredDarkColorTheme" = "Nord";
     "workbench.preferredLightColorTheme" = "Nord";
+    "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
   keybindings = [
