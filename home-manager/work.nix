@@ -173,10 +173,10 @@ in {
         animation_speed = 4000;
       };
       bindings = {
-        window_focus_west = "cmd - h";
-        window_focus_east = "cmd - l";
-        window_focus_north = "cmd - k";
-        window_focus_south = "cmd - j";
+        window_focus_west = "ctrl - h";
+        window_focus_east = "ctrl - l";
+        window_focus_north = "ctrl - k";
+        window_focus_south = "ctrl - j";
         window_swap_west = "alt - h";
         window_swap_east = "alt - l";
         window_swap_first = "alt + shift - h";
