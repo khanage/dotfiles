@@ -63,6 +63,7 @@
       homepc = nixpkgs.lib.nixosSystem {
         system = home_system;
         modules = [
+          {nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];}
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
