@@ -189,6 +189,13 @@ in {
         window_unstack = "alt + shift - ]";
         quit = "ctrl + alt - q";
       };
+      windows = {
+        reminders = {
+          title = "Reminder";
+          dont_focus = true;
+          floating = true;
+        };
+      };
     };
   };
 }
