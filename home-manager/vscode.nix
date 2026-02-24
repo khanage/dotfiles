@@ -8,6 +8,7 @@
     a5huynh.vscode-ron
     arcticicestudio.nord-visual-studio-code
     jnoortheen.nix-ide
+    vscodevim.vim
     ms-dotnettools.csdevkit
   ];
 }
