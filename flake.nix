@@ -32,6 +32,9 @@
 
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Flake outputs
@@ -69,7 +72,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               sharedModules = [
-                nvf.homeManagerModules.default
+                inputs.nvf.homeManagerModules.default
                 inputs.noctalia.homeModules.default
               ];
               users.khan = ./home-manager/home.nix;
