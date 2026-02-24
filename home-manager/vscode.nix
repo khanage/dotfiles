@@ -4,19 +4,21 @@
   enableExtensionUpdateCheck = false;
   mutableExtensionsDir = false;
 
-  userSettings = {
-    "window.autoDetectColorScheme" = true;
-    "workbench.preferredDarkColorTheme" = "Nord";
-    "workbench.preferredLightColorTheme" = "Nord";
-    "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-  };
+  profiles.default = {
+    userSettings = {
+      "window.autoDetectColorScheme" = true;
+      "workbench.preferredDarkColorTheme" = "Nord";
+      "workbench.preferredLightColorTheme" = "Nord";
+      "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+    };
 
-  keybindings = [
-    {
-      key = "ctrl+/";
-      command = "workbench.action.terminal.toggleTerminal";
-    }
-  ];
+    keybindings = [
+      {
+        key = "ctrl+/";
+        command = "workbench.action.terminal.toggleTerminal";
+      }
+    ];
+  };
 
   extensions = with pkgs.vscode-marketplace; [
     rust-lang.rust-analyzer
