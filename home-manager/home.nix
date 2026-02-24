@@ -195,6 +195,8 @@
         pager = "";
       };
     };
+
+    vscode = import ./vscode.nix {};
   };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
