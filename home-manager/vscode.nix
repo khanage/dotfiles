@@ -4,6 +4,19 @@
   enableExtensionUpdateCheck = false;
   mutableExtensionsDir = false;
 
+  userSettings = {
+    "window.autoDetectColorScheme" = true;
+    "workbench.preferredDarkColorTheme" = "Nord";
+    "workbench.preferredLightColorTheme" = "Nord";
+  };
+
+  keybindings = [
+    {
+      key = "ctrl+/";
+      command = "workbench.action.terminal.toggleTerminal";
+    }
+  ];
+
   extensions = with pkgs.vscode-marketplace; [
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
