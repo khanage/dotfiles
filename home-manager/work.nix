@@ -100,33 +100,7 @@ in {
       // {
         darwin = true;
       });
-
-    alacritty = {
-      enable = true;
-      theme = "Nord";
-      settings = {
-        font = {
-          normal = {
-            family = "GoMono Nerd Font Mono";
-            style = "Regular";
-          };
-          bold = {
-            family = "GoMono Nerd Font Mono";
-            style = "Bold";
-          };
-          italic = {
-            family = "GoMono Nerd Font Mono";
-            style = "Italic";
-          };
-          bold_italic = {
-            family = "GoMono Nerd Font Mono";
-            style = "Bold Italic";
-          };
-          size = 12;
-        };
-      };
-    };
-
+    
     starship = {
       enable = true;
       enableZshIntegration = true;
@@ -184,7 +158,7 @@ in {
   };
 
   services.paneru = {
-    enable = false;
+    enable = true;
     # Equivalent to what you would put into `~/.paneru` (See Configuration options below).
     settings = {
       options = {
