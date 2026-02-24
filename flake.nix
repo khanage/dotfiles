@@ -61,9 +61,7 @@
   in {
     nixosConfigurations = {
       homepc = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          system = home_system;
-        };
+        system = home_system;
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
