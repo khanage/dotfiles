@@ -46,6 +46,7 @@ in {
       rustc
       rustfmt
       rust-analyzer
+      cargo-generate
       # haskellPackages.cabal
       # haskellPackages.hoogle
       # haskellPackages.haskell-debug-adapter
