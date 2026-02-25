@@ -191,7 +191,7 @@ in {
       };
       windows = {
         reminders = {
-          title = "Reminder";
+          title = "[0-9]* Reminders?";
           dont_focus = true;
           floating = true;
         };
