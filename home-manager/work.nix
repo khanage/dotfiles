@@ -85,7 +85,7 @@ in {
       nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: update applied' && git -C ${dotfiles} push";
       nfu = "nix flake update --flake ${dotfiles}";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-      vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/darwin/flake.nix ${dotfiles}/home-manager/work.nix";
+      vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/home-manager/work.nix ${dotfiles}/darwin/flake.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";
     };
   };
@@ -170,7 +170,7 @@ in {
           0.75
         ];
         swipe_gesture_fingers = 4;
-        animation_speed = 40;
+        animation_speed = 400;
       };
       bindings = {
         window_focus_west = "ctrl - h";
