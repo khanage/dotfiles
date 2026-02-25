@@ -36,7 +36,7 @@
         discord-ptb
         lazygit
         pavucontrol
-        freecad-wayland
+        # freecad-wayland
         mesa-demos
         xh
         godot
