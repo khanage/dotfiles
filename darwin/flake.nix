@@ -35,7 +35,6 @@
 
   outputs = {
     self,
-    nixpkgs,
     home-manager,
     nvf,
     nix-homebrew,
@@ -44,7 +43,7 @@
   } @ inputs: let
     username = "khanthompson";
     hostname = "PB-C2WK69P06Y";
-    apple_system = "aarch64-darwin";
+    system = "aarch64-darwin";
   in {
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = let
@@ -87,7 +86,7 @@
       };
     in
       inputs.nix-darwin.lib.darwinSystem {
-        system = apple_system;
+        inherit system;
         modules = [
           inputs.determinate.darwinModules.default
           self.darwinModules.base
@@ -202,6 +201,6 @@
       # Add other module outputs here
     };
 
-    formatter.${apple_system} = inputs.nixpkgs.legacyPackages.${apple_system}.nixfmt-rfc-style;
+    formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
   };
 }
