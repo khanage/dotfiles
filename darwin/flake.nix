@@ -48,33 +48,38 @@
     # nix-darwin configuration output
     darwinConfigurations."${hostname}" = let
       nixpkgsConfig = _: {
-        nixpkgs.config = {
-          allow_unfree = true;
-        };
-        nixpkgs.overlays = [
-          (
-            final: prev: let
-              name = "rust-analyzer-unwrapped";
-              version = "2026-02-16";
-              src = final.fetchFromGitHub {
-                owner = "rust-lang";
-                repo = "rust-analyzer";
-                rev = "00a9173e57f5c4ba45e380ce065b31afb17436ad";
-                hash = "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=";
-              };
-            in {
-              ${name} = prev.${name}.overrideAttrs (_: rec {
-                inherit version src;
-
-                cargoDeps = prev.rustPlatform.fetchCargoVendor {
-                  inherit src;
-                  name = "rust-analyzer-${version}";
-                  hash = "sha256-1Brx4mvT8683zhrFkfL15/ynfgewyd7WcFFdKvDL3+Q=";
+        nixpkgs = {
+          config = {
+            allow_unfree = true;
+            permittedInsecurePackages = [
+              "dotnet-sdk-6.0.428"
+            ];
+          };
+          overlays = [
+            (
+              final: prev: let
+                name = "rust-analyzer-unwrapped";
+                version = "2026-02-16";
+                src = final.fetchFromGitHub {
+                  owner = "rust-lang";
+                  repo = "rust-analyzer";
+                  rev = "00a9173e57f5c4ba45e380ce065b31afb17436ad";
+                  hash = "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=";
                 };
-              });
-            }
-          )
-        ];
+              in {
+                ${name} = prev.${name}.overrideAttrs (_: rec {
+                  inherit version src;
+
+                  cargoDeps = prev.rustPlatform.fetchCargoVendor {
+                    inherit src;
+                    name = "rust-analyzer-${version}";
+                    hash = "sha256-1Brx4mvT8683zhrFkfL15/ynfgewyd7WcFFdKvDL3+Q=";
+                  };
+                });
+              }
+            )
+          ];
+        };
       };
       homebrews = {config, ...}: {
         homebrew = {
