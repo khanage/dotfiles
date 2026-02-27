@@ -10,7 +10,12 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs = {
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "dotnet-sdk-6.0.428"
+      ];
+    };
     # BUG: https://github.com/nixos/nixpkgs/issues/471331
     overlays = [
       (_: prev: {
