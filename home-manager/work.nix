@@ -172,6 +172,7 @@ in {
         ];
         swipe_gesture_fingers = 4;
         animation_speed = 400;
+        auto_center = true;
       };
       bindings = {
         window_focus_west = "ctrl - h";
