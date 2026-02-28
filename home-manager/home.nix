@@ -68,6 +68,7 @@
             sdk_9_0 # Or combinePackages [sdk_8_0_1xx] for specific subversions
             sdk_10_0
           ])
+        blender
         # bevy_cli.packakges.${pkgs.system}.bevy_cli
         # # You can also create simple shell scripts directly inside your
         # # configuration. For example, this adds a command 'my-hello' to your
