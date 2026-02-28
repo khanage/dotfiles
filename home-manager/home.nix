@@ -204,6 +204,8 @@
     };
 
     vscode = import ./vscode.nix {inherit pkgs;};
+
+    opencode.enable = true;
   };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
