@@ -92,6 +92,17 @@
   # };
 
   security.polkit.enable = true;
+  security.sudo.extraRules = [
+    {
+      groups = ["wheel"];
+      commands = [
+        {
+          command = "/run/current-sys/sw/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
+  ];
 
   services.xserver = {
     enable = true;
