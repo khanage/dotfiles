@@ -163,6 +163,7 @@ in {
         pager = "";
       };
     };
+    opencode.enable = true;
   };
 
   services.paneru = {

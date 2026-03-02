@@ -169,7 +169,7 @@
 
         csharp = {
           enable = true;
-          lsp.servers = ["omnisharp" "roslyn_ls"];
+          lsp.servers = ["omnisharp"];
         };
 
         css.enable = true;
