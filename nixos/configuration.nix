@@ -97,7 +97,7 @@
       groups = ["wheel"];
       commands = [
         {
-          command = "/run/current-sys/sw/bin/nixos-rebuild";
+          command = "/run/current-system/sw/bin/nixos-rebuild";
           options = ["NOPASSWD"];
         }
       ];
