@@ -193,8 +193,8 @@
         lspSignature.enable = true;
         mappings = {
           codeAction = "<leader>a";
-          goToDeclaration = "gd";
-          goToDefinition = "gD";
+          goToDeclaration = "gD";
+          goToDefinition = "gd";
           hover = "K";
         };
       };
