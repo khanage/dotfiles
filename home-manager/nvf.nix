@@ -36,25 +36,25 @@
         }
         {
           key = "<C-h>";
-          mode = "n";
+          mode = "nt";
           silent = true;
           action = "<C-W>h";
         }
         {
           key = "<C-j>";
-          mode = "n";
+          mode = "nt";
           silent = true;
           action = "<C-W>j";
         }
         {
           key = "<C-k>";
-          mode = "n";
+          mode = "nt";
           silent = true;
           action = "<C-W>k";
         }
         {
           key = "<C-l>";
-          mode = "n";
+          mode = "nt";
           silent = true;
           action = "<C-W>l";
         }
