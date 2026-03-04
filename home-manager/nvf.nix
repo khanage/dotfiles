@@ -42,19 +42,19 @@
         }
         {
           key = "<C-j>";
-          mode = "n";
+          mode = ["n" "t"];
           silent = true;
           action = "<C-W>j";
         }
         {
           key = "<C-k>";
-          mode = "n";
+          mode = ["n" "t"];
           silent = true;
           action = "<C-W>k";
         }
         {
           key = "<C-l>";
-          mode = "n";
+          mode = ["n" "t"];
           silent = true;
           action = "<C-W>l";
         }
