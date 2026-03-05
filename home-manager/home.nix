@@ -99,7 +99,7 @@
       ".config/hypr/hyprland.conf".source = ./conf/hyprland.conf;
       ".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
       ".config/niri/config.kdl".source = ./conf/niri/config.kdl;
-      ".config/opencode/tui.json".text = ''
+      ".config/opencode/opencode.json".text = ''
         { "$schema":"https://opencode.ai/tui.json", "theme": "nord"}
       '';
     };
