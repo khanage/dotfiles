@@ -63,6 +63,9 @@ in {
     # plain files is through 'home.file'.
     file = {
       ".hammerspoon/init.lua".source = ./conf/hammerspoon.lua;
+      ".config/opencode/tui.json".text = ''
+        { "$schema":"https://opencode.ai/tui.json", "theme": "nord"}
+      '';
     };
 
     # Home Manager can also manage your environment variables through
