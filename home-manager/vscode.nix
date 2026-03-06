@@ -28,7 +28,7 @@
       arcticicestudio.nord-visual-studio-code
       jnoortheen.nix-ide
       vscodevim.vim
-      ms-dotnettools.csdevkit
+      # ms-dotnettools.csdevkit
       fill-labs.dependi
     ];
   };
