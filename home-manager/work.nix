@@ -49,7 +49,7 @@ in {
       cargo-generate
       (with pkgs.dotnetCorePackages;
         combinePackages [
-          # sdk_6_0
+          sdk_6_0
           sdk_8_0
           # sdk_9_0 # Or combinePackages [sdk_8_0_1xx] for specific subversions
           sdk_10_0
