@@ -174,6 +174,7 @@ in {
     # Equivalent to what you would put into `~/.paneru` (See Configuration options below).
     settings = {
       options = {
+        focus_follows_mouse = false;
         preset_column_widths = [
           0.25
           0.33
@@ -203,6 +204,10 @@ in {
         quit = "ctrl + alt - q";
       };
       windows = {
+        all = {
+          horizontal_padding = 4;
+          vertical_padding = 4;
+        };
         reminders = {
           title = "[0-9]* Reminders?";
           dont_focus = true;
