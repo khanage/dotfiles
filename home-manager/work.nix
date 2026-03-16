@@ -185,7 +185,7 @@ in {
         swipe_gesture_fingers = 4;
         animation_speed = 400;
         border_active_window = true;
-        border_active_color = "7fc8ff";
+        border_color = "7fc8ff";
       };
       bindings = {
         window_focus_west = "ctrl - h";
