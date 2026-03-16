@@ -184,7 +184,7 @@ in {
         ];
         swipe_gesture_fingers = 4;
         animation_speed = 400;
-        auto_center = true;
+        border_active_window = true;
       };
       bindings = {
         window_focus_west = "ctrl - h";
@@ -205,6 +205,7 @@ in {
       };
       windows = {
         all = {
+          title = ".*";
           horizontal_padding = 4;
           vertical_padding = 4;
         };
