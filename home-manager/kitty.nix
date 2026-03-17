@@ -12,6 +12,7 @@
   settings =
     {
       copy_on_select = "clipboard";
+      open_url_with = "default";
     }
     // lib.optionalAttrs (! darwin) {
       hide_window_decorations = "yes";
