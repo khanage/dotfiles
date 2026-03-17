@@ -130,7 +130,7 @@
     in {
       ls = "lsd -A";
       nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-      nfu = "sudo nix flake update --flake ${dotfiles}";
+      nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
       vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/home-manager/home.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";

@@ -94,7 +94,7 @@ in {
     in {
       ls = "lsd -A";
       nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: update applied' && git -C ${dotfiles} push";
-      nfu = "nix flake update --flake ${dotfiles}";
+      nfu = "git -C ${dotfiles} pull && nix flake update --flake ${dotfiles}";
       pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
       vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/home-manager/work.nix ${dotfiles}/darwin/flake.nix";
       replace-commit = "${dotfiles}/.local/bin/replace-commit";
