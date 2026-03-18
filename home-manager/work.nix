@@ -170,7 +170,7 @@ in {
   };
 
   services.paneru = {
-    enable = true;
+    enable = false;
     # Equivalent to what you would put into `~/.paneru` (See Configuration options below).
     settings = {
       options = {
