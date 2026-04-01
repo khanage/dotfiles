@@ -17,7 +17,7 @@
       treesitter = {
         enable = true;
         textobjects.enable = true;
-        fold = true;
+        fold = false;
         autotagHtml = true;
       };
 
