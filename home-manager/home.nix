@@ -18,7 +18,6 @@
     # environment.
     packages = with pkgs;
       [
-        spotify
         cargo
         cargo-generate
         cargo-watch
