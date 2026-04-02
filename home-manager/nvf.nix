@@ -16,7 +16,7 @@
 
       autocmds = [
         {
-          command = "zR";
+          command = ":zR<cr>";
           desc = "Unfold on open - treesitter fold auto folds everything";
           enable = true;
           pattern = ["*"];
