@@ -8,10 +8,25 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs: {
-    # Re-export darwin and nixos configurations
-    darwinConfigurations = inputs.darwin-flake.outputs.darwinConfigurations;
-    darwinModules = inputs.darwin-flake.outputs.darwinModules;
-    nixosConfigurations = inputs.nixos-flake.outputs.nixosConfigurations;
-  };
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} (top @ {
+      config,
+      withSystem,
+      moduleWithSystem,
+      ...
+    }: {
+      flake = {
+        # Re-export darwin and nixos configurations
+        darwinConfigurations = inputs.darwin-flake.outputs.darwinConfigurations;
+        darwinModules = inputs.darwin-flake.outputs.darwinModules;
+        nixosConfigurations = inputs.nixos-flake.outputs.nixosConfigurations;
+      };
+      systems = ["x86_64_linux"];
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: {
+      };
+    });
 }
