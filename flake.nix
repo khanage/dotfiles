@@ -21,7 +21,10 @@
         darwinModules = inputs.darwin-flake.outputs.darwinModules;
         nixosConfigurations = inputs.nixos-flake.outputs.nixosConfigurations;
       };
-      systems = ["x86_64_linux"];
+      systems = [
+        "x86_64_linux"
+        "aarch64-darwin"
+      ];
       perSystem = {
         config,
         pkgs,
