@@ -16,11 +16,11 @@
 
       autocmds = [
         {
-          command = ":zR<cr>";
+          command = "silent! :%foldopen!";
           desc = "Unfold on open - treesitter fold auto folds everything";
           enable = true;
           pattern = ["*"];
-          event = ["BufRead"];
+          event = ["BufWinEnter"];
         }
       ];
 
