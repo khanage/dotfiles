@@ -14,10 +14,20 @@
       vimAlias = true;
       clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;});
 
+      autocmds = [
+        {
+          command = "zR";
+          desc = "Unfold on open - treesitter fold auto folds everything";
+          enable = true;
+          pattern = ["*"];
+          event = ["BufRead"];
+        }
+      ];
+
       treesitter = {
         enable = true;
         textobjects.enable = true;
-        fold = false;
+        fold = true;
         autotagHtml = true;
       };
 
