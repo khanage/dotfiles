@@ -14,21 +14,9 @@
       vimAlias = true;
       clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;});
 
-      autocmds = [
-        {
-          command = "silent! :%foldopen!";
-          desc = "Unfold on open - treesitter fold auto folds everything";
-          enable = true;
-          pattern = ["*"];
-          event = ["BufReadPost"];
-          once = false;
-        }
-      ];
-
       treesitter = {
         enable = true;
         textobjects.enable = true;
-        fold = true;
         autotagHtml = true;
       };
 
