@@ -20,7 +20,8 @@
           desc = "Unfold on open - treesitter fold auto folds everything";
           enable = true;
           pattern = ["*"];
-          event = ["BufRead"];
+          event = ["BufWinEnter"];
+          once = false;
         }
       ];
 
