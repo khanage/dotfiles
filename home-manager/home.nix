@@ -140,7 +140,6 @@
   programs = {
     home-manager.enable = true;
     noctalia-shell = import ./noctalia.nix {};
-    wofi = import ./wofi.nix;
     k9s.enable = true;
     bottom.enable = true;
 
