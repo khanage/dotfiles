@@ -1,35 +1,23 @@
 {
-  description = "Dotfiles - delegates to system-specific flakes";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    darwin-flake.url = "path:./darwin";
-    nixos-flake.url = "path:./nixos";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    import-tree.url = "github:vic/import-tree";
+
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    wrapper-modules.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} (top @ {
-      config,
-      withSystem,
-      moduleWithSystem,
-      ...
-    }: {
-      flake = {
-        # Re-export darwin and nixos configurations
-        darwinConfigurations = inputs.darwin-flake.outputs.darwinConfigurations;
-        darwinModules = inputs.darwin-flake.outputs.darwinModules;
-        nixosConfigurations = inputs.nixos-flake.outputs.nixosConfigurations;
-      };
-      systems = [
-        "x86_64_linux"
-        "aarch64-darwin"
-      ];
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-      };
-    });
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree.matchNot ".*/home/legacy/.*" ./modules);
 }

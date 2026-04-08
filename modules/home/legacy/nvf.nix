@@ -1,0 +1,283 @@
+{
+  pkgs,
+  lib,
+  stdenv,
+  ...
+}: {
+  enable = true;
+  settings = {
+    vim = {
+      # luaConfigRC.for_debugging = ''
+      #   vim.lsp.set_log_level("debug")
+      # '';
+      viAlias = true;
+      vimAlias = true;
+      clipboard.providers = {} // (lib.optionalAttrs stdenv.isLinux {wl-copy.enable = true;});
+
+      treesitter = {
+        enable = true;
+        textobjects.enable = true;
+        autotagHtml = true;
+      };
+
+      keymaps = [
+        {
+          key = "<C-/>";
+          mode = "t";
+          silent = true;
+          action = "<cmd>ToggleTerm<CR>";
+        }
+        {
+          key = "<Esc>";
+          mode = "n";
+          silent = true;
+          action = "<cmd>:nohl<CR>";
+        }
+        {
+          key = "<C-h>";
+          mode = ["n" "t"];
+          silent = true;
+          action = "<C-W>h";
+        }
+        {
+          key = "<C-j>";
+          mode = ["n" "t"];
+          silent = true;
+          action = "<C-W>j";
+        }
+        {
+          key = "<C-k>";
+          mode = ["n" "t"];
+          silent = true;
+          action = "<C-W>k";
+        }
+        {
+          key = "<C-l>";
+          mode = ["n" "t"];
+          silent = true;
+          action = "<C-W>l";
+        }
+      ];
+
+      options = {
+        expandtab = true;
+        shiftwidth = 2;
+        tabstop = 2;
+      };
+      statusline.lualine = {
+        enable = true;
+        activeSection.a = [
+          ''
+            {
+              "mode",
+              icons_enabled = true,
+              separator = {
+                left = "",
+                right = ''
+              },
+            }
+          ''
+          ''
+            {
+              "",
+              draw_empty = true,
+              separator = { left = '', right = '' }
+            }
+          ''
+        ];
+      };
+
+      autocomplete.nvim-cmp = {
+        enable = true;
+        mappings = {
+          close = "<Esc>";
+          complete = "<C-Space>";
+          confirm = "<CR>";
+          next = "<C-n>";
+          previous = "<C-p>";
+        };
+      };
+
+      debugger.nvim-dap = {
+        enable = true;
+        ui.enable = true;
+      };
+
+      theme = {
+        enable = true;
+        name = "nord";
+        style = "night";
+      };
+
+      terminal.toggleterm = {
+        enable = true;
+        mappings.open = "<C-/>";
+        setupOpts.direction = "float";
+        lazygit.enable = true;
+      };
+
+      languages = {
+        enableFormat = true;
+        enableDAP = true;
+        enableTreesitter = true;
+        enableExtraDiagnostics = true;
+
+        bash.enable = true;
+        lua.enable = true;
+        nix = {
+          enable = true;
+          lsp = {
+            enable = true;
+            servers = ["nil" "nixd"];
+          };
+        };
+
+        elixir = {
+          enable = true;
+          elixir-tools.enable = true;
+          format.enable = true;
+        };
+
+        rust = {
+          enable = true;
+          extensions.crates-nvim.enable = true;
+          dap.enable = true;
+          lsp.opts = ''
+            ['rust-analyzer'] = {
+              cargo = {allFeatures = true},
+              diagnostics = { enable = true },
+              checkOnSave = true,
+              procMacro = {
+                enable = true,
+              },
+              files = {
+                excludeDirs = {
+                  ".git",
+                  ".direnv",
+                  "target",
+                },
+              },
+            },
+          '';
+        };
+
+        haskell = {
+          enable = true;
+          dap.enable = true;
+        };
+
+        csharp = {
+          enable = true;
+          lsp.servers = ["omnisharp"];
+        };
+
+        css.enable = true;
+        html.enable = true;
+        terraform.enable = true;
+        hcl.enable = true;
+        yaml.enable = true;
+        json.enable = true;
+        markdown.enable = true;
+        sql.enable = true;
+        ts.enable = true;
+
+        python.enable = true;
+      };
+
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+        inlayHints.enable = true;
+        lspkind.enable = true;
+        lspSignature.enable = true;
+        mappings = {
+          codeAction = "<leader>a";
+          goToDeclaration = "gD";
+          goToDefinition = "gd";
+          hover = "K";
+        };
+      };
+
+      binds.whichKey = {
+        enable = true;
+      };
+
+      comments.comment-nvim.enable = true;
+
+      telescope = {
+        enable = true;
+        mappings = {
+          buffers = "<leader><leader>";
+          diagnostics = "<leader>sd";
+          findFiles = "<leader>ff";
+          liveGrep = "<leader>sg";
+          lspDefinitions = "<leader>sd";
+          lspDocumentSymbols = "<leader>ss";
+          lspWorkspaceSymbols = "<leader>sw";
+          lspReferences = "<leader>sr";
+          lspImplementations = "<leader>si";
+        };
+        extensions = [
+          {
+            name = "fzf";
+            packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
+            setup = {fzf = {fuzzy = true;};};
+          }
+        ];
+        setupOpts = {
+          defaults = {
+            file_ignore_patterns = ["%.lock"];
+            color_devicons = true;
+          };
+        };
+      };
+
+      visuals = {
+        fidget-nvim.enable = true;
+        rainbow-delimiters.enable = true;
+        nvim-web-devicons.enable = true;
+      };
+
+      filetree.nvimTree = {
+        enable = true;
+        openOnSetup = false;
+        setupOpts = {
+          view.float = {
+            enable = true;
+            quit_on_focus_loss = true;
+          };
+        };
+      };
+
+      ui = {
+        borders.enable = true;
+        noice = {
+          enable = true;
+          setupOpts.lsp.lspSignature.enable = true;
+        };
+      };
+
+      mini.pairs = {
+        enable = true;
+
+        setupOpts = {
+          mappings = {
+            "'" = false;
+            # "{" = {
+            #   action = "closeopen";
+            #   pair = "{};";
+            # };
+          };
+        };
+      };
+
+      utility = {
+        snacks-nvim.enable = true;
+        images.image-nvim = {
+          enable = true;
+          setupOpts.backend = "kitty";
+        };
+      };
+    };
+  };
+}
