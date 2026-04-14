@@ -1,6 +1,6 @@
-{...}: {
+_: {
   flake.homeModules.shell = {pkgs, ...}: {
-    home.packages = with pkgs; [starship lsd fzf];
+    home.packages = with pkgs; [starship lsd];
     programs.zsh = {
       enable = true;
       oh-my-zsh = {
@@ -15,7 +15,7 @@
         cat = "bat";
         # nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         nbs = "sudo nixos-rebuild switch --flake ${dotfiles}";
-        vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/hosts/homepc/configuration.nix ${dotfiles}/modules/home/default.nix";
+        vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/home/default.nix ${dotfiles}/modules/hosts/homepc/configuration.nix";
         nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
       };
     };
