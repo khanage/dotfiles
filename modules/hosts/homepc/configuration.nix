@@ -1,11 +1,9 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   flake.nixosModules.homepcConfiguration = {pkgs, ...}: {
     imports = [
       self.nixosModules.homepcHardware
+      self.nixosModules.homepcHomeManager
+      self.nixosModules.niri
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -125,24 +123,6 @@
       pulse.enable = true;
     };
 
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      users.khan = {
-        imports = [
-          inputs.nvf.homeManagerModules.default
-          self.homeModules.shell
-          self.homeModules.nvim
-          self.homeModules.legacy
-        ];
-        home = {
-          username = "khan";
-          homeDirectory = "/home/khan";
-          stateVersion = "25.05";
-        };
-      };
-    };
-
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.khan = {
       isNormalUser = true;
@@ -163,7 +143,6 @@
         enable = true;
         xwayland.enable = true;
       };
-      niri.enable = true;
       steam = {
         enable = true;
         remotePlay.openFirewall = true;

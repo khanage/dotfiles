@@ -84,7 +84,7 @@ _: {
       file = {
         ".config/hypr/hyprland.conf".source = ./legacy/conf/hyprland.conf;
         ".config/hypr/hypridle.conf".source = ./legacy/conf/hypridle.conf;
-        ".config/niri/config.kdl".source = ./legacy/conf/niri/config.kdl;
+        # ".config/niri/config.kdl".source = ./legacy/conf/niri/config.kdl;
         ".config/opencode/opencode.json".text = ''
           { "$schema":"https://opencode.ai/tui.json", "theme": "nord"}
         '';
@@ -115,10 +115,7 @@ _: {
         dotfiles = "~/dotfiles";
       in {
         ls = "lsd -A";
-        nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-        nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
         pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-        vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/home-manager/home.nix";
         replace-commit = "${dotfiles}/.local/bin/replace-commit";
       };
     };
@@ -129,6 +126,7 @@ _: {
       k9s.enable = true;
       bottom.enable = true;
 
+      # noctalia-shell = import ./legacy/noctalia.nix inputs;
       rofi = {
         enable = true;
         theme = "nord";
