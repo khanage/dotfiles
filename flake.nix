@@ -20,6 +20,25 @@
 
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Stable nix-darwin (use 0.1 for unstable)
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Determinate 3.* module
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+    determinate.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    homebrew-core.url = "github:homebrew/homebrew-core";
+    homebrew-core.flake = false;
+
+    homebrew-cask.url = "github:homebrew/homebrew-cask";
+    homebrew-cask.flake = false;
+
+    paneru.url = "github:karinushka/paneru";
+    paneru.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree.matchNot ".*/home/legacy/.*" ./modules);
