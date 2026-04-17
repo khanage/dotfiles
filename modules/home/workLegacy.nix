@@ -109,10 +109,13 @@
           enable = true;
           plugins = ["git" "direnv" "fzf" "vi-mode" "fnm"];
         };
-        shellAliases = {
+        shellAliases = let
+          dotfiles = "~/dotfiles";
+        in {
           ls = "lsd -A";
           vim = "nvim";
           cat = "bat";
+          nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         };
         plugins = [
         ];

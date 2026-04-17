@@ -13,8 +13,6 @@ _: {
         ls = "lsd -A";
         vim = "nvim";
         cat = "bat";
-        # nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
-        nbs = "sudo nixos-rebuild switch --flake ${dotfiles}";
         vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/home/default.nix ${dotfiles}/modules/hosts/homepc/configuration.nix";
         nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
       };

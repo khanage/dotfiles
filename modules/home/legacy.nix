@@ -116,6 +116,7 @@ _: {
       in {
         ls = "lsd -A";
         pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
+        nbs = "sudo nixos-rebuild switch --flake ~/${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         replace-commit = "${dotfiles}/.local/bin/replace-commit";
       };
     };
