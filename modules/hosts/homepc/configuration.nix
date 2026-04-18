@@ -4,6 +4,7 @@
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
       self.nixosModules.niri
+      self.nixosModules.steam
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -133,13 +134,6 @@
         enable = true;
         xwayland.enable = true;
       };
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
-        extraPackages = with pkgs; [gamemode];
-      };
       zsh.enable = true;
     };
 
@@ -148,8 +142,6 @@
     environment.systemPackages = with pkgs; [
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
-      git
-      kitty
       glfw
       vulkan-headers
       vulkan-loader
