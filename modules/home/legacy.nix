@@ -108,12 +108,6 @@ _: {
     programs = {
       home-manager.enable = true;
 
-      # noctalia-shell = import ./legacy/noctalia.nix inputs;
-      rofi = {
-        enable = true;
-        theme = "nord";
-      };
-
       kitty = import ./legacy/kitty.nix inputs;
 
       git = {
