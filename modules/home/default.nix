@@ -13,6 +13,7 @@
           self.homeModules.shell
           self.homeModules.nvim
           self.homeModules.gaming
+          self.homeModules.kitty
           self.homeModules.legacy
         ];
         home = {

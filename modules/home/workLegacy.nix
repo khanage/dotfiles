@@ -91,13 +91,6 @@
       home-manager.enable = true;
       k9s.enable = true;
       bottom.enable = true;
-
-      kitty = import ./legacy/kitty.nix (inputs
-        // {
-          darwin = true;
-          inherit (pkgs) lib;
-        });
-
       starship = {
         enable = true;
         enableZshIntegration = true;

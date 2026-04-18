@@ -108,8 +108,6 @@ _: {
     programs = {
       home-manager.enable = true;
 
-      kitty = import ./legacy/kitty.nix inputs;
-
       git = {
         enable = true;
         settings = {
