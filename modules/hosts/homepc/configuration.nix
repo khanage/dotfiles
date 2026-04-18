@@ -35,38 +35,28 @@
             '';
           });
         })
-        # (
-        #   final: prev: let
-        #     name = "rust-analyzer-unwrapped";
-        #     version = "2026-02-16";
-        #     src = final.fetchFromGitHub {
-        #       owner = "rust-lang";
-        #       repo = "rust-analyzer";
-        #       rev = "00a9173e57f5c4ba45e380ce065b31afb17436ad";
-        #       hash = "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=";
-        #     };
-        #   in {
-        #     ${name} = prev.${name}.overrideAttrs (_: rec {
-        #       inherit version src;
-        #
-        #       cargoDeps = prev.rustPlatform.fetchCargoVendor {
-        #         inherit src;
-        #         name = "rust-analyzer-${version}";
-        #         hash = "sha256-1Brx4mvT8683zhrFkfL15/ynfgewyd7WcFFdKvDL3+Q=";
-        #       };
-        #     });
-        #   }
-        # )
       ];
     };
+    boot = {
+      plymouth = {
+        enable = true;
+        theme = "tech_b";
+        themePackages = with pkgs; [
+          (adi1090x-plymouth-themes.override {selected_themes = ["tech_b"];})
+        ];
+      };
 
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      grub = {
-        device = "/dev/sdb";
-        useOSProber = true;
-        efiSupport = true;
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        grub = {
+          device = "/dev/sdb";
+          useOSProber = true;
+          efiSupport = true;
+        };
       };
     };
 
