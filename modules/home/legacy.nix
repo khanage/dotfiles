@@ -15,21 +15,13 @@ _: {
           pkg-config
           openssl
           gcc
-          lsd
-          fd
-          ripgrep
           kdePackages.dolphin
           discord-ptb
-          lazygit
-          pavucontrol
           # freecad-wayland
           mesa-demos
-          xh
           godot
           godot-export-templates-bin
-          imagemagick
           gnomeExtensions.system-monitor-tray-indicator
-          kubectl
           wl-clipboard
           cliphist
           polychromatic
@@ -84,10 +76,6 @@ _: {
       file = {
         ".config/hypr/hyprland.conf".source = ./legacy/conf/hyprland.conf;
         ".config/hypr/hypridle.conf".source = ./legacy/conf/hypridle.conf;
-        # ".config/niri/config.kdl".source = ./legacy/conf/niri/config.kdl;
-        ".config/opencode/opencode.json".text = ''
-          { "$schema":"https://opencode.ai/tui.json", "theme": "nord"}
-        '';
       };
 
       # Home Manager can also manage your environment variables through
@@ -157,28 +145,8 @@ _: {
         enable = true;
       };
 
-      fzf = {
-        enable = true;
-      };
-
-      direnv = {
-        enable = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-      };
-
-      bat = {
-        enable = true;
-        config = {
-          theme = "Nord";
-          pager = "";
-        };
-      };
-
       # TODO: work out vscode
       # vscode = import ./legacy/vscode.nix {inherit pkgs;};
-
-      opencode.enable = true;
     };
 
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
