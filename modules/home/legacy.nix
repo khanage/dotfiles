@@ -16,7 +16,6 @@ _: {
           openssl
           gcc
           kdePackages.dolphin
-          discord-ptb
           # freecad-wayland
           mesa-demos
           godot
@@ -27,14 +26,12 @@ _: {
           polychromatic
           keymapp
           hypridle
-          xivlauncher
           nodejs_latest
           texlive.combined.scheme-basic
           xwayland-satellite
           tree-sitter
           mermaid-cli
           ghostscript
-          wowup-cf
           razergenie
           egl-wayland
           nix-inspect
@@ -115,11 +112,6 @@ _: {
       rofi = {
         enable = true;
         theme = "nord";
-      };
-
-      starship = {
-        enable = true;
-        enableZshIntegration = true;
       };
 
       kitty = import ./legacy/kitty.nix inputs;

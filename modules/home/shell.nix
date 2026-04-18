@@ -1,7 +1,6 @@
 _: {
   flake.homeModules.shell = {pkgs, ...}: {
     home.packages = with pkgs; [
-      starship
       lsd
       fd
       ripgrep
@@ -62,6 +61,11 @@ _: {
 
       k9s.enable = true;
       bottom.enable = true;
+
+      starship = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
   };
 }

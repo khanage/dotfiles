@@ -12,6 +12,7 @@
           inputs.nvf.homeManagerModules.default
           self.homeModules.shell
           self.homeModules.nvim
+          self.homeModules.gaming
           self.homeModules.legacy
         ];
         home = {
