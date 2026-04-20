@@ -1,12 +1,15 @@
 _: {
-  flake.homeModules.shell = {pkgs, ...}: {
+  flake.homeModules.shell = {
+    pkgs,
+    lib,
+    ...
+  }: {
     home.packages = with pkgs; [
       lsd
       fd
       ripgrep
       lazygit
       xh
-      pavucontrol
       imagemagick
       kubectl
     ];
@@ -16,7 +19,7 @@ _: {
         enable = true;
         oh-my-zsh = {
           enable = true;
-          plugins = ["git" "direnv" "fzf" "vi-mode"];
+          plugins = ["git" "direnv" "fzf" "vi-mode" "fnm"];
         };
         shellAliases = let
           dotfiles = "~/dotfiles";
@@ -29,6 +32,9 @@ _: {
           pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
           replace-commit = "${dotfiles}/.local/bin/replace-commit";
         };
+        initContent = ''
+          eval "$(${lib.getExe pkgs.fnm} env --use-on-cd)"
+        '';
       };
 
       fzf = {

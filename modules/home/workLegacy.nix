@@ -24,13 +24,6 @@
         pkg-config
         openssl
         gcc
-        lsd
-        fd
-        ripgrep
-        lazygit
-        xh
-        imagemagick
-        kubectl
         nerd-fonts.iosevka-term
         nerd-fonts.go-mono
         azure-cli
@@ -59,9 +52,6 @@
       # plain files is through 'home.file'.
       file = {
         ".hammerspoon/init.lua".source = ./legacy/conf/hammerspoon.lua;
-        ".config/opencode/opencode.json".text = ''
-          { "$schema":"https://opencode.ai/tui.json", "theme": "nord"}
-        '';
       };
 
       # Home Manager can also manage your environment variables through
@@ -89,32 +79,12 @@
     # Let Home Manager install and manage itself.
     programs = {
       home-manager.enable = true;
-      k9s.enable = true;
-      bottom.enable = true;
-      starship = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
       zsh = {
-        enable = true;
-        oh-my-zsh = {
-          enable = true;
-          plugins = ["git" "direnv" "fzf" "vi-mode" "fnm"];
-        };
         shellAliases = let
           dotfiles = "~/dotfiles";
         in {
-          ls = "lsd -A";
-          vim = "nvim";
-          cat = "bat";
           nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         };
-        plugins = [
-        ];
-        initContent = ''
-          eval "$(fnm env --use-on-cd)"
-        '';
       };
 
       git = {
@@ -128,30 +98,6 @@
           pull.rebase = true;
         };
       };
-
-      fzf = {
-        enable = true;
-      };
-
-      direnv = {
-        enable = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-      };
-
-      nvf = (import ./legacy/nvf.nix) {
-        inherit pkgs;
-        inherit (pkgs) lib stdenv;
-      };
-
-      bat = {
-        enable = true;
-        config = {
-          theme = "Nord";
-          pager = "";
-        };
-      };
-      opencode.enable = true;
     };
 
     services.paneru = {

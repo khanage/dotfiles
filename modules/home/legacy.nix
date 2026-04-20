@@ -5,6 +5,7 @@ _: {
     home = {
       packages = with pkgs;
         [
+          pavucontrol
           cargo
           cargo-generate
           cargo-watch
