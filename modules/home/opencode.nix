@@ -4,12 +4,13 @@
 
     programs.opencode = {
       enable = true;
+      enableMcpIntegration = true;
       settings = {
-        theme = "Nord";
         model = "anthropic/claude-sonnet-4-20250514";
         autoshare = false;
-        autoupdate = true;
+        autoupdate = false;
       };
+      tui = {theme = "Nord";};
     };
 
     mcp-servers = {
