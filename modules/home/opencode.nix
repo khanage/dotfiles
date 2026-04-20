@@ -2,6 +2,7 @@
   flake.homeModules.opencode = {...}: {
     imports = [inputs.mcp-servers-nix.homeManagerModules.default];
 
+    programs.mcp.enable = true;
     programs.opencode = {
       enable = true;
       enableMcpIntegration = true;
@@ -12,9 +13,8 @@
       };
       tui = {theme = "nord";};
     };
-
-    mcp-servers = {
-      programs.playwright.enable = true;
+    mcp-servers.programs = {
+      playwright.enable = true;
     };
   };
 }
