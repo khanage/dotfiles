@@ -55,16 +55,6 @@ _: {
         };
       };
 
-      opencode = {
-        enable = true;
-        settings = {
-          theme = "Nord";
-          model = "anthropic/claude-sonnet-4-20250514";
-          autoshare = false;
-          autoupdate = true;
-        };
-      };
-
       k9s.enable = true;
       bottom.enable = true;
 

@@ -14,6 +14,7 @@
           self.homeModules.nvim
           self.homeModules.gaming
           self.homeModules.kitty
+          self.homeModules.opencode
           self.homeModules.legacy
         ];
         home = {
