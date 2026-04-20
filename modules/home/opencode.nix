@@ -10,7 +10,7 @@
         autoshare = false;
         autoupdate = false;
       };
-      tui = {theme = "Nord";};
+      tui = {theme = "nord";};
     };
 
     mcp-servers = {
