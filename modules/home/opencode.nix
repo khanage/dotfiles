@@ -1,8 +1,8 @@
 {inputs, ...}: {
   flake.homeModules.opencode = {...}: {
-    imports = [inputs.mcp-servers-nix.flakeModule];
+    imports = [inputs.mcp-servers-nix.homeManagerModules.default];
 
-    home.programs.opencode = {
+    programs.opencode = {
       enable = true;
       settings = {
         theme = "Nord";

@@ -13,7 +13,7 @@
           self.homeModules.shell
           self.homeModules.nvim
           self.homeModules.kitty
-          # self.homeModules.opencode
+          self.homeModules.opencode
           self.homeModules.workLegacy
         ];
         home = {
