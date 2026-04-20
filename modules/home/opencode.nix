@@ -1,6 +1,8 @@
 {inputs, ...}: {
-  flake.homeModules.opencode = {...}: {
+  flake.homeModules.opencode = {pkgs, ...}: {
     imports = [inputs.mcp-servers-nix.homeManagerModules.default];
+
+    home.packages = with pkgs; [aks-mcp-server];
 
     programs.mcp.enable = true;
     programs.opencode = {
