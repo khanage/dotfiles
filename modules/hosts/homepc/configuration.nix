@@ -3,6 +3,7 @@
     imports = [
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
+      self.nixosModules.discord
       self.nixosModules.niri
       self.nixosModules.steam
     ];
@@ -14,6 +15,7 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           "dotnet-sdk-6.0.428"
+          "openssl-1.1.1w"
         ];
       };
       # BUG: https://github.com/nixos/nixpkgs/issues/471331

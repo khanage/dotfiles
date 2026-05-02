@@ -56,7 +56,7 @@
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store"
           (lib.getExe pkgs.kitty)
           (lib.getExe pkgs.firefox)
-          (lib.getExe pkgs.discord-ptb)
+          # (lib.getExe pkgs.discord-ptb)
           (lib.getExe pkgs.steam)
         ];
 
