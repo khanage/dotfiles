@@ -8,7 +8,13 @@
     perSystem = {system, ...}: {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "dotnet-sdk-6.0.428"
+            "openssl-1.1.1w"
+          ];
+        };
       };
     };
   };

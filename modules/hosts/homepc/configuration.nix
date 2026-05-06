@@ -3,7 +3,6 @@
     imports = [
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
-      self.nixosModules.discord
       self.nixosModules.niri
       self.nixosModules.steam
     ];

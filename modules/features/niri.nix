@@ -24,6 +24,9 @@
           "chats" = _: {};
         };
 
+        prefer-no-csd = true;
+        hotkey-overlay.skip-at-startup = true;
+
         window-rules = [
           {
             matches = [
@@ -44,6 +47,24 @@
             open-on-workspace = "games";
           }
           {
+            matches = [
+              {
+                app-id = "overlayed";
+                at-startup = true;
+              }
+            ];
+            open-on-workspace = "games";
+            open-floating = true;
+            opacity = 0.7;
+            default-floating-position = _: {
+              props = {
+                x = 100;
+                y = 100;
+                relative-to = "top-left";
+              };
+            };
+          }
+          {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
           }
@@ -56,8 +77,8 @@
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store"
           (lib.getExe pkgs.kitty)
           (lib.getExe pkgs.firefox)
-          # (lib.getExe pkgs.discord-ptb)
           (lib.getExe pkgs.steam)
+          (lib.getExe self'.packages.myDiscord)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -76,8 +97,6 @@
         environment = {
           QT_QPA_PLATFORM = "wayland";
         };
-
-        hotkey-overlay.skip-at-startup = true;
 
         binds = {
           "Mod+T".spawn-sh = "${lib.getExe pkgs.kitty}";
