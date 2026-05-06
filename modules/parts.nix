@@ -10,10 +10,17 @@
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "dotnet-sdk-6.0.428"
-            "openssl-1.1.1w"
-          ];
+          permittedInsecurePackages =
+            [
+              "dotnet-sdk-6.0.428"
+            ]
+            ++ (
+              if system == "x86_64-linux"
+              then [
+                "openssl-1.1.1w"
+              ]
+              else []
+            );
         };
       };
     };
