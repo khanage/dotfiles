@@ -112,17 +112,15 @@
           "Mod+C".center-column = _: {};
           "Mod+V".toggle-window-floating = _: {};
 
-          "Mod+Left".focus-column-left = _: {};
-          "Mod+Down".focus-window-down = _: {};
+          "Mod+Left".set-column-width = "-10%";
+          "Mod+Right".set-column-width = "+10%";
+
           "Mod+Up".focus-window-up = _: {};
-          "Mod+Right".focus-column-right = _: {};
           "Mod+H".focus-column-left = _: {};
           "Mod+J".focus-window-down = _: {};
           "Mod+K".focus-window-up = _: {};
           "Mod+L".focus-column-right = _: {};
 
-          "Mod+Ctrl+Left".move-column-left = _: {};
-          "Mod+Ctrl+Down".move-window-down = _: {};
           "Mod+Ctrl+Up".move-window-up = _: {};
           "Mod+Ctrl+Right".move-column-right = _: {};
           "Mod+Ctrl+H".move-column-left = _: {};
