@@ -36,7 +36,7 @@ _: {
                 else pkgs.chromium
               )}"
             ];
-            environment = {
+            env = {
               PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
             };
           };
