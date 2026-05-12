@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  flake.homeModules.opencode = {pkgs, ...}: let
+  flake.homeModules.opencode = {
+    pkgs,
+    lib,
+    ...
+  }: let
     ado-mcp = pkgs.writeShellScriptBin "ado-mcp" ''
       export PATH=${pkgs.lib.makeBinPath [pkgs.nodejs_20 pkgs.azure-cli]}:$PATH
       exec ${pkgs.nodejs_20}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
@@ -7,10 +11,29 @@
   in {
     imports = [inputs.mcp-servers-nix.homeManagerModules.default];
 
-    home = {packages = [ado-mcp];};
+    home.packages = [ado-mcp];
 
     programs = {
-      mcp.enable = true;
+      mcp = {
+        enable = true;
+        servers = {
+          azure-devops = {
+            type = "local";
+            command = ["ado-mcp"];
+            enabled = true;
+          };
+          atlassian = {
+            type = "remote";
+            url = "https://mcp.atlassian.com/v1/sse";
+            enabled = true;
+          };
+          playwright = {
+            type = "local";
+            command = ["${lib.getExe pkgs.playwright-mcp}" "--executable-path" "${lib.getExe pkgs.google-chrome}"];
+            enable = true;
+          };
+        };
+      };
       opencode = {
         enable = true;
         enableMcpIntegration = true;
@@ -20,20 +43,6 @@
           autoupdate = false;
         };
         tui = {theme = "nord";};
-      };
-    };
-
-    mcp-servers.programs.playwright.enable = true;
-    mcp-servers.settings = {
-      azure-devops = {
-        type = "local";
-        command = ["ado-mcp"];
-        enabled = true;
-      };
-      atlassian = {
-        type = "remote";
-        url = "https://mcp.atlassian.com/v1/sse";
-        enabled = true;
       };
     };
   };
