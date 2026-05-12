@@ -2,6 +2,7 @@ _: {
   flake.homeModules.opencode = {
     pkgs,
     lib,
+    config,
     ...
   }: let
     ado-mcp = pkgs.writeShellScriptBin "ado-mcp" ''
@@ -36,7 +37,7 @@ _: {
               )}"
             ];
             environment = {
-              PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+              PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
             };
           };
         };
