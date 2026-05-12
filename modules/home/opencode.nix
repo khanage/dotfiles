@@ -11,8 +11,6 @@
   in {
     imports = [inputs.mcp-servers-nix.homeManagerModules.default];
 
-    home.packages = [ado-mcp];
-
     programs = {
       mcp = {
         enable = true;
@@ -29,7 +27,15 @@
           };
           playwright = {
             type = "local";
-            command = ["${lib.getExe pkgs.playwright-mcp}" "--executable-path" "${lib.getExe pkgs.google-chrome}"];
+            command = [
+              "${lib.getExe pkgs.playwright-mcp}"
+              "--executable-path"
+              "${lib.getExe (
+                if pkgs.stdenv.hostPlatform.isDarwin
+                then pkgs.google-chrome
+                else pkgs.chromium
+              )}"
+            ];
             enable = true;
           };
         };
