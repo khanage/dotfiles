@@ -25,8 +25,8 @@
           };
           playwright = {
             type = "local";
-            command = [
-              "${lib.getExe pkgs.playwright-mcp}"
+            command = "${lib.getExe pkgs.playwright-mcp}";
+            args = [
               "--executable-path"
               "${lib.getExe (
                 if pkgs.stdenv.hostPlatform.isDarwin
