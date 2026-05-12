@@ -9,8 +9,6 @@
       exec ${pkgs.nodejs_20}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
     '';
   in {
-    imports = [inputs.mcp-servers-nix.homeManagerModules.default];
-
     programs = {
       mcp = {
         enable = true;

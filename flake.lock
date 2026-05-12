@@ -295,26 +295,6 @@
         "type": "github"
       }
     },
-    "mcp-servers-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1778632990,
-        "narHash": "sha256-abZLUPVXmolrsTDFlghtjHnJAkuzfBV4rXTVrj/L1rE=",
-        "owner": "natsukium",
-        "repo": "mcp-servers-nix",
-        "rev": "ade4c45244ff5976d5b7405f3600a52efac87b3d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "natsukium",
-        "repo": "mcp-servers-nix",
-        "type": "github"
-      }
-    },
     "mnw": {
       "locked": {
         "lastModified": 1777828893,
@@ -625,11 +605,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778614290,
-        "narHash": "sha256-CFzI6/J0Dcx2dG+V1BUh3kakZjMafwnj0epolebbwL0=",
+        "lastModified": 1778244829,
+        "narHash": "sha256-an5ZEx+Ol/bf/yFu7IBMaNfB8zlL8m+WdluFXR3dnLE=",
         "owner": "karinushka",
         "repo": "paneru",
-        "rev": "7559bf92bdb6b275d9b31b0a8c98d64844e17280",
+        "rev": "9269ce3fa2852b1bc97148b6a2ca97c3b46c253d",
         "type": "github"
       },
       "original": {
@@ -646,7 +626,6 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "import-tree": "import-tree",
-        "mcp-servers-nix": "mcp-servers-nix",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nix-vscode-extensions": "nix-vscode-extensions",
