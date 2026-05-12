@@ -37,7 +37,7 @@ _: {
               )}"
             ];
             env = {
-              PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
+              PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
               PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
             };
           };
