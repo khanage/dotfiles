@@ -1,4 +1,4 @@
-{inputs, ...}: {
+_: {
   flake.homeModules.opencode = {
     pkgs,
     lib,
@@ -14,16 +14,17 @@
         enable = true;
         servers = {
           azure-devops = {
+            enabled = true;
             type = "local";
             command = "${lib.getExe ado-mcp}";
-            enabled = true;
           };
           atlassian = {
+            enabled = true;
             type = "remote";
             url = "https://mcp.atlassian.com/v1/sse";
-            enabled = true;
           };
           playwright = {
+            enable = true;
             type = "local";
             command = "${lib.getExe pkgs.playwright-mcp}";
             args = [
@@ -34,7 +35,9 @@
                 else pkgs.chromium
               )}"
             ];
-            enable = true;
+            environment = {
+              PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+            };
           };
         };
       };
