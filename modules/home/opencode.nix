@@ -19,7 +19,7 @@
         servers = {
           azure-devops = {
             type = "local";
-            command = ["ado-mcp"];
+            command = ["${lib.getExe ado-mcp}"];
             enabled = true;
           };
           atlassian = {
