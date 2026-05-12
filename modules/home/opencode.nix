@@ -9,6 +9,23 @@ _: {
       export PATH=${pkgs.lib.makeBinPath [pkgs.nodejs_24 pkgs.azure-cli]}:$PATH
       exec ${pkgs.nodejs_24}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
     '';
+    # The upstream playwright-mcp wrapper hardcodes PLAYWRIGHT_BROWSERS_PATH
+    # to a read-only /nix/store path via `export`, which clobbers anything we
+    # set in the MCP server `env`. Re-wrap the inner binary with `--set` so
+    # our writable browsers path wins.
+    playwright-mcp-writable = pkgs.symlinkJoin {
+      name = "playwright-mcp-writable-${pkgs.playwright-mcp.version}";
+      paths = [pkgs.playwright-mcp];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        rm -f $out/bin/playwright-mcp
+        makeWrapper \
+          ${pkgs.playwright-mcp}/bin/.playwright-mcp-wrapped \
+          $out/bin/playwright-mcp \
+          --set PLAYWRIGHT_BROWSERS_PATH "${config.xdg.stateHome}/playwright/browsers" \
+          --set PLAYWRIGHT_MCP_BROWSER "chromium"
+      '';
+    };
   in {
     programs = {
       mcp = {
@@ -27,7 +44,7 @@ _: {
           playwright = {
             enable = true;
             type = "local";
-            command = "${lib.getExe pkgs.playwright-mcp}";
+            command = "${playwright-mcp-writable}/bin/playwright-mcp";
             args = [
               "--executable-path"
               "${lib.getExe (
