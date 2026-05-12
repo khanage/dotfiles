@@ -52,6 +52,8 @@ _: {
                 then pkgs.google-chrome
                 else pkgs.chromium
               )}"
+              "--user-data-dir"
+              "${config.xdg.stateHome}/playwright/user-data"
             ];
             env = {
               PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
