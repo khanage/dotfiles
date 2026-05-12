@@ -6,7 +6,7 @@
   }: let
     ado-mcp = pkgs.writeShellScriptBin "ado-mcp" ''
       export PATH=${pkgs.lib.makeBinPath [pkgs.nodejs_24 pkgs.azure-cli]}:$PATH
-      exec ${pkgs.nodejs_20}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
+      exec ${pkgs.nodejs_24}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
     '';
   in {
     programs = {
