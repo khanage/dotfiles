@@ -1,5 +1,10 @@
 {inputs, ...}: {
-  flake.homeModules.nvim = { config, lib, pkgs, ... }: {
+  flake.homeModules.nvim = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     home.packages = with pkgs; [starship];
     programs.nvf = {
       enable = true;
@@ -35,25 +40,25 @@
               key = "<C-h>";
               mode = ["n" "t"];
               silent = true;
-              action = "<C-W>h";
+              action = "<C-\\><C-n><C-W>h";
             }
             {
               key = "<C-j>";
               mode = ["n" "t"];
               silent = true;
-              action = "<C-W>j";
+              action = "<C-\\><C-n><C-W>j";
             }
             {
               key = "<C-k>";
               mode = ["n" "t"];
               silent = true;
-              action = "<C-W>k";
+              action = "<C-\\><C-n><C-W>k";
             }
             {
               key = "<C-l>";
               mode = ["n" "t"];
               silent = true;
-              action = "<C-W>l";
+              action = "<C-\\><C-n><C-W>l";
             }
           ];
 
@@ -281,3 +286,4 @@
     };
   };
 }
+
