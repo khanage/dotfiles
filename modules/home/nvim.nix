@@ -14,6 +14,9 @@
             # luaConfigRC.for_debugging = ''
             #   vim.lsp.set_log_level("debug")
             # '';
+            luaConfigRC.telescope-ui-select = ''
+              require("telescope").load_extension("ui-select")
+            '';
             viAlias = true;
             vimAlias = true;
             clipboard.providers = {} // (lib.optionalAttrs pkgs.stdenv.isLinux {wl-copy.enable = true;});
