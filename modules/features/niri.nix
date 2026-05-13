@@ -8,6 +8,20 @@
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-wlr
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
+
+    environment.systemPackages = with pkgs; [
+      grim
+      slurp
+      wl-clipboard
+    ];
   };
 
   perSystem = {
@@ -153,6 +167,9 @@
           "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
           "XF86AudioMute".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioMicMute".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ toggle";
+
+          "Mod+Shift+S".spawn-sh = "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+          "Mod+Shift+Ctrl+S".spawn-sh = "${lib.getExe pkgs.grim} - | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
         };
       };
     };
