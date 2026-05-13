@@ -35,27 +35,51 @@
         }
         {
           key = "<C-h>";
-          mode = ["n" "t"];
+          mode = ["n"];
           silent = true;
           action = "<C-W>h";
         }
         {
           key = "<C-j>";
-          mode = ["n" "t"];
+          mode = ["n"];
           silent = true;
           action = "<C-W>j";
         }
         {
           key = "<C-k>";
-          mode = ["n" "t"];
+          mode = ["n"];
           silent = true;
           action = "<C-W>k";
         }
         {
           key = "<C-l>";
-          mode = ["n" "t"];
+          mode = ["n"];
           silent = true;
           action = "<C-W>l";
+        }
+        {
+          key = "<C-h>";
+          mode = ["t"];
+          silent = true;
+          action = "<C-\\><C-v><C-W>h";
+        }
+        {
+          key = "<C-j>";
+          mode = ["t"];
+          silent = true;
+          action = "<C-\\><C-v><C-W>j";
+        }
+        {
+          key = "<C-k>";
+          mode = ["t"];
+          silent = true;
+          action = "<C-\\><C-v><C-W>k";
+        }
+        {
+          key = "<C-l>";
+          mode = ["t"];
+          silent = true;
+          action = "<C-\\><C-v><C-W>l";
         }
       ];
 
