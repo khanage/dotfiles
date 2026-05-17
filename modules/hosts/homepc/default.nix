@@ -11,6 +11,7 @@
     modules = [
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.homepcConfiguration
+      inputs.nix-index-database.nixosModules.default
     ];
   };
 }

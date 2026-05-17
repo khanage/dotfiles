@@ -136,6 +136,7 @@
         xwayland.enable = true;
       };
       zsh.enable = true;
+      nix-index-database.comma.enable = true;
     };
 
     # List packages installed in system profile.

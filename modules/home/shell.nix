@@ -12,7 +12,6 @@ _: {
       xh
       imagemagick
       kubectl
-      comma
     ];
 
     programs = {
