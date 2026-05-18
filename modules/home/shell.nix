@@ -27,7 +27,7 @@ _: {
           ls = "lsd -A";
           vim = "nvim";
           cat = "bat";
-          vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/home/default.nix ${dotfiles}/modules/hosts/homepc/configuration.nix";
+          vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/home/shell.nix";
           nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
           pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
           replace-commit = "${dotfiles}/.local/bin/replace-commit";

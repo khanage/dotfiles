@@ -1,7 +1,6 @@
-{inputs, ...}: {
+{...}: {
   flake = {
     homeModules.nvim = {
-      config,
       lib,
       pkgs,
       ...
@@ -287,6 +286,10 @@
                 enable = true;
                 setupOpts.backend = "kitty";
               };
+            };
+
+            notes.obsidian = {
+              enable = true;
             };
           };
         };
