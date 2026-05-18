@@ -15,7 +15,6 @@ in {
     modules = [
       inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
-      inputs.nix-index-database.nixosModules.default
       self.darwinModules.workConfiguration
     ];
   };
