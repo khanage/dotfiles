@@ -276,7 +276,13 @@
             };
 
             utility = {
-              # snacks-nvim.enable = true;
+              snacks-nvim = {
+                enable = true;
+                setupOpts = {
+                  picker.enabled = true;
+                  input.enabled = true;
+                };
+              };
               images.image-nvim = {
                 enable = true;
                 setupOpts.backend = "kitty";
