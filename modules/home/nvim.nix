@@ -290,6 +290,12 @@
 
             notes.obsidian = {
               enable = true;
+              setupOpts.workspaces = [
+                {
+                  name = "work";
+                  path = "~/notes";
+                }
+              ];
             };
           };
         };
