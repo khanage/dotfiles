@@ -27,6 +27,16 @@ _: {
       '';
     };
   in {
+    home.file.".config/opencode/AGENTS.md".text = ''
+      ## Environments and dependencies
+
+      This system uses nix with direnv for all dependencies. The configuration is stored at ~/dotfiles regardless of the host.
+
+      - ALWAYS use a devshell loaded via direnv/.envrc with "use flake"
+      - If there is no .envrc at a project root, ask to create a new flake.nix, call the devshell with .envrc, and add the flake.nix to git.
+      - Run `direnv allow` if needed.
+      - ALWAYS use the project flake.nix to add dependencies or introduce new tools to the command line
+    '';
     programs = {
       mcp = {
         enable = true;
