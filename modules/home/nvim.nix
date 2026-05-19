@@ -66,6 +66,7 @@
               expandtab = true;
               shiftwidth = 2;
               tabstop = 2;
+              foldlevelstart = 99;
             };
             statusline.lualine = {
               enable = true;
