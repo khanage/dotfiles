@@ -90,6 +90,11 @@ _: {
             type = "remote";
             url = "https://mcp.atlassian.com/v1/sse";
           };
+          github = {
+            enabled = true;
+            type = "remote";
+            url = "https://api.githubcopilot.com/mcp/";
+          };
           playwright = {
             enable = true;
             type = "local";
