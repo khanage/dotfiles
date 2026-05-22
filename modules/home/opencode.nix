@@ -14,6 +14,18 @@ _: {
       export PATH=${pkgs.lib.makeBinPath [pkgs.nodejs_24 pkgs.azure-cli]}:$PATH
       exec ${pkgs.nodejs_24}/bin/npx -y @azure-devops/mcp "pointsbet" "$@"
     '';
+    # Wrap github-mcp-server so the PAT is injected at launch time from the
+    # sops-decrypted file (declared in modules/features/sops.nix). Keeps the
+    # token out of the nix store and out of the rendered opencode.json.
+    github-mcp = pkgs.writeShellScriptBin "github-mcp" ''
+      token_file="/run/secrets/github_token"
+      if [ ! -r "$token_file" ]; then
+        echo "github-mcp: cannot read $token_file (is sops-nix activated?)" >&2
+        exit 1
+      fi
+      export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat "$token_file")"
+      exec ${lib.getExe pkgs.github-mcp-server} stdio "$@"
+    '';
     # The upstream playwright-mcp wrapper hardcodes PLAYWRIGHT_BROWSERS_PATH
     # to a read-only /nix/store path via `export`, which clobbers anything we
     # set in the MCP server `env`. Re-wrap the inner binary with `--set` so
@@ -92,8 +104,8 @@ _: {
           };
           github = {
             enabled = true;
-            type = "remote";
-            url = "https://api.githubcopilot.com/mcp/";
+            type = "local";
+            command = "${lib.getExe github-mcp}";
           };
           playwright = {
             enable = true;

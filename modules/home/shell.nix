@@ -12,6 +12,8 @@ _: {
       xh
       imagemagick
       kubectl
+      sops
+      age
     ];
 
     programs = {

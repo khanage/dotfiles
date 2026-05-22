@@ -21,7 +21,18 @@
   flake.darwinModules.sops = {
     imports = [inputs.sops-nix.darwinModules.sops];
 
-    sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    sops.gnupg.sshKeyPaths = [];
+    sops = {
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      gnupg.sshKeyPaths = [];
+
+      # GitHub Personal Access Token for the github-mcp-server.
+      # Encrypted file must contain a `github_token:` key.
+      # Edit with: sops secrets/work/github.yaml
+      secrets."github_token" = {
+        sopsFile = ../../secrets/work/github.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
+    };
   };
 }
