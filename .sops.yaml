@@ -1,0 +1,28 @@
+# Recipients allowed to decrypt secrets.
+# Replace the placeholder age1... keys with real ones (see SETUP below).
+keys:
+  - &admin_khan       age15ugz39tqtf7g5ghmmj9zdgncwge22xe50yw3urrlr7mgxv6tagcsupsjk0
+  # - &host_homepc      age1REPLACE_WITH_HOMEPC_HOST_KEY
+  - &host_work        age10mehjv050h2sefjhsq7spvn0qf92uvfpjng88sz8r3ey8px06ffql6v8uh
+
+creation_rules:
+  # Secrets shared across every machine (e.g. wifi).
+  - path_regex: secrets/common/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_khan
+          # - *host_homepc
+          - *host_work
+
+  # Per-host secrets.
+  - path_regex: secrets/homepc/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_khan
+          # - *host_homepc
+
+  - path_regex: secrets/work/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_khan
+          - *host_work

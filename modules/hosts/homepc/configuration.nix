@@ -5,6 +5,7 @@
       self.nixosModules.homepcHomeManager
       self.nixosModules.niri
       self.nixosModules.steam
+      self.nixosModules.sops
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -62,10 +63,28 @@
       };
     };
 
+    sop.secrets.wifi_password = {
+      sopsFile = ../../../secrets/common/wifi.yaml;
+    };
+
     networking = {
       hostName = "homepc"; # Define your hostname.
       networkmanager.enable = true; # Easiest to use and most distros use this by default.
       enableIPv6 = false;
+      # networkmanager.ensureProfiles.profiles.QONOS = {
+      #   connection = {
+      #     id = "QONOS";
+      #     type = "wifi";
+      #   };
+      #   wifi = {
+      #     ssid = "QONOS";
+      #     mode = "infrastructure";
+      #   };
+      #   wifi-security = {
+      #     key-mgmt = "wpa-psk";
+      #     psk = "$wifi_password";
+      #   };
+      # };
     };
 
     time.timeZone = "Australia/Melbourne";

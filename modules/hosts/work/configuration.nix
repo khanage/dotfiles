@@ -5,6 +5,7 @@ in {
     imports = [
       self.darwinModules.workHomeManager
       self.darwinModules.homebrew
+      self.darwinModules.sops
     ];
 
     # Let Determinate Nix handle your Nix configuration
