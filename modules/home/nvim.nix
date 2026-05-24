@@ -68,6 +68,7 @@
               tabstop = 2;
               foldlevelstart = 99;
             };
+
             statusline.lualine = {
               enable = true;
               activeSection.a = [
@@ -183,7 +184,7 @@
               json.enable = true;
               markdown.enable = true;
               sql.enable = true;
-              ts.enable = true;
+              typescript.enable = true;
 
               python.enable = true;
             };

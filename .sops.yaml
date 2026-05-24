@@ -2,7 +2,7 @@
 # Replace the placeholder age1... keys with real ones (see SETUP below).
 keys:
   - &admin_khan       age1ergskettlr245mupdg2wa7r0wt5znvll50yypcc8gsv2g8ss89gqwg7r08
-  # - &host_homepc      age1REPLACE_WITH_HOMEPC_HOST_KEY
+  - &host_homepc      age1tyguaus0wjwnyhmqs0ppvy2c0vk37gcn3jz2z0g7jys06dxx74dqzu407p
   - &host_work        age10mehjv050h2sefjhsq7spvn0qf92uvfpjng88sz8r3ey8px06ffql6v8uh
 
 creation_rules:
@@ -11,7 +11,7 @@ creation_rules:
     key_groups:
       - age:
           - *admin_khan
-          # - *host_homepc
+          - *host_homepc
           - *host_work
 
   # Per-host secrets.
@@ -19,7 +19,7 @@ creation_rules:
     key_groups:
       - age:
           - *admin_khan
-          # - *host_homepc
+          - *host_homepc
 
   - path_regex: secrets/work/[^/]+\.yaml$
     key_groups:

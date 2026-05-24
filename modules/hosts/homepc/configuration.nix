@@ -63,9 +63,9 @@
       };
     };
 
-    sop.secrets.wifi_password = {
-      sopsFile = ../../../secrets/common/wifi.yaml;
-    };
+    # sop.secrets.wifi_password = {
+    #   sopsFile = ../../../secrets/common/wifi.yaml;
+    # };
 
     networking = {
       hostName = "homepc"; # Define your hostname.
@@ -132,6 +132,11 @@
       enable = true;
       wireplumber.enable = true;
       pulse.enable = true;
+    };
+
+    services.openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
