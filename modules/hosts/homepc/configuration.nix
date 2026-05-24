@@ -63,10 +63,6 @@
       };
     };
 
-    # sop.secrets.wifi_password = {
-    #   sopsFile = ../../../secrets/common/wifi.yaml;
-    # };
-
     networking = {
       hostName = "homepc"; # Define your hostname.
       networkmanager.enable = true; # Easiest to use and most distros use this by default.
