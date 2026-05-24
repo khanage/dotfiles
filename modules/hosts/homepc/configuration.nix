@@ -78,7 +78,7 @@
         };
         wifi-security = {
           key-mgmt = "wpa-psk";
-          psk = "$wifi_password";
+          psk = "1$wifi_password";
         };
       };
     };
