@@ -67,20 +67,20 @@
       hostName = "homepc"; # Define your hostname.
       networkmanager.enable = true; # Easiest to use and most distros use this by default.
       enableIPv6 = false;
-      # networkmanager.ensureProfiles.profiles.QONOS = {
-      #   connection = {
-      #     id = "QONOS";
-      #     type = "wifi";
-      #   };
-      #   wifi = {
-      #     ssid = "QONOS";
-      #     mode = "infrastructure";
-      #   };
-      #   wifi-security = {
-      #     key-mgmt = "wpa-psk";
-      #     psk = "$wifi_password";
-      #   };
-      # };
+      networkmanager.ensureProfiles.profiles.QONOS = {
+        connection = {
+          id = "QONOS";
+          type = "wifi";
+        };
+        wifi = {
+          ssid = "QONOS";
+          mode = "infrastructure";
+        };
+        wifi-security = {
+          key-mgmt = "wpa-psk";
+          psk = "$wifi_password";
+        };
+      };
     };
 
     time.timeZone = "Australia/Melbourne";
