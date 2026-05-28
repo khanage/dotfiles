@@ -15,7 +15,6 @@ _: {
       sops
       age
       ffmpeg
-      yt-dlp
     ];
 
     programs = {
