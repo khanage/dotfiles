@@ -14,6 +14,8 @@ _: {
       kubectl
       sops
       age
+      ffmpeg
+      yt-dlp
     ];
 
     programs = {
