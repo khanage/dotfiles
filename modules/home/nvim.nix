@@ -10,6 +10,11 @@
         enable = true;
         settings = {
           vim = {
+            extraPlugins.codesnap-nvim = {
+              package = pkgs.vimPlugins.codesnap-nvim;
+              setup = "require('codesnap').setup({ save_path = '~/Pictures', has_breadcrumbs = true, watermark = '' })";
+            };
+
             # luaConfigRC.for_debugging = ''
             #   vim.lsp.set_log_level("debug")
             # '';
@@ -24,6 +29,18 @@
             };
 
             keymaps = [
+              {
+                key = "<leader>cs";
+                mode = "v";
+                silent = true;
+                action = ":CodeSnap<CR>";
+              }
+              {
+                key = "<leader>cS";
+                mode = "v";
+                silent = true;
+                action = ":CodeSnapSave<CR>";
+              }
               {
                 key = "<C-/>";
                 mode = "t";
