@@ -7,6 +7,8 @@
       self.nixosModules.steam
       self.nixosModules.sops
     ];
+    boot.kernel.sysctl."kernel.dmesg_restrict" = 0;
+
     nix = {
       gc = {
         automatic = true;
@@ -127,12 +129,7 @@
 
     security.polkit.enable = true;
 
-    services.xserver = {
-      enable = true;
-      videoDrivers = ["nvidia"];
-    };
-
-    services.displayManager.gdm.enable = false;
+    services.xserver.enable = false;
 
     services.pipewire = {
       enable = true;
