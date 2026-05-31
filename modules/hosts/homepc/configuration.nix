@@ -7,8 +7,14 @@
       self.nixosModules.steam
       self.nixosModules.sops
     ];
-
-    nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix = {
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 14d";
+      };
+      settings.experimental-features = ["nix-command" "flakes"];
+    };
 
     nixpkgs = {
       config = {
@@ -100,6 +106,8 @@
       };
     };
 
+    services.resolved.enable = true;
+
     time.timeZone = "Australia/Melbourne";
     fonts.packages = with pkgs; [
       nerd-fonts.go-mono
@@ -134,10 +142,6 @@
         enable = true;
         user = "khan";
       };
-    };
-
-    services.desktopManager.gnome = {
-      enable = true;
     };
 
     services.pipewire = {
@@ -225,7 +229,6 @@
       path = [pkgs.flatpak];
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak upgrade
       '';
     };
 

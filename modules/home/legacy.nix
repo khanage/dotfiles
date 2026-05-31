@@ -17,7 +17,7 @@ _: {
           openssl
           gcc
           kdePackages.dolphin
-          freecad-wayland
+          # freecad-wayland
           mesa-demos
           godot
           godot-export-templates-bin
@@ -101,7 +101,7 @@ _: {
         dotfiles = "~/dotfiles";
       in {
         ls = "lsd -A";
-        nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
+        nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push && flatpak upgrade";
       };
     };
 
