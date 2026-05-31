@@ -17,7 +17,7 @@ _: {
           openssl
           gcc
           kdePackages.dolphin
-          # freecad-wayland
+          freecad-wayland
           mesa-demos
           godot
           godot-export-templates-bin

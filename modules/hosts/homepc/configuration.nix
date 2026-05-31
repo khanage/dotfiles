@@ -18,8 +18,25 @@
           "openssl-1.1.1w"
         ];
       };
-      # BUG: https://github.com/nixos/nixpkgs/issues/471331
       overlays = [
+        (_: prev: let
+          openrazerSrc = {
+            version = "3.12.3";
+            src = prev.fetchFromGitHub {
+              owner = "openrazer";
+              repo = "openrazer";
+              rev = "v3.12.3";
+              hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
+            };
+          };
+        in {
+          openrazer-daemon = prev.openrazer-daemon.overrideAttrs (_: openrazerSrc);
+          python3Packages = prev.python3Packages.overrideScope (_: p: {
+            openrazer-daemon = p.openrazer-daemon.overrideAttrs (_: openrazerSrc);
+            openrazer = p.openrazer.overrideAttrs (_: openrazerSrc);
+          });
+        })
+        # BUG: https://github.com/nixos/nixpkgs/issues/471331
         (_: prev: {
           xow_dongle-firmware = prev.xow_dongle-firmware.overrideAttrs (_: {
             installPhase = ''
@@ -109,7 +126,6 @@
       # services.xserver.enable = true;
       gdm = {
         enable = true;
-        wayland = true;
         banner = "Aloha";
         autoLogin.delay = 5;
       };
@@ -192,6 +208,15 @@
     hardware.openrazer = {
       enable = true;
       users = ["khan" "root"];
+      packages.kernel = pkgs.linuxPackages.openrazer.overrideAttrs (_: {
+        version = "3.12.3-${pkgs.linuxPackages.kernel.version}";
+        src = pkgs.fetchFromGitHub {
+          owner = "openrazer";
+          repo = "openrazer";
+          rev = "v3.12.3";
+          hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
+        };
+      });
     };
 
     services.flatpak.enable = true;
