@@ -68,7 +68,7 @@
     };
     boot = {
       plymouth = {
-        enable = true;
+        enable = false;
         theme = "tech_b";
         themePackages = with pkgs; [
           (adi1090x-plymouth-themes.override {selected_themes = ["tech_b"];})
@@ -132,20 +132,7 @@
       videoDrivers = ["nvidia"];
     };
 
-    services.displayManager = {
-      # Enable the X11 windowing system.
-      # services.xserver.enable = true;
-      gdm = {
-        enable = true;
-        banner = "Aloha";
-        autoLogin.delay = 5;
-      };
-
-      autoLogin = {
-        enable = true;
-        user = "khan";
-      };
-    };
+    services.displayManager.gdm.enable = false;
 
     services.pipewire = {
       enable = true;
