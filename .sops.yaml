@@ -2,7 +2,7 @@
 # Replace the placeholder age1... keys with real ones (see SETUP below).
 keys:
   - &admin_khan       age1ergskettlr245mupdg2wa7r0wt5znvll50yypcc8gsv2g8ss89gqwg7r08
-  - &host_homepc      age1tyguaus0wjwnyhmqs0ppvy2c0vk37gcn3jz2z0g7jys06dxx74dqzu407p
+  - &host_homepc      age1v6llavw7sn28d8udnze9hf6q0hg36ff45vt4szdv50xaacsfnqzqemd4yv
   - &host_work        age10mehjv050h2sefjhsq7spvn0qf92uvfpjng88sz8r3ey8px06ffql6v8uh
 
 creation_rules:

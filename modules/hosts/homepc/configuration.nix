@@ -84,7 +84,7 @@
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
         grub = {
-          device = "/dev/sdb";
+          device = "/dev/disk/by-label/BOOT";
           useOSProber = true;
           efiSupport = true;
         };
