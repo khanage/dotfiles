@@ -100,18 +100,21 @@
       enableIPv6 = false;
       networkmanager = {
         enable = true;
-        ensureProfiles.profiles.QONOS = {
-          connection = {
-            id = "QONOS";
-            type = "wifi";
-          };
-          wifi = {
-            ssid = "QONOS";
-            mode = "infrastructure";
-          };
-          wifi-security = {
-            key-mgmt = "wpa-psk";
-            psk = "${config.sops.secrets.wifi_password.path}";
+        ensureProfiles = {
+          environmentFiles = [config.sops.secrets.wifi_password.path];
+          profiles.QONOS = {
+            connection = {
+              id = "QONOS";
+              type = "wifi";
+            };
+            wifi = {
+              ssid = "QONOS";
+              mode = "infrastructure";
+            };
+            wifi-security = {
+              key-mgmt = "wpa-psk";
+              psk = "$wifi_password";
+            };
           };
         };
       };
