@@ -10,8 +10,10 @@
 
       # Disable GnuPG; we use age exclusively.
       gnupg.sshKeyPaths = [];
-
-      secrets.wifi_password.sopsFile = ../../secrets/homepc/wifi.yaml;
+      secrets.wifi_password = {
+        sopsFile = ../../secrets/homepc/wifi.yaml;
+        format = "yaml";
+      };
     };
   };
 
