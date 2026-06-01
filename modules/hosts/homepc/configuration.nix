@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.homepcConfiguration = {pkgs, ...}: {
+  flake.nixosModules.homepcConfiguration = {
+    pkgs,
+    config,
+    ...
+  }: {
     imports = [
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
@@ -107,7 +111,7 @@
           };
           wifi-security = {
             key-mgmt = "wpa-psk";
-            psk = "$wifi_password";
+            psk = config.sops.secrets.wifi_password.path;
           };
         };
       };
