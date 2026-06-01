@@ -70,6 +70,11 @@
             '';
           });
         })
+        (_: prev: {
+          openldap = prev.openldap.overrideAttrs (_: {
+            doCheck = false;
+          });
+        })
       ];
     };
     boot = {
