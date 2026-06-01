@@ -111,7 +111,7 @@
           };
           wifi-security = {
             key-mgmt = "wpa-psk";
-            psk = config.sops.secrets.wifi_password.path;
+            psk = "${config.sops.secrets.wifi_password.path}";
           };
         };
       };
