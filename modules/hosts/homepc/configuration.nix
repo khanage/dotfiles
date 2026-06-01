@@ -101,7 +101,7 @@
       networkmanager = {
         enable = true;
         ensureProfiles = {
-          environmentFiles = [config.sops.secrets.wifi_password.path];
+          environmentFiles = [config.sops.templates."wifi-env".path];
           profiles.QONOS = {
             connection = {
               id = "QONOS";

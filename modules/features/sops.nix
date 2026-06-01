@@ -1,6 +1,6 @@
 {inputs, ...}: {
   # NixOS-side sops module (shared by every NixOS host)
-  flake.nixosModules.sops = {
+  flake.nixosModules.sops = {config, ...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
 
     sops = {
@@ -10,9 +10,14 @@
 
       # Disable GnuPG; we use age exclusively.
       gnupg.sshKeyPaths = [];
-      secrets.wifi_password = {
+      secrets."wifi_password" = {
         sopsFile = ../../secrets/homepc/wifi.yaml;
         format = "yaml";
+      };
+      templates."wifi-env" = {
+        content = ''
+          wifi_password=${config.sops.placeholder.wifi_password}
+        '';
       };
     };
   };
