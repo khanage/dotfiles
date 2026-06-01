@@ -9,7 +9,7 @@ _: {
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
-        extraPackages = with pkgs; [gamemode freetype pkgsi686Linux.freetype];
+        extraPackages = with pkgs; [gamemode freetype];
       };
     };
   };
