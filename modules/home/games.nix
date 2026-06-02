@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   /*
   Steps to reinstall Battle.net on a fresh PC:
   1. Ensure Steam is set up with Proton 10 installed
@@ -8,11 +8,7 @@ _: {
   4. Update the Steam shortcut to point to the installed Battle.net Launcher.exe
   The appid is auto-generated from the shortcut name — note it down once created (yours is 4194903326).
   */
-  flake.homeModules.gaming = {
-    pkgs,
-    self',
-    ...
-  }: {
+  flake.homeModules.gaming = {pkgs, ...}: {
     home.packages = with pkgs; [
       wowup-cf
       xivlauncher
