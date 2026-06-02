@@ -15,6 +15,7 @@ _: {
       sops
       age
       ffmpeg
+      gh
     ];
 
     programs = {
