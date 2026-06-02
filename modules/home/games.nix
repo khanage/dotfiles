@@ -8,7 +8,11 @@ _: {
   4. Update the Steam shortcut to point to the installed Battle.net Launcher.exe
   The appid is auto-generated from the shortcut name — note it down once created (yours is 4194903326).
   */
-  flake.homeModules.gaming = {pkgs, ...}: {
+  flake.homeModules.gaming = {
+    pkgs,
+    self',
+    ...
+  }: {
     home.packages = with pkgs; [
       wowup-cf
       xivlauncher
