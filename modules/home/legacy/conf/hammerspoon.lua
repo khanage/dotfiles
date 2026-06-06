@@ -1,6 +1,6 @@
 launch = hs.application.launchOrFocus
 hs.hotkey.bind({ "cmd", "shift" }, "1", function()
-	launch("Kitty")
+	launch("Ghostty")
 end)
 hs.hotkey.bind({ "cmd", "shift" }, "3", function()
 	launch("Slack")
