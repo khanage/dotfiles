@@ -185,7 +185,9 @@
 
               haskell = {
                 enable = true;
+                lsp.enable = false;
                 dap.enable = true;
+                extensions.haskell-tools.enable = true;
               };
 
               csharp = {
