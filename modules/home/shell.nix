@@ -62,7 +62,9 @@ _: {
         enable = true;
         settings = {
           k9s = {
-            skin = "nord";
+            ui = {
+              skin = "nord";
+            };
           };
         };
       };
