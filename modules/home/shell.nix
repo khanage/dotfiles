@@ -16,7 +16,6 @@ _: {
       age
       ffmpeg
       gh
-      ghostty-bin
     ];
 
     programs = {
@@ -66,6 +65,12 @@ _: {
       starship = {
         enable = true;
         enableZshIntegration = true;
+      };
+
+      ghostty = {
+        enable = true;
+        enableZshIntegration = true;
+        package = pkgs.ghostty-bin;
       };
     };
   };
