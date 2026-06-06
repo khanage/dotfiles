@@ -67,16 +67,19 @@ _: {
         enableZshIntegration = true;
       };
 
-      ghostty = {
-        enable = true;
-        enableZshIntegration = true;
-        package = pkgs.ghostty-bin;
-        settings = {
-          theme = "Nord";
-          auto-update = "off";
-          macos-window-buttons = "hidden";
+      ghostty =
+        {
+          enable = true;
+          enableZshIntegration = true;
+          settings = {
+            theme = "Nord";
+            auto-update = "off";
+            macos-window-buttons = "hidden";
+          };
+        }
+        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+          package = pkgs.ghostty-bin;
         };
-      };
     };
   };
 }
