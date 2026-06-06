@@ -77,6 +77,18 @@
                 silent = true;
                 action = "<C-\\><C-n><C-W>l";
               }
+              {
+                key = "<Leader><Space>";
+                mode = ["n"];
+                silent = true;
+                action = ":Telescope find_files";
+              }
+              {
+                key = "<Leader>b";
+                mode = ["n" "t"];
+                silent = true;
+                action = ":Telescope buffers";
+              }
             ];
 
             options = {
