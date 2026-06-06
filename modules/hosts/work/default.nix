@@ -15,6 +15,11 @@ in {
     modules = [
       inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
+      inputs.nix-index-database.darwinModules.default
+      {
+        programs.nix-index.enable = true;
+        programs.nix-index-database.comma.enable = true;
+      }
       self.darwinModules.workConfiguration
     ];
   };
