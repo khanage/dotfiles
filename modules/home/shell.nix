@@ -65,6 +65,7 @@ _: {
         };
         settings = {
           k9s = {
+            skipLatestRevCheck = true;
             ui = {
               skin = "nord";
             };

@@ -83,7 +83,7 @@
         shellAliases = let
           dotfiles = "~/dotfiles";
         in {
-          nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
+          nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && brew upgrade && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         };
       };
 
