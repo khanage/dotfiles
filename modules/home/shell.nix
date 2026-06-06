@@ -71,6 +71,9 @@ _: {
         enable = true;
         enableZshIntegration = true;
         package = pkgs.ghostty-bin;
+        settings = {
+          theme = "Nord";
+        };
       };
     };
   };
