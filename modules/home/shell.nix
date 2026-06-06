@@ -58,8 +58,12 @@ _: {
           pager = "";
         };
       };
-
-      k9s.enable = true;
+      k9s = {
+        enable = true;
+        settings = {
+          skin = "nord";
+        };
+      };
       bottom.enable = true;
 
       starship = {
