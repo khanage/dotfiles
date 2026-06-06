@@ -86,11 +86,13 @@ _: {
           settings = {
             theme = "Nord";
             auto-update = "off";
-            macos-window-buttons = "hidden";
           };
         }
         // lib.optionalAttrs pkgs.stdenv.isDarwin {
           package = pkgs.ghostty-bin;
+          settings = {
+            macos-window-buttons = "hidden";
+          };
         };
     };
   };
