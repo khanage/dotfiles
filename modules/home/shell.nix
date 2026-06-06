@@ -61,7 +61,9 @@ _: {
       k9s = {
         enable = true;
         settings = {
-          skin = "nord";
+          k9s = {
+            skin = "nord";
+          };
         };
       };
       bottom.enable = true;
