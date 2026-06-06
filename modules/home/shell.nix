@@ -60,6 +60,9 @@ _: {
       };
       k9s = {
         enable = true;
+        skins = {
+          nord = ./k9s/nord.yaml;
+        };
         settings = {
           k9s = {
             ui = {
