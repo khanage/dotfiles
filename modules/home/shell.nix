@@ -73,6 +73,7 @@ _: {
         package = pkgs.ghostty-bin;
         settings = {
           theme = "Nord";
+          auto-update = "off";
         };
       };
     };
