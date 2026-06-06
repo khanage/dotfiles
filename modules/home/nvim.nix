@@ -81,13 +81,13 @@
                 key = "<Leader><Space>";
                 mode = ["n"];
                 silent = true;
-                action = ":Telescope find_files";
+                action = ":Telescope find_files<CR>";
               }
               {
                 key = "<Leader>b";
                 mode = ["n" "t"];
                 silent = true;
-                action = ":Telescope buffers";
+                action = ":Telescope buffers<CR>";
               }
             ];
 
