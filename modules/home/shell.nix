@@ -74,6 +74,7 @@ _: {
         settings = {
           theme = "Nord";
           auto-update = "off";
+          macos-window-buttons = "hidden";
         };
       };
     };
