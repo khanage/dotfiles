@@ -142,8 +142,10 @@
     # };
 
     security.polkit.enable = true;
-
-    services.xserver.enable = false;
+    services.xserver = {
+      enable = true;
+      videoDrivers = ["nvidia"];
+    };
 
     services.pipewire = {
       enable = true;
