@@ -5,11 +5,11 @@
     ...
   }: {
     imports = [
+      self.nixosModules.sops
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
       self.nixosModules.niri
       self.nixosModules.steam
-      self.nixosModules.sops
     ];
     boot.kernel.sysctl."kernel.dmesg_restrict" = 0;
 
@@ -173,7 +173,7 @@
       firefox.enable = true;
       gamemode.enable = true;
       hyprland = {
-        enable = true;
+        enable = false;
         xwayland.enable = true;
       };
       zsh.enable = true;
@@ -199,7 +199,8 @@
     };
 
     hardware.nvidia = {
-      open = true;
+      open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
       modesetting.enable = true;
       powerManagement.enable = true;
