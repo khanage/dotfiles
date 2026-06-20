@@ -11,11 +11,12 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-luminous
-        pkgs.xdg-desktop-portal-gnome
-        pkgs.xdg-desktop-portal-wlr
-        pkgs.xdg-desktop-portal-gtk
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-luminous
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
       ];
     };
 
@@ -81,6 +82,15 @@
             };
           }
           {
+            matches = [
+              {
+                app-id = "org.signal.Signal";
+                at-startup = true;
+              }
+            ];
+            open-on-workspace = "chats";
+          }
+          {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
           }
@@ -95,6 +105,7 @@
           (lib.getExe pkgs.firefox)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
+          "${lib.getExe pkgs.dex} /var/lib/flatpak/app/org.signal.Signal/current/active/export/share/applications/org.signal.Signal.desktop"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
