@@ -144,6 +144,7 @@
     security.polkit.enable = true;
     services.xserver = {
       enable = true;
+      autorun = false;
       videoDrivers = ["nvidia"];
     };
 
