@@ -24,6 +24,8 @@
       grim
       slurp
       wl-clipboard
+      nordzy-icon-theme
+      nordzy-cursor-theme
     ];
   };
 
@@ -43,6 +45,10 @@
 
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
+
+        cursor = {
+          xcursor-theme = "Nordzy-cursors";
+        };
 
         window-rules = [
           {
@@ -123,6 +129,7 @@
 
         environment = {
           QT_QPA_PLATFORM = "wayland";
+          GTK_THEME = "Nordic";
         };
 
         binds = {
