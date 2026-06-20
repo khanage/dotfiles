@@ -146,6 +146,7 @@
       enable = true;
       autorun = false;
       videoDrivers = ["nvidia"];
+      displayManager.lightdm.enable = false;
     };
 
     services.pipewire = {
