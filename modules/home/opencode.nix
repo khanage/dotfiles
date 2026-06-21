@@ -70,11 +70,9 @@ _: {
       Use the /ai-dlc command to initialize a new AI-DLC project in a directory.
     '';
 
-    home.file.".config/opencode/ai-dlc/core-workflow.md".source =
-      "${ai-dlc-rules}/aidlc-rules/aws-aidlc-rules/core-workflow.md";
+    home.file.".config/opencode/ai-dlc/core-workflow.md".source = "${ai-dlc-rules}/aidlc-rules/aws-aidlc-rules/core-workflow.md";
 
-    home.file.".config/opencode/ai-dlc/rule-details".source =
-      "${ai-dlc-rules}/aidlc-rules/aws-aidlc-rule-details";
+    home.file.".config/opencode/ai-dlc/rule-details".source = "${ai-dlc-rules}/aidlc-rules/aws-aidlc-rule-details";
 
     home.file.".config/opencode/commands/ai-dlc.md".text = ''
       ---
@@ -135,6 +133,11 @@ _: {
           model = "anthropic/claude-sonnet-4-20250514";
           autoshare = false;
           autoupdate = false;
+          providers = {
+            ollama = {
+              models = ["gemma4:latest"];
+            };
+          };
         };
         tui = {theme = "nord";};
       };
