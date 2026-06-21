@@ -135,7 +135,7 @@ _: {
           autoupdate = false;
           provider = {
             ollama = {
-              models = ["gemma4:latest"];
+              models = {"gemma4:latest" = {};};
             };
           };
         };
