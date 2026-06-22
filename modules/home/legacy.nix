@@ -18,7 +18,6 @@ _: {
           gcc
           kdePackages.dolphin
           # freecad-wayland
-          mesa-demos
           godot
           godot-export-templates-bin
           gnomeExtensions.system-monitor-tray-indicator

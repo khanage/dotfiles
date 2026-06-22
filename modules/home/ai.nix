@@ -1,7 +1,8 @@
 {self, ...}: {
   flake.homeModules.ai = {pkgs, ...}: {
     services.ollama = {
-      enable = false;
+      enable = true;
+      acceleration = "cuda";
     };
   };
 }
