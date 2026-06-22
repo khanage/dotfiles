@@ -17,6 +17,7 @@
           self.homeModules.opencode
           self.homeModules.legacy
           self.homeModules.three_d_printing
+          self.homeModules.ai
         ];
         home = {
           username = "khan";
