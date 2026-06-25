@@ -4,6 +4,7 @@ _: {
       enable = true;
       acceleration = "cuda";
       package = pkgs.ollama-cuda;
+      environmentVariables = {OLLAMA_CONTEXT_LENGTH = "64000";};
     };
   };
 }
