@@ -26,6 +26,7 @@
       wl-clipboard
       nordzy-icon-theme
       nordzy-cursor-theme
+      nautilus
     ];
   };
 
