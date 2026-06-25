@@ -18,6 +18,7 @@
           self.homeModules.legacy
           self.homeModules.three_d_printing
           self.homeModules.ai
+          self.homeModules.gimp
         ];
         home = {
           username = "khan";
