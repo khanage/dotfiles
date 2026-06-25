@@ -219,11 +219,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782051614,
-        "narHash": "sha256-xBRAhYLEXcjp8hM2tkkTTLb6PWU7VDxDoogl25g7Ezs=",
+        "lastModified": 1782233665,
+        "narHash": "sha256-h/xOtrByoA/Ak1lWHn0O1lVZz4qWYbwOSLQ8YSwQO0I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d1ccd0721ec599866622665f3651e19e6e2d4c6a",
+        "rev": "062581938b4a378a82dfbb294b494808157153a1",
         "type": "github"
       },
       "original": {
@@ -236,11 +236,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1782092698,
-        "narHash": "sha256-QfMI/3oZS+xx70gNl4D/ZnqzC84rq5M79CO1RoIC/zE=",
+        "lastModified": 1782342699,
+        "narHash": "sha256-S10okbG0ZdoXUn4K6cGklYFK4RRlub4pZOMm1Ni+XdQ=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "d2a43ea7f730c9edca0aa0d4d91ecc19884c396a",
+        "rev": "e08716fee2cade3fb664f59b27c10a5c77c6f61c",
         "type": "github"
       },
       "original": {
@@ -252,11 +252,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1782088023,
-        "narHash": "sha256-K3HwgrRpI8sN4/PnBmKbLgGu4sJLV3yC1VKMvN93Vuw=",
+        "lastModified": 1782347597,
+        "narHash": "sha256-RuBQC/pOAtjuIX0vNIumYaJu1xfG52yaOK+C3dxRnhI=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "8ab839ff65cce4a3016bf9831edad3920151fc22",
+        "rev": "28555b51e106b1ac695d14965fc8ed9d0c8e275f",
         "type": "github"
       },
       "original": {
@@ -419,11 +419,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782017505,
-        "narHash": "sha256-6A1wbeFbopCVchDX5rjAxEyNCGgQcKye4ylhjfZdCdY=",
+        "lastModified": 1782273807,
+        "narHash": "sha256-dmGiRAOjJeSUD7lbv4mFQLgnz+zGRlAzsQPutwOhmoU=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "714f957519be5fc35127e3eee99ffbb17ef6d98c",
+        "rev": "eae9f4530da971a9a8c6793ae9c35c731e52c2a5",
         "type": "github"
       },
       "original": {
@@ -531,11 +531,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782092543,
-        "narHash": "sha256-C4lEvJpV9aM7cWfmEzBdYiOvR7zngGr15y4/Udl7duk=",
+        "lastModified": 1782347888,
+        "narHash": "sha256-0qKd2W8BYjwdrh4yegr+6mvCTdn/FlQoTktBv/+db2A=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "d1d26837ef36ce80fad283bbb06642f5936a95ec",
+        "rev": "623210223c222e682ca467a914e82b805c782676",
         "type": "github"
       },
       "original": {
@@ -555,11 +555,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1781997110,
-        "narHash": "sha256-6D6xtYN5t1kZGNd69eMZsRBkgX5Df1roErn/kFR1C+A=",
+        "lastModified": 1782348268,
+        "narHash": "sha256-iSMtikXRScMWaW/oQ9YKTPC/31mYtVsAhDwOPjPGBzQ=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "320f60b97075a58d38b90fc5e39f478421dbd38a",
+        "rev": "3a764365902c7bcc3ee0e23660b4a95b9b7141cf",
         "type": "github"
       },
       "original": {
@@ -618,11 +618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781943681,
-        "narHash": "sha256-NFHmA7H47adqiyp+0iEOyZOQhmigDqA/NBAlf4imB6U=",
+        "lastModified": 1782165805,
+        "narHash": "sha256-478kKQBvK6SYTOdN2h9jhKJv94nbXRbFMfuL1WshErg=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "420f8d2e9882911f65cfac15cc706f639ba96cca",
+        "rev": "56b24064fdcaedca53553b1a6d607fd23b613a24",
         "type": "github"
       },
       "original": {
@@ -653,11 +653,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780661205,
-        "narHash": "sha256-3F5DixT3Gk91lBI9E+TGMm0ko5HrRbDiL23di16TJGA=",
+        "lastModified": 1782135443,
+        "narHash": "sha256-vAmbArdCyjqpVW+37aCy/PMBOLIqukUXLQuEKLwUhA4=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "8dd304c3582ddd339217e1cc5fb53f50acb63c2d",
+        "rev": "6e7f66fa2cdf4d63162580b438f7fcf87c28a46f",
         "type": "github"
       },
       "original": {
