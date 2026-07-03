@@ -59,6 +59,7 @@ _: {
           pager = "";
         };
       };
+
       k9s = {
         enable = true;
         skins = {
@@ -73,6 +74,7 @@ _: {
           };
         };
       };
+
       bottom = {
         enable = true;
         settings = {
@@ -85,6 +87,13 @@ _: {
       starship = {
         enable = true;
         enableZshIntegration = true;
+      };
+
+      herdr = {
+        enable = true;
+        settings = {
+          keys.prefix = "ctrl+;";
+        };
       };
 
       ghostty =
