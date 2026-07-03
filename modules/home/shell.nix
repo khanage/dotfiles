@@ -73,7 +73,14 @@ _: {
           };
         };
       };
-      bottom.enable = true;
+      bottom = {
+        enable = true;
+        settings = {
+          styles = {
+            theme = "nord";
+          };
+        };
+      };
 
       starship = {
         enable = true;
