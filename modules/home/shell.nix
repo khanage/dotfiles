@@ -93,6 +93,7 @@ _: {
         enable = true;
         settings = {
           keys.prefix = "ctrl+;";
+          theme.name = "nord";
         };
       };
 
