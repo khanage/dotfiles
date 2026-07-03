@@ -94,6 +94,10 @@ _: {
         settings = {
           keys.prefix = "ctrl+;";
           theme.name = "nord";
+          update = {
+            version_check = false;
+            manifest_check = false;
+          };
         };
       };
 
