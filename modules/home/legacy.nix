@@ -63,11 +63,11 @@ _: {
           ghci-dap
           haskell-debug-adapter
         ])
-        ++ [
-          beamPackages.elixir
-          beamPackages.elixir-ls
-          beamPackages.erlang
-        ];
+        ++ (with beamPackages; [
+          elixir
+          elixir-ls
+          erlang
+        ]);
 
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
       # plain files is through 'home.file'.
