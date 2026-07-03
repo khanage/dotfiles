@@ -16,6 +16,7 @@ _: {
       age
       ffmpeg
       gh
+      dig
     ];
 
     programs = {
