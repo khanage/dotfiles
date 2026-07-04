@@ -12,7 +12,6 @@
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
         xdg-desktop-portal-gnome
       ];
     };
@@ -24,6 +23,7 @@
       nordzy-icon-theme
       nordzy-cursor-theme
       nautilus
+      adwaita-icon-theme
     ];
   };
 
