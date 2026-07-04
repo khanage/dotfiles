@@ -36,6 +36,7 @@ _: {
           nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
           pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
           replace-commit = "${dotfiles}/.local/bin/replace-commit";
+          clanker = "ollama launch opencode --model gemma4:26b";
         };
         initContent = ''
           eval "$(${lib.getExe pkgs.fnm} env --use-on-cd)"
