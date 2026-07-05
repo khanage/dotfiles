@@ -38,7 +38,7 @@
       settings = {
         workspaces = {
           "games" = _: {};
-          "chats" = _: {};
+          "comms" = _: {};
         };
 
         prefer-no-csd = true;
@@ -110,6 +110,7 @@
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
           "${lib.getExe pkgs.dex} /var/lib/flatpak/app/org.signal.Signal/current/active/export/share/applications/org.signal.Signal.desktop"
+          (lib.getExe pkgs.thunderbird)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
