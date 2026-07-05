@@ -144,6 +144,7 @@
       autorun = false;
       videoDrivers = ["nvidia"];
       displayManager.lightdm.enable = false;
+      gdk-pixbuf.modulePackages = [pkgs.librsvg];
     };
 
     services.pipewire = {
