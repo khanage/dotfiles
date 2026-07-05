@@ -9,6 +9,8 @@
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
 
+    programs.dconf.enable = true;
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
@@ -24,6 +26,7 @@
       nordzy-cursor-theme
       nautilus
       adwaita-icon-theme
+      gsettings-desktop-schemas
     ];
   };
 
