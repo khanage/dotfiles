@@ -23,6 +23,7 @@
       nordzy-icon-theme
       nordzy-cursor-theme
       nautilus
+      adwaita-icon-theme
     ];
   };
 
