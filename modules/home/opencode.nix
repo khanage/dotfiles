@@ -124,6 +124,11 @@ _: {
               PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
             };
           };
+          google_search = {
+            enabled = true;
+            type = "local";
+            command = "${lib.getExe pkgs.mcp-server-fetch}";
+          };
         };
       };
       opencode = {
