@@ -89,50 +89,46 @@ _: {
     programs = {
       mcp = {
         enable = true;
-        servers = {
-          azure-devops = {
-            enabled = pkgs.stdenv.hostPlatform.isDarwin;
-            type = "local";
-            command = "${lib.getExe ado-mcp}";
-          };
-          atlassian = {
-            enabled = pkgs.stdenv.hostPlatform.isDarwin;
-            type = "remote";
-            url = "https://mcp.atlassian.com/v1/sse";
-          };
-          github = {
-            enabled = true;
-            type = "local";
-            command = "${lib.getExe github-mcp}";
-          };
-          playwright = {
-            enable = true;
-            type = "local";
-            command = "${playwright-mcp-writable}/bin/playwright-mcp";
-            args = [
-              "--executable-path"
-              "${lib.getExe (
-                if pkgs.stdenv.hostPlatform.isDarwin
-                then pkgs.google-chrome
-                else pkgs.chromium
-              )}"
-              "--user-data-dir"
-              "${config.xdg.stateHome}/playwright/user-data"
-            ];
-            env = {
-              PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
-              PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+        servers =
+          {
+            github = {
+              enabled = true;
+              type = "local";
+              command = "${lib.getExe github-mcp}";
+            };
+            playwright = {
+              enable = true;
+              type = "local";
+              command = "${playwright-mcp-writable}/bin/playwright-mcp";
+              args = [
+                "--executable-path"
+                "${lib.getExe (
+                  if pkgs.stdenv.hostPlatform.isDarwin
+                  then pkgs.google-chrome
+                  else pkgs.chromium
+                )}"
+                "--user-data-dir"
+                "${config.xdg.stateHome}/playwright/user-data"
+                "--headless"
+              ];
+              env = {
+                PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
+                PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+              };
+            };
+          }
+          // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+            azure-devops = {
+              enabled = true;
+              type = "local";
+              command = "${lib.getExe ado-mcp}";
+            };
+            atlassian = {
+              enabled = true;
+              type = "remote";
+              url = "https://mcp.atlassian.com/v1/sse";
             };
           };
-          google_search = {
-            enabled = true;
-            type = "local";
-            command = "${lib.getExe pkgs.mcp-server-fetch}";
-            args = [
-              "--ignore-robots-txt"
-            ];
-          };
-        };
       };
       opencode = {
         enable = true;
