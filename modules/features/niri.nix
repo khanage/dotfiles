@@ -92,7 +92,16 @@
                 at-startup = true;
               }
             ];
-            open-on-workspace = "chats";
+            open-on-workspace = "comms";
+          }
+          {
+            matches = [
+              {
+                app-id = "thunderbird";
+                at-startup = true;
+              }
+            ];
+            open-on-workspace = "comms";
           }
           {
             geometry-corner-radius = 20;
@@ -109,7 +118,7 @@
           (lib.getExe pkgs.firefox)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
-          "${lib.getExe pkgs.dex} /var/lib/flatpak/app/org.signal.Signal/current/active/export/share/applications/org.signal.Signal.desktop"
+          "/var/lib/flatpak/app/org.signal.Signal/current/active/export/share/applications/org.signal.Signal.desktop"
           (lib.getExe pkgs.thunderbird)
         ];
 
