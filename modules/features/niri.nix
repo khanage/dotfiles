@@ -91,7 +91,7 @@
                 app-id = "org.signal.Signal";
               }
             ];
-            open-on-workspace = "comms";
+            open-on-workspace = "xcomms";
           }
           {
             matches = [
@@ -99,7 +99,7 @@
                 app-id = "thunderbird";
               }
             ];
-            open-on-workspace = "comms";
+            open-on-workspace = "xcomms";
           }
           {
             geometry-corner-radius = 20;
