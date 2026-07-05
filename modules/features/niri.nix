@@ -11,10 +11,13 @@
 
     programs.dconf.enable = true;
 
+    services.dbus.packages = [pkgs.xdg-desktop-portal-gtk];
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
       ];
     };
 
@@ -26,7 +29,6 @@
       nordzy-cursor-theme
       nautilus
       adwaita-icon-theme
-      gsettings-desktop-schemas
     ];
   };
 
