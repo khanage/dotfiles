@@ -23,7 +23,6 @@
       nordzy-icon-theme
       nordzy-cursor-theme
       nautilus
-      adwaita-icon-theme
     ];
   };
 
@@ -116,7 +115,7 @@
           (lib.getExe pkgs.firefox)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
-          "/var/lib/flatpak/app/org.signal.Signal/current/active/export/share/applications/org.signal.Signal.desktop"
+          "org.signal.Signal"
           (lib.getExe pkgs.thunderbird)
         ];
 
