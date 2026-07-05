@@ -91,12 +91,12 @@ _: {
         enable = true;
         servers = {
           azure-devops = {
-            enabled = true;
+            enabled = pkgs.stdenv.hostPlatform.isDarwin;
             type = "local";
             command = "${lib.getExe ado-mcp}";
           };
           atlassian = {
-            enabled = true;
+            enabled = pkgs.stdenv.hostPlatform.isDarwin;
             type = "remote";
             url = "https://mcp.atlassian.com/v1/sse";
           };
