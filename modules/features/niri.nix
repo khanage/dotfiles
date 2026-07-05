@@ -36,8 +36,9 @@
       inherit pkgs;
       settings = {
         workspaces = {
-          "games" = _: {};
           "comms" = _: {};
+          "games" = _: {};
+          "default" = _: {};
         };
 
         prefer-no-csd = true;
