@@ -128,6 +128,9 @@ _: {
             enabled = true;
             type = "local";
             command = "${lib.getExe pkgs.mcp-server-fetch}";
+            args = [
+              "--ignore-robots-txt"
+            ];
           };
         };
       };
