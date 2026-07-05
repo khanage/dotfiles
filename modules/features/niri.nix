@@ -89,7 +89,6 @@
             matches = [
               {
                 app-id = "org.signal.Signal";
-                at-startup = true;
               }
             ];
             open-on-workspace = "comms";
@@ -98,7 +97,6 @@
             matches = [
               {
                 app-id = "thunderbird";
-                at-startup = true;
               }
             ];
             open-on-workspace = "comms";
