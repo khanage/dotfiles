@@ -14,6 +14,7 @@
           self.homeModules.nvim
           self.homeModules.kitty
           self.homeModules.opencode
+          self.homeModules.ssh
           self.homeModules.workLegacy
         ];
         home = {

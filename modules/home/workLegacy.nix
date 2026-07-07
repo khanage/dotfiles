@@ -126,6 +126,27 @@ EOF
           tag.gpgsign = true;
           gpg.program = "${pkgs.gnupg}/bin/gpg";
         };
+
+        # Use the personal (khanage) GitHub identity for any repo under
+        # ~/dotfiles/. This is rendered with mkAfter (see home-manager's
+        # git module), so it is appended *after* the [user] block above and
+        # therefore wins the include precedence. Overrides the work identity
+        # and disables GPG signing (the work key would make khanage commits
+        # show as Unverified on GitHub). Authentication uses the personal SSH
+        # key via the `github.com-personal` host alias (modules/home/ssh.nix).
+        includes = [
+          {
+            condition = "gitdir:~/dotfiles/";
+            contents = {
+              user = {
+                name = "khanage";
+                email = "khanage@gmail.com";
+              };
+              commit.gpgsign = false;
+              tag.gpgsign = false;
+            };
+          }
+        ];
       };
     };
 

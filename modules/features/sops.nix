@@ -51,6 +51,18 @@
         owner = "khanthompson";
         mode = "0400";
       };
+
+      # SSH private key for the personal (khanage) GitHub account.
+      # Encrypted file must contain a `github_personal_ssh_key:` key.
+      # Referenced as an IdentityFile by the personal github.com SSH host
+      # (see modules/home/ssh.nix). Lives in secrets/common so both hosts
+      # can decrypt it.
+      # Edit with: sops secrets/common/github_personal_ssh.yaml
+      secrets."github_personal_ssh_key" = {
+        sopsFile = ../../secrets/common/github_personal_ssh.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
     };
   };
 }
