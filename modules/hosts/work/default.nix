@@ -13,6 +13,11 @@ in {
       flake-parts-lib = inputs.flake-parts.lib;
     };
     modules = [
+      {
+        # cf https://github.com/nix-darwin/nix-darwin/issues/1817
+        documentation.enable = false;
+        system.tools.darwin-uninstaller.enable = false;
+      }
       inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
       inputs.nix-index-database.darwinModules.default
