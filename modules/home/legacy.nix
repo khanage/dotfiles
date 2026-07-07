@@ -112,8 +112,11 @@ _: {
       git = {
         enable = true;
         settings = {
-          user.name = "khanage";
-          user.email = "khanage@gmail.com";
+          user = {
+            name = "khanage";
+            email = "khanage@gmail.com";
+            signingkey = "/run/secrets/github_personal_ssh_key";
+          };
           init.defaultBranch = "main";
           credential.helper = "store";
           pull.ff = "only";
