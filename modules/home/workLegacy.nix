@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  flake.homeModules.workLegacy = {pkgs, ...}: {
+  flake.homeModules.workLegacy = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [
       inputs.paneru.homeModules.paneru
     ];
@@ -74,6 +78,27 @@
         EDITOR = "nvim";
         DOCKER_DEFAULT_PLATFORM = "linux/amd64";
       };
+
+      # Import the sops-decrypted GPG signing key into the user keyring so
+      # git can sign commits. sops-nix (darwin system module) decrypts the
+      # armored private key to /run/secrets/gpg_private_key during system
+      # activation; this runs afterwards and imports it idempotently.
+      activation.importGpgSigningKey =
+        lib.hm.dag.entryAfter ["writeBoundary"] ''
+          keyFile="/run/secrets/gpg_private_key"
+          fpr="D7165CC734B85E82C754CA319F45EFB1E16BDC6F"
+          if [ -r "$keyFile" ]; then
+            if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys "$fpr" >/dev/null 2>&1; then
+              $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import "$keyFile"
+              # Mark the key ultimately trusted so gpg doesn't warn on sign.
+              $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import-ownertrust <<EOF
+$fpr:6:
+EOF
+            fi
+          else
+            echo "warning: $keyFile not found; skipping GPG key import" >&2
+          fi
+        '';
     };
 
     # Let Home Manager install and manage itself.
@@ -92,10 +117,14 @@
         settings = {
           user.name = "Khan Thompson";
           user.email = "khan.thompson@pointsbet.com";
+          user.signingkey = "9F45EFB1E16BDC6F";
           init.defaultBranch = "main";
           credential.helper = "store";
           push.autoSetupRemote = true;
           pull.rebase = true;
+          commit.gpgsign = true;
+          tag.gpgsign = true;
+          gpg.program = "${pkgs.gnupg}/bin/gpg";
         };
       };
     };

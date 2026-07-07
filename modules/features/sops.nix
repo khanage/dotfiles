@@ -40,6 +40,17 @@
         owner = "khanthompson";
         mode = "0400";
       };
+
+      # GPG private key (armored) used to sign git commits.
+      # Encrypted file must contain a `gpg_private_key:` key.
+      # Decrypted to a file, then imported into the user keyring by a
+      # home-manager activation script (see modules/home/workLegacy.nix).
+      # Edit with: sops secrets/work/gpg.yaml
+      secrets."gpg_private_key" = {
+        sopsFile = ../../secrets/work/gpg.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
     };
   };
 }
