@@ -131,9 +131,11 @@ EOF
         # ~/dotfiles/. This is rendered with mkAfter (see home-manager's
         # git module), so it is appended *after* the [user] block above and
         # therefore wins the include precedence. Overrides the work identity
-        # and disables GPG signing (the work key would make khanage commits
-        # show as Unverified on GitHub). Authentication uses the personal SSH
-        # key via the `github.com-personal` host alias (modules/home/ssh.nix).
+        # and signs commits with SSH (not the work GPG key). Authentication
+        # AND signing both use the personal SSH key via the sops-decrypted
+        # path (declared in modules/features/sops.nix); the matching public
+        # key must be added to GitHub twice: once as an Authentication key
+        # and once as a Signing key (https://github.com/settings/keys).
         includes = [
           {
             condition = "gitdir:~/dotfiles/";
@@ -141,9 +143,21 @@ EOF
               user = {
                 name = "khanage";
                 email = "khanage@gmail.com";
+                # For SSH signing, signingkey is the key to sign WITH. Point
+                # it at the sops-decrypted private key; ssh-keygen derives the
+                # public half automatically.
+                signingkey = "/run/secrets/github_personal_ssh_key";
               };
-              commit.gpgsign = false;
-              tag.gpgsign = false;
+              gpg = {
+                format = "ssh";
+                # Lets `git verify-commit` / `git log --show-signature` work
+                # locally by trusting this key for the khanage email.
+                ssh.allowedSignersFile = toString (pkgs.writeText "khanage-allowed-signers" ''
+                  khanage@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDy4fzvR5IuSk56fdGu23uJxjc9M9xOnReeT4pW8A6j
+                '');
+              };
+              commit.gpgsign = true;
+              tag.gpgsign = true;
             };
           }
         ];
