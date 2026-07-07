@@ -17,6 +17,7 @@ _: {
       ffmpeg
       gh
       dig
+      gnupg
     ];
 
     programs = {
@@ -117,6 +118,8 @@ _: {
             macos-window-buttons = "hidden";
           };
         };
+
+      gpg.enable = true;
     };
   };
 }
