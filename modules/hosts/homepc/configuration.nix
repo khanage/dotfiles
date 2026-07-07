@@ -229,6 +229,13 @@
       });
     };
 
+    # flatpak-spawn --sandbox sub-sandboxes inherit the HOST PATH (not the container's).
+    # On NixOS, /usr/bin is absent from PATH, but GNOME Platform tools like prlimit
+    # (used by glycin's SVG loader) only exist at /usr/bin inside the Flatpak runtime.
+    # Adding /usr/bin here makes it findable in glycin's sub-sandbox without polluting
+    # the NixOS shell PATH for executables (NixOS /usr/bin only has `env` anyway).
+    environment.sessionVariables.PATH = ["/usr/bin"];
+
     services.flatpak.enable = true;
     systemd.services.flatpak-repo = {
       wantedBy = ["multi-user.target"];
