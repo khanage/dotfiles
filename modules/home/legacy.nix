@@ -120,6 +120,16 @@ _: {
           init.defaultBranch = "main";
           credential.helper = "store";
           pull.ff = "only";
+          push.autoSetupRemote = true;
+          commit.gpgsign = true;
+          tag.gpgsign = true;
+          gpg = {
+            format = "ssh";
+            program = "${pkgs.gnupg}/bin/gpg";
+            ssh.allowedSignersFile = toString (pkgs.writeText "khanage-allower-signers" ''
+              khanage@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDy4fzvR5IuSk56fdGu23uJxjc9M9xOnReeT4pW8A6j
+            '');
+          };
         };
       };
 

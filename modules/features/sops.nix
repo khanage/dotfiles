@@ -22,6 +22,8 @@
       secrets."github_personal_ssh_key" = {
         sopsFile = ../../secrets/common/github_personal_ssh.yaml;
         format = "yaml";
+        owner = "khan";
+        mode = "0400";
       };
     };
   };
