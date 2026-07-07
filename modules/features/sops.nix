@@ -19,6 +19,10 @@
           wifi_password=${config.sops.placeholder.wifi_password}
         '';
       };
+      secrets."github_personal_ssh_key" = {
+        sopsFile = ../../secrets/common/github_personal_ssh.yaml;
+        format = "yaml";
+      };
     };
   };
 
