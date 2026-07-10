@@ -83,22 +83,21 @@
       # git can sign commits. sops-nix (darwin system module) decrypts the
       # armored private key to /run/secrets/gpg_private_key during system
       # activation; this runs afterwards and imports it idempotently.
-      activation.importGpgSigningKey =
-        lib.hm.dag.entryAfter ["writeBoundary"] ''
-          keyFile="/run/secrets/gpg_private_key"
-          fpr="D7165CC734B85E82C754CA319F45EFB1E16BDC6F"
-          if [ -r "$keyFile" ]; then
-            if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys "$fpr" >/dev/null 2>&1; then
-              $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import "$keyFile"
-              # Mark the key ultimately trusted so gpg doesn't warn on sign.
-              $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import-ownertrust <<EOF
-$fpr:6:
-EOF
-            fi
-          else
-            echo "warning: $keyFile not found; skipping GPG key import" >&2
-          fi
-        '';
+      activation.importGpgSigningKey = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                  keyFile="/run/secrets/gpg_private_key"
+                  fpr="D7165CC734B85E82C754CA319F45EFB1E16BDC6F"
+                  if [ -r "$keyFile" ]; then
+                    if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys "$fpr" >/dev/null 2>&1; then
+                      $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import "$keyFile"
+                      # Mark the key ultimately trusted so gpg doesn't warn on sign.
+                      $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import-ownertrust <<EOF
+        $fpr:6:
+        EOF
+                    fi
+                  else
+                    echo "warning: $keyFile not found; skipping GPG key import" >&2
+                  fi
+      '';
     };
 
     # Let Home Manager install and manage itself.
@@ -108,7 +107,7 @@ EOF
         shellAliases = let
           dotfiles = "~/dotfiles";
         in {
-          nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && brew upgrade && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
+          nbs = "sudo darwin-rebuild switch --flake ${dotfiles} && brew upgrade -y && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
         };
       };
 
