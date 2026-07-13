@@ -15,6 +15,7 @@
           self.homeModules.kitty
           self.homeModules.opencode
           self.homeModules.ssh
+          self.homeModules.ai
           self.homeModules.workLegacy
         ];
         home = {
