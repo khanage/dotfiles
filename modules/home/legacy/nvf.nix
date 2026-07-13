@@ -166,23 +166,23 @@
           enable = true;
           extensions.crates-nvim.enable = true;
           dap.enable = true;
-          lsp.opts = ''
-            ['rust-analyzer'] = {
-              cargo = {allFeatures = true},
-              diagnostics = { enable = true },
-              checkOnSave = true,
-              procMacro = {
-                enable = true,
-              },
-              files = {
-                excludeDirs = {
-                  ".git",
-                  ".direnv",
-                  "target",
-                },
-              },
-            },
-          '';
+          # lsp.opts = ''
+          #   ['rust-analyzer'] = {
+          #     cargo = {allFeatures = true},
+          #     diagnostics = { enable = true },
+          #     checkOnSave = true,
+          #     procMacro = {
+          #       enable = true,
+          #     },
+          #     files = {
+          #       excludeDirs = {
+          #         ".git",
+          #         ".direnv",
+          #         "target",
+          #       },
+          #     },
+          #   },
+          # '';
         };
 
         haskell = {
@@ -219,6 +219,21 @@
           goToDeclaration = "gD";
           goToDefinition = "gd";
           hover = "K";
+        };
+        servers.rust_analyzer.init_options = {
+          cargo = {allFeatures = true;};
+          diagnostics = {enable = true;};
+          checkOnSave = true;
+          procMacro = {
+            enable = true;
+          };
+          files = {
+            excludeDirs = [
+              ".git"
+              ".direnv"
+              "target"
+            ];
+          };
         };
       };
 
