@@ -181,6 +181,7 @@
         xwayland.enable = true;
       };
       zsh.enable = true;
+      nix-index.enable = true;
       nix-index-database.comma.enable = true;
     };
 
