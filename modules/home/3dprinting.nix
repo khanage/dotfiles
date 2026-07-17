@@ -10,18 +10,18 @@ _: {
       # during slicing when it exhausts this heap. ZINK_DEBUG=quiet suppresses
       # the non-fatal warnings. The permanent fix is enabling Resizable BAR in
       # BIOS (Advanced > PCI/PCIe settings).
-      ((bambu-studio.override
-        {
-          withNvidiaGLWorkaround = true;
-        }).overrideAttrs (old: {
-        postFixup =
-          (old.postFixup or "")
-          + ''
-            wrapProgram $out/bin/bambu-studio \
-              --set VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json \
-              --set ZINK_DEBUG quiet
-          '';
-      }))
+      # ((bambu-studio.override
+      #   {
+      #     withNvidiaGLWorkaround = true;
+      #   }).overrideAttrs (old: {
+      #   postFixup =
+      #     (old.postFixup or "")
+      #     + ''
+      #       wrapProgram $out/bin/bambu-studio \
+      #         --set VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json \
+      #         --set ZINK_DEBUG quiet
+      #     '';
+      # }))
     ];
   };
 }
