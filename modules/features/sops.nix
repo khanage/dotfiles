@@ -28,6 +28,28 @@
     };
   };
 
+  flake.nixosModules.thebrainSops = {config, ...}: {
+    imports = [inputs.sops-nix.nixosModules.sops];
+
+    sops = {
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+
+      secrets."wifi_password" = {
+        sopsFile = ../../secrets/homepc/wifi.yaml;
+        format = "yaml";
+      };
+      templates."wifi-env" = {
+        content = ''
+          wifi_password=${config.sops.placeholder.wifi_password}
+        '';
+      };
+      secrets."k8s_token" = {
+        sopsFile = ../../secrets/homepc/k8s_token.yaml;
+        format = "yaml";
+      };
+    };
+  };
+
   flake.nixosModules.pinkySops = {config, ...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
 

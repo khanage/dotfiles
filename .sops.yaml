@@ -4,6 +4,7 @@ keys:
   - &admin_khan age1ergskettlr245mupdg2wa7r0wt5znvll50yypcc8gsv2g8ss89gqwg7r08
   - &host_homepc age1v6llavw7sn28d8udnze9hf6q0hg36ff45vt4szdv50xaacsfnqzqemd4yv
   - &host_work age10mehjv050h2sefjhsq7spvn0qf92uvfpjng88sz8r3ey8px06ffql6v8uh
+  - &host_thebrain age1pdh497dhk5pnwgrqxlk9u54pp2mj8yhjj2p6r47356j9f3q8pegsenet03
   - &host_pinky age1sfzx6l9pqrw28x2ve7evht9tqw8f46t98xtcw2a03jt036mrt3pqd4zgt5
 
 creation_rules:
@@ -14,6 +15,7 @@ creation_rules:
           - *admin_khan
           - *host_homepc
           - *host_work
+          - *host_thebrain
           - *host_pinky
 
   # Per-host secrets.
@@ -22,6 +24,7 @@ creation_rules:
       - age:
           - *admin_khan
           - *host_homepc
+          - *host_thebrain
           - *host_pinky
 
   - path_regex: secrets/work/[^/]+\.yaml$
