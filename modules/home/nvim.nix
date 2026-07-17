@@ -85,7 +85,7 @@
               }
               {
                 key = "<Leader>b";
-                mode = ["n" "t"];
+                mode = ["n"];
                 silent = true;
                 action = ":Telescope buffers<CR>";
               }
