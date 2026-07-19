@@ -116,7 +116,6 @@
         ];
 
         spawn-at-startup = [
-          "${lib.getExe pkgs.gnome-keyring} --start --components=secrets"
           (lib.getExe pkgs.hypridle)
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store"
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store"
