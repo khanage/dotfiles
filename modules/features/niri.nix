@@ -126,6 +126,7 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           (lib.getExe pkgs.thunderbird)
+          "${lib.getExe pkgs.gnome-keyring} --start --components=secrets"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
