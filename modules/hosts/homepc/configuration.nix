@@ -10,6 +10,7 @@
       self.nixosModules.homepcHomeManager
       self.nixosModules.niri
       self.nixosModules.steam
+      self.nixosModules.email
     ];
     boot.kernel.sysctl."kernel.dmesg_restrict" = 0;
 

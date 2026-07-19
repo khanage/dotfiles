@@ -1,13 +1,9 @@
-{inputs, ...}: {
+_: {
   flake.homeModules.workLegacy = {
     pkgs,
     lib,
     ...
   }: {
-    imports = [
-      inputs.paneru.homeModules.paneru
-    ];
-
     fonts.fontconfig.enable = true;
 
     # Home Manager needs a bit of information about you and the paths it should
@@ -160,56 +156,6 @@
             };
           }
         ];
-      };
-    };
-
-    services.paneru = {
-      enable = false;
-      # Equivalent to what you would put into `~/.paneru` (See Configuration options below).
-      settings = {
-        options = {
-          focus_follows_mouse = false;
-          preset_column_widths = [
-            0.25
-            0.33
-            0.5
-            0.66
-            0.75
-          ];
-          swipe_gesture_fingers = 4;
-          animation_speed = 400;
-          border_active_window = true;
-          border_color = "7fc8ff";
-        };
-        bindings = {
-          window_focus_west = "ctrl - h";
-          window_focus_east = "ctrl - l";
-          window_focus_north = "ctrl - k";
-          window_focus_south = "ctrl - j";
-          window_swap_west = "alt - h";
-          window_swap_east = "alt - l";
-          window_swap_first = "alt + shift - h";
-          window_swap_last = "alt + shift - l";
-          window_center = "alt - c";
-          window_resize = "alt - r";
-          window_fullwidth = "alt - f";
-          window_manage = "ctrl + alt - t";
-          window_stack = "alt - ]";
-          window_unstack = "alt + shift - ]";
-          quit = "ctrl + alt - q";
-        };
-        windows = {
-          all = {
-            title = ".*";
-            horizontal_padding = 4;
-            vertical_padding = 4;
-          };
-          reminders = {
-            title = "[0-9]* Reminders?";
-            dont_focus = true;
-            floating = true;
-          };
-        };
       };
     };
   };
