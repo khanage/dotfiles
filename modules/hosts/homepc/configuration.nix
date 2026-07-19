@@ -140,12 +140,14 @@
     # };
 
     security.polkit.enable = true;
+
     services.xserver = {
       enable = true;
       autorun = false;
       videoDrivers = ["nvidia"];
       displayManager.lightdm.enable = false;
     };
+
     programs.gdk-pixbuf = {
       modulePackages = [pkgs.librsvg];
     };
@@ -159,6 +161,10 @@
     services.openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
+    };
+
+    services.kmsconf = {
+      enable = true;
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.

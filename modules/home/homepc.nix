@@ -10,6 +10,7 @@
       users.khan = {
         imports = [
           inputs.nvf.homeManagerModules.default
+          self.homeModules.nordic-theme
           self.homeModules.shell
           self.homeModules.nvim
           self.homeModules.gaming
