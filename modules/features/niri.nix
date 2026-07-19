@@ -103,7 +103,7 @@
           {
             matches = [
               {
-                app-id = "thunderbird";
+                app-id = "Mailspring";
                 at-startup = true;
               }
             ];
@@ -116,17 +116,17 @@
         ];
 
         spawn-at-startup = [
-          (lib.getExe self'.packages.myNoctalia)
+          "${lib.getExe pkgs.gnome-keyring} --start --components=secrets"
           (lib.getExe pkgs.hypridle)
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store"
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store"
+          (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.kitty)
           (lib.getExe pkgs.firefox)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
-          (lib.getExe pkgs.thunderbird)
-          "${lib.getExe pkgs.gnome-keyring} --start --components=secrets"
+          "${lib.getExe pkgs.mailspring} --password-store='gnome-libsecret'"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
