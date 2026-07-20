@@ -110,6 +110,15 @@
             open-on-workspace = "xcomms";
           }
           {
+            matches = [
+              {
+                app-id = "zoom";
+                title = "annotate_toolbar";
+              }
+            ];
+            open-floating = true;
+          }
+          {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
           }
