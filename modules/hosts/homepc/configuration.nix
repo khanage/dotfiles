@@ -163,7 +163,7 @@
       settings.PasswordAuthentication = false;
     };
 
-    services.kmsconf = {
+    services.kmscon = {
       enable = true;
     };
 
