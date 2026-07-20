@@ -102,6 +102,15 @@
         mode = "0400";
       };
 
+      # Kerberos configuration for SQL Server authentication.
+      # Encrypted file must contain a `krb5_conf` key.
+      # Edit with: sops secrets/work/krb5.yaml
+      secrets."krb5_conf" = {
+        sopsFile = ../../secrets/work/krb5.yaml;
+        owner = "khanthompson";
+        mode = "0600";
+      };
+
       # SSH private key for the personal (khanage) GitHub account.
       # Encrypted file must contain a `github_personal_ssh_key:` key.
       # Referenced as an IdentityFile by the personal github.com SSH host

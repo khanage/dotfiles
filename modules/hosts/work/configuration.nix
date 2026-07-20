@@ -6,6 +6,7 @@ in {
       self.darwinModules.workHomeManager
       self.darwinModules.homebrew
       self.darwinModules.sops
+      self.darwinModules.sqlServer
     ];
 
     # Let Determinate Nix handle your Nix configuration
