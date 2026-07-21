@@ -16,8 +16,6 @@ _: {
           pkg-config
           openssl
           gcc
-          # kdePackages.dolphin
-          # freecad-wayland
           godot
           godot-export-templates-bin
           gnomeExtensions.system-monitor-tray-indicator

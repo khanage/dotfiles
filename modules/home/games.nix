@@ -1,4 +1,4 @@
-{self, ...}: {
+_: {
   /*
   Steps to reinstall Battle.net on a fresh PC:
   1. Ensure Steam is set up with Proton 10 installed

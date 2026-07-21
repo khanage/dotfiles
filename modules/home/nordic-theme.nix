@@ -6,6 +6,7 @@ _: {
         name = "Nordic";
         package = pkgs.colloid-gtk-theme.override {
           colorVariants = ["dark"];
+          sizeVariants = ["compact"];
           tweaks = ["nord"];
         };
       };

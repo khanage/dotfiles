@@ -14,7 +14,6 @@
           self.homeModules.shell
           self.homeModules.nvim
           self.homeModules.gaming
-          self.homeModules.kitty
           self.homeModules.opencode
           self.homeModules.legacy
           self.homeModules.three_d_printing

@@ -12,7 +12,6 @@
           inputs.nvf.homeManagerModules.default
           self.homeModules.shell
           self.homeModules.nvim
-          self.homeModules.kitty
           self.homeModules.opencode
           self.homeModules.ssh
           self.homeModules.ai
