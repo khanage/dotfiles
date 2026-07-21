@@ -148,6 +148,7 @@
               mappings.open = "<C-/>";
               setupOpts.direction = "float";
               lazygit.enable = true;
+              enable_winbar = false;
             };
 
             languages = {
