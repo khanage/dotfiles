@@ -129,7 +129,7 @@
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store"
           "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store"
           (lib.getExe self'.packages.myNoctalia)
-          (lib.getExe pkgs.kitty)
+          (lib.getExe pkgs.ghostty)
           (lib.getExe pkgs.firefox)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
@@ -156,7 +156,7 @@
         };
 
         binds = {
-          "Mod+T".spawn-sh = "${lib.getExe pkgs.kitty}";
+          "Mod+T".spawn-sh = "${lib.getExe pkgs.ghostty}";
           "Mod+Q".close-window = _: {};
           "Mod+Ctrl+Q".quit = _: {};
           "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
