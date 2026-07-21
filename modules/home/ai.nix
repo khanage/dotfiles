@@ -8,7 +8,7 @@ _: {
         environmentVariables =
           {OLLAMA_CONTEXT_LENGTH = "64000";}
           // optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
-            DYLD_LIBRARY_PATH = "${pkgs.python3Packages.mlx}/lib";
+            DYLD_LIBRARY_PATH = "${pkgs.python3Packages.mlx}/lib/python3.14/site-packages/mlx/lib";
           };
       }
       // optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
