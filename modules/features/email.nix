@@ -14,7 +14,7 @@ _: {
       partOf = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart = "${lib.getExe pkgs.mailspring} --background --password-store='gnome-libsecret'";
+        ExecStart = "${lib.getExe pkgs.mailspring} --password-store='gnome-libsecret'";
         Restart = "on-failure";
       };
     };
