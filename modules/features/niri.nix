@@ -107,6 +107,16 @@
                 at-startup = true;
               }
             ];
+            open-focused = false;
+            open-on-workspace = "xcomms";
+          }
+          {
+            matches = [
+              {
+                app-id = "Mailspring";
+              }
+            ];
+            open-focused = true;
             open-on-workspace = "xcomms";
           }
           {
