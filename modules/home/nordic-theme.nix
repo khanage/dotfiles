@@ -1,7 +1,7 @@
 _: {
   flake.homeModules.nordic-theme = {pkgs, ...}: {
     gtk = {
-      enable = true;
+      enable = false;
       gtk4.theme = {
         name = "Nordic";
         package = pkgs.nordic;
