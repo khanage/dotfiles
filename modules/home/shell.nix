@@ -110,6 +110,7 @@ _: {
           settings = {
             theme = "Nord";
             auto-update = "off";
+            font-family = "GoMono Nerd Font Mono";
           };
         }
         // lib.optionalAttrs pkgs.stdenv.isDarwin {
