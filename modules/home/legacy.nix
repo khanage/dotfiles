@@ -99,7 +99,7 @@ _: {
         dotfiles = "~/dotfiles";
       in {
         ls = "lsd -A";
-        nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push && flatpak upgrade";
+        nbs = "sudo nixos-rebuild switch --flake ${dotfiles} && git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push && flatpak upgrade -y";
       };
     };
 
