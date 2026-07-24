@@ -3,11 +3,13 @@ _: {
     programs.ssh = {
       enable = true;
 
-      settings."github.com-personal" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "/run/secrets/github_personal_ssh_key";
-        identitiesOnly = true;
+      matchBlocks = {
+        "github.com-personal" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "/run/secrets/github_personal_ssh_key";
+          identitiesOnly = true;
+        };
       };
     };
   };
