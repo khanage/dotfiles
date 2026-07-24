@@ -137,6 +137,16 @@ _: {
           model = "anthropic/claude-sonnet-4-20250514";
           autoshare = false;
           autoupdate = false;
+          permission = {
+            external_directory = {
+              "/tmp" = "allow";
+              "/tmp/*" = "allow";
+              "/private/tmp" = "allow";
+              "/private/tmp/*" = "allow";
+              "/nix/store" = "allow";
+              "/nix/store/*" = "allow";
+            };
+          };
         };
         tui = {theme = "nord";};
       };
