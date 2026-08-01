@@ -53,6 +53,7 @@ _: {
       - If there is no .envrc at a project root, ask to create a new flake.nix, call the devshell with .envrc, and add the flake.nix to git.
       - Run `direnv allow` if needed.
       - ALWAYS use the project flake.nix to add dependencies or introduce new tools to the command line
+      - Ensure .direnv/ is in the .gitignore file
 
       ## Global AGENTS.md
 
