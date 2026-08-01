@@ -70,8 +70,8 @@ _: {
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
       # plain files is through 'home.file'.
       file = {
-        ".config/hypr/hyprland.conf".source = ./legacy/conf/hyprland.conf;
-        ".config/hypr/hypridle.conf".source = ./legacy/conf/hypridle.conf;
+        ".config/hypr/hyprland.conf".source = ../conf/hyprland.conf;
+        ".config/hypr/hypridle.conf".source = ../conf/hypridle.conf;
       };
 
       # Home Manager can also manage your environment variables through

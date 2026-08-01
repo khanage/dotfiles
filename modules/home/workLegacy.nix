@@ -51,7 +51,7 @@ _: {
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
       # plain files is through 'home.file'.
       file = {
-        ".hammerspoon/init.lua".source = ./legacy/conf/hammerspoon.lua;
+        ".hammerspoon/init.lua".source = ../conf/hammerspoon.lua;
       };
 
       # Home Manager can also manage your environment variables through
