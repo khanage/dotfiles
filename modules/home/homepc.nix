@@ -19,6 +19,7 @@
           self.homeModules.three_d_printing
           self.homeModules.ai
           self.homeModules.gimp
+          self.homeModules.ssh
         ];
         home = {
           username = "khan";
