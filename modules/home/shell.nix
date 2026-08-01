@@ -18,6 +18,7 @@ _: {
       gh
       dig
       gnupg
+      apm-cli
     ];
 
     programs = {
