@@ -30,7 +30,6 @@
     determinate.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
 
     # Pinned to commits from 2026-07-20 to match brew 6.0.12 shipped by nix-homebrew.
     # Newer taps use DSL features (InstallSteps, command_wrapper) that brew 6.0.12 lacks,
