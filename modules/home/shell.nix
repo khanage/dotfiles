@@ -98,7 +98,9 @@ _: {
           onboarding = false;
           keys = {
             prefix = "ctrl+;";
-            switch_workspace = "prefix+shift+1..9";
+            switch_workspace = "prefix+1..9";
+            focus_agent = "prefix+shift+1..9";
+            switch_tab = "prefix+alt+1..9";
           };
           theme.name = "nord";
           update = {
