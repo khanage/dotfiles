@@ -5,7 +5,7 @@ _: {
       enableDefaultConfig = false;
 
       settings = {
-        "github.com-personal" = {
+        "github.com" = {
           HostName = "github.com";
           User = "git";
           IdentityFile = "/run/secrets/github_personal_ssh_key";

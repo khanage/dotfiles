@@ -99,6 +99,19 @@ _: {
     # Let Home Manager install and manage itself.
     programs = {
       home-manager.enable = true;
+
+      # SSH alias for the PointsBet enterprise identity. The URL rewrites
+      # in the git config below route any PointsBet / PointsBet-Price org
+      # URL through `github.com-work`, which uses the sops-decrypted work
+      # SSH key. Non-org github.com traffic continues to use the personal
+      # key declared on the shared `github.com` block in modules/home/ssh.nix.
+      ssh.settings."github.com-work" = {
+        HostName = "github.com";
+        User = "git";
+        IdentityFile = "/run/secrets/github_work_ssh_key";
+        IdentitiesOnly = true;
+      };
+
       zsh = {
         shellAliases = let
           dotfiles = "~/dotfiles";
@@ -120,6 +133,37 @@ _: {
           commit.gpgsign = true;
           tag.gpgsign = true;
           gpg.program = "${pkgs.gnupg}/bin/gpg";
+
+          # --- GitHub URL routing ---
+          # PointsBet enterprise orgs route to the work SSH alias
+          # (github.com-work -> work key). Longest-prefix `insteadOf`
+          # ensures these org rules win over the generic fallback below.
+          # Both PascalCase and lowercase org prefixes are covered because
+          # `insteadOf` is case-sensitive even though GitHub itself isn't.
+          "url \"git@github.com-work:PointsBet/\"".insteadOf = [
+            "git@github.com:PointsBet/"
+            "https://github.com/PointsBet/"
+            "ssh://git@github.com/PointsBet/"
+          ];
+          "url \"git@github.com-work:pointsbet/\"".insteadOf = [
+            "git@github.com:pointsbet/"
+            "https://github.com/pointsbet/"
+            "ssh://git@github.com/pointsbet/"
+          ];
+          "url \"git@github.com-work:PointsBet-Price/\"".insteadOf = [
+            "git@github.com:PointsBet-Price/"
+            "https://github.com/PointsBet-Price/"
+            "ssh://git@github.com/PointsBet-Price/"
+          ];
+          "url \"git@github.com-work:pointsbet-price/\"".insteadOf = [
+            "git@github.com:pointsbet-price/"
+            "https://github.com/pointsbet-price/"
+            "ssh://git@github.com/pointsbet-price/"
+          ];
+
+          # Generic fallback: any other github.com HTTPS URL becomes SSH
+          # so the personal key (see modules/home/ssh.nix) is used.
+          "url \"git@github.com:\"".insteadOf = "https://github.com/";
         };
 
         # Use the personal (khanage) GitHub identity for any repo under

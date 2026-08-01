@@ -122,6 +122,19 @@
         owner = "khanthompson";
         mode = "0400";
       };
+
+      # SSH private key for the PointsBet enterprise GitHub account.
+      # Encrypted file must contain a `github_work_ssh_key:` key.
+      # Referenced as an IdentityFile by the `github.com-work` SSH alias
+      # host declared in modules/home/workLegacy.nix. URL rewrites in the
+      # git config route any PointsBet / PointsBet-Price org URL through
+      # that alias so this key is used for org repos only.
+      # Edit with: sops secrets/work/github_work_ssh.yaml
+      secrets."github_work_ssh_key" = {
+        sopsFile = ../../secrets/work/github_work_ssh.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
     };
   };
 }

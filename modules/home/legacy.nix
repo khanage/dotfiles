@@ -120,6 +120,13 @@ _: {
           push.autoSetupRemote = true;
           commit.gpgsign = true;
           tag.gpgsign = true;
+
+          # Force SSH for anything on github.com so the personal key
+          # (declared on the `github.com` block in modules/home/ssh.nix)
+          # is always used. Longest-prefix `insteadOf` semantics mean
+          # this only rewrites when nothing more specific matches.
+          "url \"git@github.com:\"".insteadOf = "https://github.com/";
+
           gpg = {
             format = "ssh";
             program = "${pkgs.gnupg}/bin/gpg";
