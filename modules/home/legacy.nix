@@ -43,7 +43,6 @@ _: {
             ])
           blender
           pulseaudio
-          # bevy_cli.packakges.${pkgs.system}.bevy_cli
           # # You can also create simple shell scripts directly inside your
           # # configuration. For example, this adds a command 'my-hello' to your
           # # environment:
@@ -131,14 +130,9 @@ _: {
         };
       };
 
-      hyprpanel = import ./legacy/hyprpanel.nix {};
-
       hyprlock = {
         enable = true;
       };
-
-      # TODO: work out vscode
-      # vscode = import ./legacy/vscode.nix {inherit pkgs;};
     };
 
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
