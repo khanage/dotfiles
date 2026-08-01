@@ -96,7 +96,10 @@ _: {
         enable = true;
         settings = {
           onboarding = false;
-          keys.prefix = "ctrl+;";
+          keys = {
+            prefix = "ctrl+;";
+            switch_workspace = "prefix+shift+1..9";
+          };
           theme.name = "nord";
           update = {
             version_check = false;
