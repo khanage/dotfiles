@@ -95,12 +95,14 @@ _: {
       herdr = {
         enable = true;
         settings = {
+          onboarding = false;
           keys.prefix = "ctrl+;";
           theme.name = "nord";
           update = {
             version_check = false;
             manifest_check = false;
           };
+          experimental.kitty_graphics = true;
         };
       };
 
