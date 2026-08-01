@@ -4,16 +4,14 @@ _: {
       enable = true;
       enableDefaultConfig = false;
 
-      matchBlocks = {
-        "github.com-personal" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "/run/secrets/github_personal_ssh_key";
-          identitiesOnly = true;
-        };
-      };
-
       settings = {
+        "github.com-personal" = {
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "/run/secrets/github_personal_ssh_key";
+          IdentitiesOnly = true;
+        };
+
         "*" = {
           ForwardAgent = false;
           AddKeysToAgent = "no";
