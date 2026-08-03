@@ -84,7 +84,9 @@ in {
         controlcenter.Sound = true;
         screencapture.target = "clipboard";
         spaces.spans-displays = false;
+        WindowManager.EnableTiledWindowMargins = true;
 
+        # This let's me move windows around
         CustomUserPreferences.NSGlobalDomain.NSUserKeyEquivalents = {
           "Right" = "@$l";
           "Left" = "@$h";
