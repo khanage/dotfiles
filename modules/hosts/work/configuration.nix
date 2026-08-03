@@ -86,7 +86,7 @@ in {
         spaces.spans-displays = false;
 
         CustomUserPreferences."NSGlobalDomain".NSUserKeyEquivalents = {
-          "Left" = "@$l";
+          "Right" = "@$l";
         };
       };
     };
