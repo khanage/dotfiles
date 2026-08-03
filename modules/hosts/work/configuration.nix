@@ -88,6 +88,12 @@ in {
         CustomUserPreferences.NSGlobalDomain.NSUserKeyEquivalents = {
           "Right" = "@$l";
           "Left" = "@$h";
+          "Top" = "@$k";
+          "Bottom" = "@$j";
+          "Top Left" = "@^h";
+          "Bottom Left" = "@~h";
+          "Top Right" = "@^l";
+          "Bottom Right" = "@~l";
         };
       };
     };
