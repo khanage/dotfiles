@@ -85,7 +85,7 @@ in {
         screencapture.target = "clipboard";
         spaces.spans-displays = false;
 
-        CustomUserPreferences."NSGlobalDomain".NSUserKeyEquivalents = {
+        CustomUserPreferences.NSGlobalDomain.NSUserKeyEquivalents = {
           "Right" = "@$l";
         };
       };
