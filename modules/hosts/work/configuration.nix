@@ -84,6 +84,10 @@ in {
         controlcenter.Sound = true;
         screencapture.target = "clipboard";
         spaces.spans-displays = false;
+
+        CustomUserPreferences."NSGlobalDomain".NSUserKeyEquivalents = {
+          "Left" = "@$l";
+        };
       };
     };
 
