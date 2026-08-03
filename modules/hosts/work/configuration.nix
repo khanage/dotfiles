@@ -87,6 +87,7 @@ in {
 
         CustomUserPreferences.NSGlobalDomain.NSUserKeyEquivalents = {
           "Right" = "@$l";
+          "Left" = "@$h";
         };
       };
     };
