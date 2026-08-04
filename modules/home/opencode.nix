@@ -146,6 +146,7 @@ _: {
               "/private/tmp/*" = "allow";
               "/nix/store" = "allow";
               "/nix/store/*" = "allow";
+              "~/ai/*" = "allow";
             };
           };
         };
