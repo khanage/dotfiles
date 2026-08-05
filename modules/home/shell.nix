@@ -108,6 +108,7 @@ _: {
             manifest_check = false;
           };
           experimental.kitty_graphics = true;
+          ui.sound.path = ../../resources/ambient_bridge_5.mp3;
         };
       };
 
@@ -119,7 +120,6 @@ _: {
             theme = "Nord";
             auto-update = "off";
             font-family = "GoMono Nerd Font Mono";
-            ui.sound.path = ../../resources/ambient_bridge_5.mp3;
           };
         }
         // lib.optionalAttrs pkgs.stdenv.isDarwin {
