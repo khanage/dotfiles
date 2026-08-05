@@ -119,6 +119,7 @@ _: {
             theme = "Nord";
             auto-update = "off";
             font-family = "GoMono Nerd Font Mono";
+            ui.sound.path = ../../resources/ambient_bridge_5.mp3;
           };
         }
         // lib.optionalAttrs pkgs.stdenv.isDarwin {
