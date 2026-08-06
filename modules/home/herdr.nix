@@ -1,7 +1,7 @@
 # Extension module for programs.herdr that adds a `plugins` list.
 # Plugins are installed at home-manager activation time (not build time),
-# so network access is available. Plugins removed from the list are
-# automatically uninstalled on the next activation.
+# so network access is available. Plugins not in the declared list are
+# uninstalled on each activation.
 _: {
   flake.homeModules.herdr = {
     config,
@@ -31,9 +31,8 @@ _: {
       };
     };
 
-    # Persists the plugin IDs installed by nix between activations so we
-    # can uninstall anything that falls out of the declared list.
-    stateFile = "${config.xdg.stateHome}/herdr/nix-managed-plugins";
+    # Newline-separated list of declared repos for shell comparison.
+    declaredRepos = lib.concatMapStrings (p: p.repo + "\n") cfg.plugins;
   in {
     options.programs.herdr.plugins = lib.mkOption {
       type = lib.types.listOf pluginType;
@@ -41,8 +40,8 @@ _: {
       description = ''
         List of herdr plugins to install via `herdr plugin install`.
         Installation happens during home-manager activation so network
-        access is available (unlike nix build time). Plugins removed
-        from this list are uninstalled on the next activation.
+        access is available (unlike nix build time). Any installed plugin
+        whose source repo is not in this list will be uninstalled.
       '';
       example = lib.literalExpression ''
         [
@@ -63,54 +62,35 @@ _: {
 
           # herdr shells out to `git` (and git needs `ssh`). During home-manager
           # activation PATH is stripped, so we must provide these explicitly.
-          runtimePath = lib.makeBinPath [pkgs.git pkgs.openssh pkgs.jq];
+          runtimePath = lib.makeBinPath [pkgs.git pkgs.openssh];
 
-          installPlugin = plugin: let
+          installCmds = lib.concatMapStrings (plugin: let
             refFlag =
               if plugin.ref != null
-              then " --ref ${lib.escapeShellArg plugin.ref}"
+              then "--ref ${lib.escapeShellArg plugin.ref} "
               else "";
           in ''
-            echo "herdr: installing plugin ${plugin.repo}${refFlag}"
-            ${herdrBin} plugin install ${lib.escapeShellArg plugin.repo}${refFlag} --yes
-          '';
-
-          installCmds = lib.concatMapStrings installPlugin cfg.plugins;
+            echo "herdr: installing plugin ${plugin.repo}"
+            ${herdrBin} plugin install ${refFlag}${lib.escapeShellArg plugin.repo} --yes
+          '') cfg.plugins;
         in ''
           export PATH="${runtimePath}:$PATH"
           export XDG_CONFIG_HOME="${config.xdg.configHome}"
           export XDG_DATA_HOME="${config.xdg.dataHome}"
 
-          _herdr_list_ids() {
-            ${herdrBin} plugin list --json | ${jq} -r '.result.plugins[].plugin_id'
-          }
+          # Uninstall any installed plugin whose source repo is not in the declared list.
+          while IFS=$'\t' read -r _id _owner _repo; do
+            [ -z "$_id" ] && continue
+            _source_repo="$_owner/$_repo"
+            if ! printf '%s\n' ${lib.escapeShellArg declaredRepos} | grep -qxF "$_source_repo"; then
+              echo "herdr: uninstalling $_id (not in declared plugins)"
+              ${herdrBin} plugin uninstall "$_id" || true
+            fi
+          done < <(${herdrBin} plugin list --json | \
+            ${jq} -r '.result.plugins[] | [.plugin_id, .source.owner, .source.repo] | @tsv')
 
-          # Snapshot of nix-managed IDs from the previous activation.
-          _prev_ids=""
-          if [ -f ${lib.escapeShellArg stateFile} ]; then
-            _prev_ids=$(cat ${lib.escapeShellArg stateFile})
-          fi
-
-          # Install / update all declared plugins.
+          # Install declared plugins.
           ${installCmds}
-
-          # Snapshot of nix-managed IDs after this activation.
-          _next_ids=$(_herdr_list_ids)
-
-          # Uninstall anything that was managed by nix before but isn't now.
-          if [ -n "$_prev_ids" ]; then
-            while IFS= read -r _id; do
-              [ -z "$_id" ] && continue
-              if ! echo "$_next_ids" | grep -qxF "$_id"; then
-                echo "herdr: uninstalling removed plugin $_id"
-                ${herdrBin} plugin uninstall "$_id" || true
-              fi
-            done <<< "$_prev_ids"
-          fi
-
-          # Persist the current nix-managed set for the next activation.
-          mkdir -p "$(dirname ${lib.escapeShellArg stateFile})"
-          echo "$_next_ids" > ${lib.escapeShellArg stateFile}
         ''
       );
     };
