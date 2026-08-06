@@ -110,6 +110,14 @@ _: {
           experimental.kitty_graphics = true;
           ui.sound.path = ../../resources/ambient_bridge_5.mp3;
         };
+        package = pkgs.herdr.overrideAttrs (p: {
+          postInstall =
+            (p.postInstall or "")
+            + ''
+              ls $out/
+              echo FUCK me
+            '';
+        });
       };
 
       ghostty =
