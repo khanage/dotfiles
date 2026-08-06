@@ -111,7 +111,10 @@ _: {
           ui.sound.path = ../../resources/ambient_bridge_5.mp3;
         };
         plugins = [
-          # {repo = "ogulcancelik/herdr-browser";}
+          {
+            repo = "paulbkim-dev/vim-herdr-navigation";
+            # ref = "820d48f5d9c9a7dece6a4bebfa3982ec30bbfbb7";
+          }
         ];
       };
 
