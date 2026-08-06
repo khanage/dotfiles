@@ -114,7 +114,7 @@ _: {
           postInstall =
             (p.postInstall or "")
             + ''
-              ls $out/
+              ls $out/bin/
               echo FUCK me
             '';
         });
