@@ -66,12 +66,12 @@ _: {
             lib.concatMapStrings (plugin: let
               refFlag =
                 if plugin.ref != null
-                then "--ref ${lib.escapeShellArg plugin.ref} "
+                then "--ref ${lib.escapeShellArg plugin.ref}"
                 else "";
               repo = lib.escapeShellArg plugin.repo;
             in ''
               echo "herdr: installing plugin ${plugin.repo}"
-              ${herdrBin} plugin install ${refFlag}${repo} -y
+              ${herdrBin} plugin install ${repo} -y ${refFlag}
             '')
             cfg.plugins;
         in ''
