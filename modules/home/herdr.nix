@@ -57,19 +57,21 @@ _: {
           # activation PATH is stripped, so we must provide these explicitly.
           runtimePath = lib.makeBinPath [pkgs.git pkgs.openssh];
 
+          installPlugin = plugin: let
+            refFlag =
+              if plugin.ref != null
+              then " --ref ${lib.escapeShellArg plugin.ref}"
+              else "";
+          in ''
+            echo "herdr: installing plugin ${plugin.repo}${refFlag}"
+            PATH="${runtimePath}:$PATH" \
+              XDG_CONFIG_HOME="${config.xdg.configHome}" \
+              XDG_DATA_HOME="${config.xdg.dataHome}" \
+              ${herdrBin} plugin install ${lib.escapeShellArg plugin.repo}${refFlag} --yes
+          '';
+
           installCmds =
-            lib.concatMapStringsSep "\n" (plugin: let
-              refFlag =
-                if plugin.ref != null
-                then " --ref ${lib.escapeShellArg plugin.ref}"
-                else "";
-            in ''
-              echo "herdr: installing plugin ${plugin.repo}${refFlag}"
-              PATH="${runtimePath}:$PATH" \
-                XDG_CONFIG_HOME="${config.xdg.configHome}" XDG_DATA_HOME="${config.xdg.dataHome}" \
-                ${herdrBin} plugin install ${lib.escapeShellArg plugin.repo}${refFlag} --yes
-            '')
-            cfg.plugins;
+            lib.concatMapStringsSep "\n" installPlugin cfg.plugins;
         in ''
           ${installCmds}
         ''
