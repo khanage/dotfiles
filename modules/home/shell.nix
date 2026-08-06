@@ -113,7 +113,7 @@ _: {
         plugins = [
           {
             repo = "paulbkim-dev/vim-herdr-navigation";
-            # ref = "820d48f5d9c9a7dece6a4bebfa3982ec30bbfbb7";
+            ref = "820d48f5d9c9a7dece6a4bebfa3982ec30bbfbb7";
           }
         ];
       };
