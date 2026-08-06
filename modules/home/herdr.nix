@@ -58,21 +58,22 @@ _: {
             then "${lib.getExe cfg.package}"
             else "${lib.getExe pkgs.herdr}";
 
-          jq = "${pkgs.jq}/bin/jq";
-
           # herdr shells out to `git` (and git needs `ssh`). During home-manager
           # activation PATH is stripped, so we must provide these explicitly.
           runtimePath = lib.makeBinPath [pkgs.git pkgs.openssh];
 
-          installCmds = lib.concatMapStrings (plugin: let
-            refFlag =
-              if plugin.ref != null
-              then "--ref ${lib.escapeShellArg plugin.ref} "
-              else "";
-          in ''
-            echo "herdr: installing plugin ${plugin.repo}"
-            ${herdrBin} plugin install ${refFlag}${lib.escapeShellArg plugin.repo} --yes
-          '') cfg.plugins;
+          installCmds =
+            lib.concatMapStrings (plugin: let
+              refFlag =
+                if plugin.ref != null
+                then "--ref ${lib.escapeShellArg plugin.ref} "
+                else "";
+              repo = lib.escapeShellArg plugin.repo;
+            in ''
+              echo "herdr: installing plugin ${plugin.repo}"
+              ${herdrBin} plugin install ${refFlag}${repo} -y
+            '')
+            cfg.plugins;
         in ''
           export PATH="${runtimePath}:$PATH"
           export XDG_CONFIG_HOME="${config.xdg.configHome}"
@@ -87,7 +88,7 @@ _: {
               ${herdrBin} plugin uninstall "$_id" || true
             fi
           done < <(${herdrBin} plugin list --json | \
-            ${jq} -r '.result.plugins[] | [.plugin_id, .source.owner, .source.repo] | @tsv')
+            ${lib.getExe pkgs.jq} -r '.result.plugins[] | [.plugin_id, .source.owner, .source.repo] | @tsv')
 
           # Install declared plugins.
           ${installCmds}
