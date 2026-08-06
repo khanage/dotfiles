@@ -111,7 +111,7 @@ _: {
           ui.sound.path = ../../resources/ambient_bridge_5.mp3;
         };
         plugins = [
-          {repo = "ogulcancelik/herdr-browser";}
+          # {repo = "ogulcancelik/herdr-browser";}
         ];
       };
 
