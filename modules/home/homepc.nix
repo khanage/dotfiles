@@ -12,6 +12,7 @@
           inputs.nvf.homeManagerModules.default
           self.homeModules.nordic-theme
           self.homeModules.shell
+          self.homeModules.herdr
           self.homeModules.nvim
           self.homeModules.gaming
           self.homeModules.opencode

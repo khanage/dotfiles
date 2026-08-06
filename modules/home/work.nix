@@ -11,6 +11,7 @@
         imports = [
           inputs.nvf.homeManagerModules.default
           self.homeModules.shell
+          self.homeModules.herdr
           self.homeModules.nvim
           self.homeModules.opencode
           self.homeModules.ssh
