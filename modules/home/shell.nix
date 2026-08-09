@@ -92,6 +92,7 @@ _: {
         enableZshIntegration = true;
       };
 
+      # Custom plugin support in herdr.nix
       herdr = {
         enable = true;
         settings = {
