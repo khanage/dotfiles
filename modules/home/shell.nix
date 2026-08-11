@@ -19,6 +19,7 @@ _: {
       dig
       gnupg
       apm-cli
+      dust
     ];
 
     programs = {
