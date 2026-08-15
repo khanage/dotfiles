@@ -6,7 +6,6 @@
       uninstallUnmanaged = true;
 
       packages = [
-        "net.retrodeck.retrodeck"
         "com.bambulab.BambuStudio"
         "org.freecad.FreeCAD"
         "org.signal.Signal"
