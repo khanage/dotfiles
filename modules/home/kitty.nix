@@ -16,7 +16,7 @@ _: {
           copy_on_select = "clipboard";
           open_url_with = "default";
         }
-        // lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
+        // lib.optionalAttrs (!pkgs.stdenv.hostPlatform.isDarwin) {
           hide_window_decorations = "yes";
           background_opacity = 0.9;
         };
