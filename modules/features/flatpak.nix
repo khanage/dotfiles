@@ -7,6 +7,10 @@
 
       packages = [
         "net.retrodeck.retrodeck"
+        "com.bambulab.BambuStudio"
+        "org.freecad.FreeCAD"
+        "org.signal.Signal"
+        "us.zoom.Zoom"
       ];
     };
   };
