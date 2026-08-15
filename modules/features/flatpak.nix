@@ -3,7 +3,7 @@
     imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
     services.flatpak = {
       update.onActivation = true;
-      uninstallUnmanaged = false;
+      uninstallUnmanaged = true;
 
       packages = [
         "net.retrodeck.retrodeck"
