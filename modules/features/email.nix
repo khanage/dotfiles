@@ -7,7 +7,7 @@ _: {
     mailspringDesktop = pkgs.makeDesktopItem {
       name = "mailspring";
       desktopName = "Mailspring";
-      exec = "${lib.getExe pkgs.mailspring} --password-store=gnome-libsecret";
+      exec = "${lib.getExe pkgs.mailspring} --no-sandbox --password-store=gnome-libsecret";
       comment = "Launch Mailspring";
       categories = ["Email" "Network"];
       terminal = false;
@@ -24,7 +24,7 @@ _: {
       partOf = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart = "${lib.getExe pkgs.mailspring} --background --password-store='gnome-libsecret'";
+        ExecStart = "${lib.getExe pkgs.mailspring} --no-sandbox --password-store='gnome-libsecret'";
         Restart = "on-failure";
       };
     };
