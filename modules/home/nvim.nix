@@ -215,19 +215,25 @@
                 goToDefinition = "gd";
                 hover = "K";
               };
-              servers.rust_analyzer.init_options = {
-                cargo = {allFeatures = true;};
-                diagnostics = {enable = true;};
-                checkOnSave = true;
-                procMacro = {
-                  enable = true;
+              servers = {
+                rust_analyzer.init_options = {
+                  cargo = {allFeatures = true;};
+                  diagnostics = {enable = true;};
+                  checkOnSave = true;
+                  procMacro = {
+                    enable = true;
+                  };
+                  files = {
+                    excludeDirs = [
+                      ".git"
+                      ".direnv"
+                      "target"
+                    ];
+                  };
                 };
-                files = {
-                  excludeDirs = [
-                    ".git"
-                    ".direnv"
-                    "target"
-                  ];
+                hls = {
+                  enable = true;
+                  package = pkgs.haskell-language-server.override {supportedGhcVersions = ["910"];};
                 };
               };
             };
