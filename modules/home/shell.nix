@@ -36,7 +36,12 @@ _: {
           vim = "nvim";
           cat = "bat";
           vdf = "vim --cmd ':cd ${dotfiles}/' ${dotfiles}/modules/home/shell.nix";
-          nfu = "git -C ${dotfiles} pull && sudo nix flake update --flake ${dotfiles}";
+          nfu = ''
+            git -C ${dotfiles} pull \
+            && sudo nix flake update \
+              --flake ${dotfiles}\
+              --option warn-dirty false
+          '';
           pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
           replace-commit = "${dotfiles}/.local/bin/replace-commit";
           clanker = "ollama launch opencode --model gemma4:26b";
