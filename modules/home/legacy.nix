@@ -25,7 +25,6 @@ _: {
           keymapp
           hypridle
           nodejs_latest
-          texlive.combined.scheme-basic
           xwayland-satellite
           tree-sitter
           mermaid-cli
@@ -61,9 +60,9 @@ _: {
           haskell-debug-adapter
         ])
         ++ (with beamPackages; [
-          # elixir
-          # elixir-ls
-          # erlang
+          elixir
+          elixir-ls
+          erlang
         ]);
 
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
