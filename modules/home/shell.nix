@@ -130,7 +130,7 @@ _: {
             font-family = "GoMono Nerd Font Mono";
           };
         }
-        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           package = pkgs.ghostty-bin;
           settings = {
             macos-window-buttons = "hidden";

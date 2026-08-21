@@ -20,7 +20,12 @@
             # '';
             viAlias = true;
             vimAlias = true;
-            clipboard.providers = {} // (lib.optionalAttrs pkgs.stdenv.isLinux {wl-copy.enable = true;});
+            clipboard.providers =
+              {}
+              // (lib.optionalAttrs
+                pkgs.stdenv.hostPlatform.isLinux {
+                  wl-copy.enable = true;
+                });
 
             treesitter = {
               enable = true;
