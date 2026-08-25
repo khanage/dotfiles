@@ -4,7 +4,7 @@ _: {
   in {
     services.ollama =
       {
-        enable = false;
+        enable = true;
         environmentVariables = {OLLAMA_CONTEXT_LENGTH = "64000";};
       }
       // optionalAttrs pkgs.stdenv.hostPlatform.isLinux {

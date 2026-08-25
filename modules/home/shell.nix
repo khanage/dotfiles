@@ -115,7 +115,10 @@ _: {
             manifest_check = false;
           };
           experimental.kitty_graphics = true;
-          ui.sound.path = ../../resources/ambient_bridge_5.mp3;
+          ui = {
+            sound.path = ../../resources/ambient_bridge_5.mp3;
+            hide_tab_bar_when_single_tab = true;
+          };
         };
         plugins = [
           {
