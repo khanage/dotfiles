@@ -35,10 +35,10 @@
     # Newer taps use DSL features (InstallSteps, command_wrapper) that brew 6.0.12 lacks,
     # which breaks `brew bundle` during darwin activation.
     # TODO once https://github.com/zhaofengli/nix-homebrew/pull/164 is merged can remove
-    homebrew-core.url = "github:homebrew/homebrew-core/e5338ee0813c3c5fe9df4d3a720796c04afe4589";
+    homebrew-core.url = "github:homebrew/homebrew-core";
     homebrew-core.flake = false;
 
-    homebrew-cask.url = "github:homebrew/homebrew-cask/3747a70cb0eb1c1446b326e59785ddbbb93cb99d";
+    homebrew-cask.url = "github:homebrew/homebrew-cask";
     homebrew-cask.flake = false;
 
     nix-index-database.url = "github:nix-community/nix-index-database";
