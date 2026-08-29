@@ -18,7 +18,7 @@ _: {
       gh
       dig
       gnupg
-      apm-cli
+      # apm-cli
       dust
     ];
 
