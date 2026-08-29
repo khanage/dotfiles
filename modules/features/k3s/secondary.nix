@@ -5,6 +5,8 @@ _: {
     k8sconfig,
     ...
   }: {
+    boot.supportedFilesystems = ["nfs"];
+    environment.systemPackages = [pkgs.nfs-utils];
     services.k3s = {
       enable = true;
       role = "server";

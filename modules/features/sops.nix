@@ -47,6 +47,10 @@
         sopsFile = ../../secrets/homepc/k8s_token.yaml;
         format = "yaml";
       };
+      secrets."grafana_admin_password" = {
+        sopsFile = ../../secrets/homepc/grafana.yaml;
+        format = "yaml";
+      };
     };
   };
 
@@ -68,6 +72,25 @@
       secrets."k8s_token" = {
         sopsFile = ../../secrets/homepc/k8s_token.yaml;
         format = "yaml";
+      };
+      secrets."grafana_admin_password" = {
+        sopsFile = ../../secrets/homepc/grafana.yaml;
+        format = "yaml";
+      };
+      templates."grafana-helm-values" = {
+        content = ''
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: grafana-helm-values
+            namespace: monitoring
+          stringData:
+            values.yaml: |
+              grafana:
+                adminPassword: ${config.sops.placeholder.grafana_admin_password}
+        '';
+        path = "/var/lib/rancher/k3s/server/manifests/grafana-helm-values-secret.yaml";
+        mode = "0600";
       };
     };
   };
