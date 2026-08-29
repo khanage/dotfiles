@@ -21,28 +21,10 @@ in {
       };
       # BUG: https://github.com/nixos/nixpkgs/issues/471331
       overlays = [
-        (_: prev: {
-          xow_dongle-firmware = prev.xow_dongle-firmware.overrideAttrs (_: {
-            installPhase = ''
-              # Create the firmware directory
-              mkdir -p $out/lib/firmware
-
-              # Install the standard bin file (just in case)
-              install -Dm644 xow_dongle.bin $out/lib/firmware/xow_dongle.bin
-
-              ln -s $out/lib/firmware/xow_dongle.bin $out/lib/firmware/xone_dongle_02fe.bin
-
-              # Handle the other model mentioned in the bug report (optional, but safe to keep)
-              if [ -f xow_dongle_045e_02e6.bin ]; then
-                install -Dm644 xow_dongle_045e_02e6.bin $out/lib/firmware/xone_dongle_02e6.bin
-              fi
-            '';
-          });
-        })
         # BUG: apm-cli missing websockets dep in nixpkgs
         (final: prev: {
           apm-cli = prev.apm-cli.overridePythonAttrs (old: {
-            propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [ final.python3Packages.websockets ];
+            propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [final.python3Packages.websockets];
           });
         })
       ];
