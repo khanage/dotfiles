@@ -110,6 +110,9 @@ _: {
     # Let Home Manager install and manage itself.
     programs = {
       home-manager.enable = true;
+      thunderbird = {
+        enable = true;
+      };
 
       git = {
         enable = true;
