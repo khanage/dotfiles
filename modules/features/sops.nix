@@ -146,6 +146,15 @@
         mode = "0400";
       };
 
+      # Jira API token for work (Atlassian).
+      # Encrypted file must contain a `jira_api_key:` key.
+      # Edit with: sops secrets/work/jira.yaml
+      secrets."jira_api_key" = {
+        sopsFile = ../../secrets/work/jira.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
+
       # SSH private key for the PointsBet enterprise GitHub account.
       # Encrypted file must contain a `github_work_ssh_key:` key.
       # Referenced as an IdentityFile by the `github.com-work` SSH alias
