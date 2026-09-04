@@ -146,6 +146,15 @@
         mode = "0400";
       };
 
+      # Azure DevOps Personal Access Token for work.
+      # Encrypted file must contain an `azure_devops_token:` key.
+      # Edit with: sops secrets/work/azdo_pat.yaml
+      secrets."azure_devops_token" = {
+        sopsFile = ../../secrets/work/azdo_pat.yaml;
+        owner = "khanthompson";
+        mode = "0400";
+      };
+
       # Jira API token for work (Atlassian).
       # Encrypted file must contain a `jira_api_key:` key.
       # Edit with: sops secrets/work/jira.yaml
