@@ -112,6 +112,9 @@ _: {
       home-manager.enable = true;
       thunderbird = {
         enable = true;
+        profiles.khan = {
+          isDefault = true;
+        };
       };
 
       git = {

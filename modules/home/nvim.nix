@@ -105,24 +105,44 @@
 
             statusline.lualine = {
               enable = true;
-              activeSection.a = [
-                ''
-                  {
-                    "mode",
-                    icons_enabled = true,
-                    separator = {
-                      left = "",
-                      right = ''
-                    },
-                  }
-                ''
-                ''
-                  {
-                    "",
-                    draw_empty = true,
-                    separator = { left = '', right = '' }
-                  }
-                ''
+              # activeSection.a = [
+              #   ''
+              #     {
+              #       "mode",
+              #       icons_enabled = true,
+              #       separator = {
+              #         left = "",
+              #         right = ''
+              #       },
+              #     }
+              #   ''
+              #   ''
+              #     {
+              #       "",
+              #       draw_empty = true,
+              #       separator = { left = '', right = '' }
+              #     }
+              #   ''
+              # ];
+              setupOpts.sections.lualine_a = [
+                {
+                  "@1" = "mode";
+
+                  icons_enabled = true;
+                  separator = {
+                    left = "";
+                    right = "";
+                  };
+                }
+                {
+                  "@1" = "";
+
+                  draw_empty = true;
+                  separator = {
+                    left = "";
+                    right = "";
+                  };
+                }
               ];
             };
 
