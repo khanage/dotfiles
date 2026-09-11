@@ -124,6 +124,11 @@ _: {
             && git -C ${dotfiles} commit -am 'chore: sync dotfiles' \
             && git -C ${dotfiles} push
           '';
+          nbb = ''
+            sudo darwin-rebuild build \
+              --flake ${dotfiles} \
+              --option warn-dirty false
+          '';
         };
       };
 
