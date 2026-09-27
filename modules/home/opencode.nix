@@ -33,7 +33,7 @@ _: {
     playwright-mcp-writable = pkgs.symlinkJoin {
       name = "playwright-mcp-writable-${pkgs.playwright-mcp.version}";
       paths = [pkgs.playwright-mcp];
-      nativeBuildInputs = [pkgs.makeWrapper];
+      nativeBuildInputs = [pkgs.makeWrapper pkgs.libmanette];
       postBuild = ''
         rm -f $out/bin/playwright-mcp
         makeWrapper \
