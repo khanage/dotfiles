@@ -103,7 +103,7 @@
           {
             matches = [
               {
-                app-id = "Mailspring";
+                app-id = "thunderbird";
                 at-startup = true;
               }
             ];
@@ -113,7 +113,7 @@
           {
             matches = [
               {
-                app-id = "Mailspring";
+                app-id = "thunderbird";
               }
             ];
             open-focused = true;
@@ -144,7 +144,7 @@
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
-          "${lib.getExe pkgs.mailspring} --password-store='gnome-libsecret'"
+          "${lib.getExe pkgs.thunderbird}"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
