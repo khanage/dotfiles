@@ -1,5 +1,5 @@
 _: {
-  flake.darwinModules.sqlServer = _: {
-    # environment.etc."krb5.conf".source = /run/secrets/krb5_conf;
+  flake.darwinModules.sqlServer = {config, ...}: {
+    environment.etc."krb5.conf".source = config.sops.secrets.krb5_conf.path;
   };
 }
