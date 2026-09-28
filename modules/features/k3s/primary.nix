@@ -69,7 +69,7 @@ _: {
           };
         };
 
-        "00-prometheus-stack".content = {
+        "03-prometheus-stack".content = {
           apiVersion = "helm.cattle.io/v1";
           kind = "HelmChart";
           metadata = {
@@ -94,6 +94,11 @@ _: {
                 enabled: false
               kubeProxy:
                 enabled: false
+              grafana:
+                enabled: true
+              prometheus-node-exporter:
+                service:
+                  port: 9101
             '';
             valuesSecrets = [
               {
