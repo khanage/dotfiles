@@ -1,6 +1,4 @@
-{ config, pkgs, nixpkgs, ... }:
-
-{
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 
@@ -11,7 +9,6 @@
 
   home.packages = with pkgs; [
     fortune
-    kitty
     neovim
     firefox
     git
@@ -33,10 +30,10 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-        ls = "ls -A --color";
-        vim = "nvim";
-        update = "sudo nixos-rebuild switch";
-      };
+      ls = "ls -A --color";
+      vim = "nvim";
+      update = "sudo nixos-rebuild switch";
+    };
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
@@ -45,24 +42,20 @@
       ];
     };
     initExtra = ''
-    config() {
-        git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME $@
-      }
-    config checkout -q
-    config config status.showUntrackedFiles no
+      config() {
+          git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME $@
+        }
+      config checkout -q
+      config config status.showUntrackedFiles no
     '';
   };
 
   programs.git = {
     enable = true;
     extraConfig = {
-       user.name = "Khan";
-       user.email = "khanage@gmail.com";
-       init.defaultBranch = "main";
+      user.name = "Khan";
+      user.email = "khanage@gmail.com";
+      init.defaultBranch = "main";
     };
   };
-
-  # programs.steam = {
-  #     enable = true;
-  # };
 }

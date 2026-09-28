@@ -26,7 +26,7 @@
       taps = builtins.attrNames nix-homebrew.taps;
 
       brews = ["python@3.13" "pngpaste"];
-      casks = ["hammerspoon" "docker-desktop" "miro" "kitty" "obsidian"];
+      casks = ["hammerspoon" "docker-desktop" "miro" "obsidian"];
     };
   };
 }
