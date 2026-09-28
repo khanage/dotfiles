@@ -131,7 +131,7 @@
       secrets."krb5_conf" = {
         sopsFile = ../../secrets/work/krb5.yaml;
         owner = "khanthompson";
-        mode = "0600";
+        mode = "0644";
       };
 
       # SSH private key for the personal (khanage) GitHub account.
