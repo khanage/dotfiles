@@ -33,7 +33,7 @@ _: {
     playwright-mcp-writable = pkgs.symlinkJoin {
       name = "playwright-mcp-writable-${pkgs.playwright-mcp.version}";
       paths = [pkgs.playwright-mcp];
-      nativeBuildInputs = [pkgs.makeWrapper pkgs.libmanette];
+      nativeBuildInputs = [pkgs.makeWrapper]; # ++ [pkgs.libmanette];
       postBuild = ''
         rm -f $out/bin/playwright-mcp
         makeWrapper \
@@ -97,26 +97,26 @@ _: {
               type = "local";
               command = "${lib.getExe github-mcp}";
             };
-            # playwright = {
-            #   enable = true;
-            #   type = "local";
-            #   command = "${playwright-mcp-writable}/bin/playwright-mcp";
-            #   args = [
-            #     "--executable-path"
-            #     "${lib.getExe (
-            #       if pkgs.stdenv.hostPlatform.isDarwin
-            #       then pkgs.google-chrome
-            #       else pkgs.chromium
-            #     )}"
-            #     "--user-data-dir"
-            #     "${config.xdg.stateHome}/playwright/user-data"
-            #     "--headless"
-            #   ];
-            #   env = {
-            #     PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
-            #     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
-            #   };
-            # };
+            playwright = {
+              enable = true;
+              type = "local";
+              command = "${playwright-mcp-writable}/bin/playwright-mcp";
+              args = [
+                "--executable-path"
+                "${lib.getExe (
+                  if pkgs.stdenv.hostPlatform.isDarwin
+                  then pkgs.google-chrome
+                  else pkgs.chromium
+                )}"
+                "--user-data-dir"
+                "${config.xdg.stateHome}/playwright/user-data"
+                "--headless"
+              ];
+              env = {
+                PLAYWRIGHT_BROWSERS_PATH = "${config.xdg.stateHome}/playwright/browsers";
+                PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
+              };
+            };
           }
           // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
             azure-devops = {
