@@ -172,6 +172,16 @@ _: {
             "https://github.com/pointsbet-price/"
             "ssh://git@github.com/pointsbet-price/"
           ];
+          "url \"git@github.com-work:PointsBet-Sandbox/\"".insteadOf = [
+            "git@github.com:PointsBet-Sandbox/"
+            "https://github.com/PointsBet-Sandbox/"
+            "ssh://git@github.com/PointsBet-Sandbox/"
+          ];
+          "url \"git@github.com-work:pointsbet-sandbox/\"".insteadOf = [
+            "git@github.com:pointsbet-sandbox/"
+            "https://github.com/pointsbet-sandbox/"
+            "ssh://git@github.com/pointsbet-sandbox/"
+          ];
 
           # Generic fallback: any other github.com HTTPS URL becomes SSH
           # so the personal key (see modules/home/ssh.nix) is used.
