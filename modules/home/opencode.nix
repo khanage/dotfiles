@@ -127,7 +127,7 @@ _: {
             atlassian = {
               enabled = true;
               type = "remote";
-              url = "https://mcp.atlassian.com/v1/sse";
+              url = "https://mcp.atlassian.com/v2/mcp";
             };
           };
       };
