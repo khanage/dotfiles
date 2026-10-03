@@ -208,6 +208,7 @@
                 lsp.enable = false;
                 dap.enable = true;
                 extensions.haskell-tools.enable = true;
+                extensions.haskell-tools.setupOpts.hls.cmd = ["haskell-language-server-wrapper" "--lsp"];
               };
 
               csharp = {
@@ -255,10 +256,6 @@
                       "target"
                     ];
                   };
-                };
-                hls = {
-                  enable = true;
-                  package = pkgs.haskell-language-server.override {supportedGhcVersions = ["910"];};
                 };
               };
             };
