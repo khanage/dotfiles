@@ -69,8 +69,8 @@
             name: spaceship-credentials
             namespace: cert-manager
           stringData:
-            api-key: ${config.sops.placeholder."spaceship-api-key"}
-            api-secret: ${config.sops.placeholder."spaceship-api-secret"}
+            api-key: ${config.sops.placeholder."api-key"}
+            api-secret: ${config.sops.placeholder."api-secret"}
         '';
         path = "/var/lib/rancher/k3s/server/manifests/01-spaceship-credentials.yaml";
         mode = "0600";
