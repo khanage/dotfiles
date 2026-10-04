@@ -10,6 +10,7 @@
         "org.freecad.FreeCAD"
         "org.signal.Signal"
         "us.zoom.Zoom"
+        "org.vinegarhq.Sober"
       ];
     };
   };

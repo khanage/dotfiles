@@ -51,6 +51,30 @@
         sopsFile = ../../secrets/homepc/grafana.yaml;
         format = "yaml";
       };
+      secrets."spaceship-api-key" = {
+        sopsFile = ../../secrets/homepc/spaceship.yaml;
+        format = "yaml";
+        key = "api_key";
+      };
+      secrets."spaceship-api-secret" = {
+        sopsFile = ../../secrets/homepc/spaceship.yaml;
+        format = "yaml";
+        key = "api_secret";
+      };
+      templates."spaceship-credentials" = {
+        content = ''
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: spaceship-credentials
+            namespace: cert-manager
+          stringData:
+            api-key: ${config.sops.placeholder."spaceship-api-key"}
+            api-secret: ${config.sops.placeholder."spaceship-api-secret"}
+        '';
+        path = "/var/lib/rancher/k3s/server/manifests/01-spaceship-credentials.yaml";
+        mode = "0600";
+      };
     };
   };
 

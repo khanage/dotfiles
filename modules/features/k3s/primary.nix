@@ -71,7 +71,51 @@ _: {
             };
           };
 
-          "03-prometheus-stack".content = {
+          "02-cert-manager".content = {
+            apiVersion = "helm.cattle.io/v1";
+            kind = "HelmChart";
+            metadata = {
+              name = "cert-manager";
+              namespace = "kube-system";
+            };
+            spec = {
+              chart = "cert-manager";
+              repo = "https://charts.jetstack.io";
+              version = "v1.21.2";
+              targetNamespace = "cert-manager";
+              createNamespace = true;
+              bootstrap = true;
+              valuesContent = ''
+                crds:
+                  enabled: true
+                  keep: true
+              '';
+            };
+          };
+
+          "03-spaceship-webhook".content = {
+            apiVersion = "helm.cattle.io/v1";
+            kind = "HelmChart";
+            metadata = {
+              name = "cert-manager-webhook-spaceship";
+              namespace = "kube-system";
+            };
+            spec = {
+              chart = "cert-manager-webhook-spaceship";
+              repo = "https://hjwylde.github.io/cert-manager-webhook-spaceship";
+              version = "0.1.3";
+              targetNamespace = "cert-manager";
+              createNamespace = true;
+              bootstrap = true;
+              valuesContent = ''
+                certManager:
+                  namespace: cert-manager
+                  serviceAccountName: cert-manager
+              '';
+            };
+          };
+
+          "04-prometheus-stack".content = {
             apiVersion = "helm.cattle.io/v1";
             kind = "HelmChart";
             metadata = {
@@ -218,7 +262,13 @@ _: {
         }
         // lib.mapAttrs' (
           name: value: lib.nameValuePair "1000-${name}" value
-        ) (import ./manifests/shelfarr.nix {inherit config;});
+        ) (import ./manifests/shelfarr.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1001-${name}" value
+        ) (import ./manifests/prowlarr.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1002-${name}" value
+        ) (import ./manifests/certificates.nix {inherit config;});
     };
   };
 }
