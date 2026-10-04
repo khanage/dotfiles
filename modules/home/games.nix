@@ -44,8 +44,8 @@ _: {
       wowup-cf
       # xivlauncher
       discord-ptb
-      battlenet
-      battlenetDesktop
+      # battlenet
+      # battlenetDesktop
     ];
   };
 }
