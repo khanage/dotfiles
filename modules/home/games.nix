@@ -10,6 +10,13 @@ _: {
         export WINEPREFIX="$prefix"
         export PROTONPATH="${pkgs.proton-ge-bin.steamcompattool}"
 
+        # Battle.net's login window is a secondary X11 window. Keep it in a
+        # Wine desktop so it remains visible and usable under Niri/Xwayland.
+        export WINE_VIRTUAL_DESKTOP=1
+        export WINE_VIRTUAL_DESKTOP_NAME="Battle.net"
+        export WINE_VIRTUAL_DESKTOP_WIDTH=1280
+        export WINE_VIRTUAL_DESKTOP_HEIGHT=800
+
         if [ "$#" -gt 0 ]; then
           exec umu-run "$@"
         fi
