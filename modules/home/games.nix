@@ -1,18 +1,44 @@
 _: {
-  /*
-  Steps to reinstall Battle.net on a fresh PC:
-  1. Ensure Steam is set up with Proton 10 installed
-  2. Add Battle.net as a non-Steam game in Steam pointing to a dummy exe (to generate an appid), then set compatibility to Proton 10
-  3. Download the installer and run it through that appid:
-  protontricks-launch --appid <appid> "/path/to/Battle.net-Setup.exe"
-  4. Update the Steam shortcut to point to the installed Battle.net Launcher.exe
-  The appid is auto-generated from the shortcut name — note it down once created (yours is 4194903326).
-  */
-  flake.homeModules.gaming = {pkgs, ...}: {
+  flake.homeModules.gaming = {pkgs, ...}: let
+    battlenet = pkgs.writeShellApplication {
+      name = "battlenet-proton";
+      runtimeInputs = [pkgs.umu-launcher];
+      text = ''
+        prefix="$HOME/Games/battlenet"
+        launcher="$prefix/drive_c/Program Files (x86)/Battle.net/Battle.net Launcher.exe"
+
+        export WINEPREFIX="$prefix"
+        export PROTONPATH="${pkgs.proton-ge-bin}"
+
+        if [ "$#" -gt 0 ]; then
+          exec umu-run "$@"
+        fi
+
+        if [ ! -f "$launcher" ]; then
+          printf '%s\n' "Battle.net is not installed in $prefix." >&2
+          printf '%s\n' "Download Battle.net-Setup.exe, then run: battlenet-proton ~/Downloads/Battle.net-Setup.exe" >&2
+          exit 1
+        fi
+
+        exec umu-run "$launcher"
+      '';
+    };
+    battlenetDesktop = pkgs.makeDesktopItem {
+      name = "battlenet-proton";
+      desktopName = "Battle.net";
+      comment = "Launch Battle.net with GE-Proton";
+      exec = "${battlenet}/bin/battlenet-proton";
+      categories = ["Game" "Network"];
+      terminal = false;
+      type = "Application";
+    };
+  in {
     home.packages = with pkgs; [
       wowup-cf
       # xivlauncher
       discord-ptb
+      battlenet
+      battlenetDesktop
     ];
   };
 }
