@@ -8,7 +8,7 @@ _: {
         launcher="$prefix/drive_c/Program Files (x86)/Battle.net/Battle.net Launcher.exe"
 
         export WINEPREFIX="$prefix"
-        export PROTONPATH="${pkgs.proton-ge-bin}"
+        export PROTONPATH="${pkgs.proton-ge-bin.steamcompattool}"
 
         if [ "$#" -gt 0 ]; then
           exec umu-run "$@"
