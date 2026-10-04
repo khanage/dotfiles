@@ -4,7 +4,7 @@ _: {
       name = "battlenet-proton";
       runtimeInputs = [pkgs.umu-launcher];
       text = ''
-        prefix="$HOME/Games/battlenet"
+        prefix="$HOME/Games/battlenet/pfx"
         launcher="$prefix/drive_c/Program Files (x86)/Battle.net/Battle.net Launcher.exe"
 
         export WINEPREFIX="$prefix"
