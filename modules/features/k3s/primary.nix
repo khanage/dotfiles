@@ -42,6 +42,11 @@ _: {
                     default: true
                   port: 9000
                   protocol: TCP
+                websecure:
+                  expose:
+                    default: true
+                  port: 8443
+                  protocol: TCP
               dashboard:
                 enabled: true
             '';
@@ -163,7 +168,8 @@ _: {
               namespace = "kube-system";
             };
             spec = {
-              entryPoints = ["web"];
+              entryPoints = ["websecure"];
+              tls = {};
               routes = [
                 {
                   match = "Host(`traefik.home.khanage.net`)";
@@ -187,7 +193,8 @@ _: {
               namespace = "monitoring";
             };
             spec = {
-              entryPoints = ["web"];
+              entryPoints = ["websecure"];
+              tls = {};
               routes = [
                 {
                   match = "Host(`prometheus.home.khanage.net`)";
@@ -212,7 +219,8 @@ _: {
               namespace = "monitoring";
             };
             spec = {
-              entryPoints = ["web"];
+              entryPoints = ["websecure"];
+              tls = {};
               routes = [
                 {
                   match = "Host(`grafana.home.khanage.net`)";

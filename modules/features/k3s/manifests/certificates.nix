@@ -74,4 +74,32 @@ _: {
       dnsNames = ["*.home.khanage.net"];
     };
   };
+
+  "3-home-wildcard-production-certificate".content = {
+    apiVersion = "cert-manager.io/v1";
+    kind = "Certificate";
+    metadata = {
+      name = "home-wildcard-production";
+      namespace = "kube-system";
+    };
+    spec = {
+      secretName = "home-wildcard-tls";
+      issuerRef = {
+        name = "letsencrypt-production";
+        kind = "ClusterIssuer";
+        group = "cert-manager.io";
+      };
+      dnsNames = ["*.home.khanage.net"];
+    };
+  };
+
+  "4-traefik-default-tls-store".content = {
+    apiVersion = "traefik.io/v1alpha1";
+    kind = "TLSStore";
+    metadata = {
+      name = "default";
+      namespace = "kube-system";
+    };
+    spec.defaultCertificate.secretName = "home-wildcard-tls";
+  };
 }

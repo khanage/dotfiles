@@ -106,7 +106,8 @@ _: {
       namespace = "default";
     };
     spec = {
-      entryPoints = ["web"];
+      entryPoints = ["websecure"];
+      tls = {};
       routes = [
         {
           match = "Host(`prowlarr.home.khanage.net`)";
