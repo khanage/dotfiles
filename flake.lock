@@ -193,11 +193,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791227480,
-        "narHash": "sha256-+lrD+sxc2RKUWXRBAcggn7uBCFeJgnV75jD/cz7gJRA=",
+        "lastModified": 1791484883,
+        "narHash": "sha256-iKxFHJrg7Sltwhq3ssCZYQ4CFEDVvReVVuVuO9dj3sE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "aa23f720d022187228bc264f759aef6b80233bcf",
+        "rev": "dfadbe5162d5e86bc0808badec8f346f81b4b3f0",
         "type": "github"
       },
       "original": {
@@ -210,11 +210,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1791265914,
-        "narHash": "sha256-TwiHI6DdzkCP9wdhcEjtHBm+9TdqvmXgFCdtp2P3Z1s=",
+        "lastModified": 1791524292,
+        "narHash": "sha256-b80GPe1GESRzWldJGvq1+HUEt58XsiqUXmSdRAQBmFo=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "062be92715624541e19b7b01aa09929a076923f7",
+        "rev": "4cdb505a94efdd80fd60fd26f759ae68927a5292",
         "type": "github"
       },
       "original": {
@@ -226,11 +226,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1791267026,
-        "narHash": "sha256-gcGdyqE/pMSYkS6bMVYrI+/Ont29kuSq/U1tjCIBKK4=",
+        "lastModified": 1791529937,
+        "narHash": "sha256-Uv+4loXYi8VLa0AKcaU65mpLxGuSaEjTGsqn/g/AGs8=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "ef3b6fb6735ac466ad9a60617826acb31f002681",
+        "rev": "e6bc544097d484d3bd3e422f9ec215fc8d02f5dc",
         "type": "github"
       },
       "original": {
@@ -372,11 +372,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791265620,
-        "narHash": "sha256-9D/dm055cWcw2jD/fn11wQpbxMFKK3U2AzyJ6ifKwd8=",
+        "lastModified": 1791523962,
+        "narHash": "sha256-bV5WT60IqDi+GfYa7klOwnzPBe85wtz/9hZKUa3W9yA=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "df3ceb56e0a573c54a7ab866132e5ccad3c868e9",
+        "rev": "f8ba21ff07fca7eb9a9b2bcc4120b9b4296da396",
         "type": "github"
       },
       "original": {
@@ -448,11 +448,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1791179034,
-        "narHash": "sha256-Ni0LBydzaCi8oek12r4mVreuFHqYlM1eTD6SfiENKfw=",
+        "lastModified": 1791456040,
+        "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "494ce7fd23ff6a5dff39e1fb11e9b6f2ac74bf25",
+        "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
         "type": "github"
       },
       "original": {
@@ -469,11 +469,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791249451,
-        "narHash": "sha256-ucUgpRWCvXd17/29C1rPYliLTz8mdNeOvsSGdtBGMAY=",
+        "lastModified": 1791515269,
+        "narHash": "sha256-UdDeKbXyv2CAfB0VaD+Xb2r+kzdedwoh8ZR3zQtucjo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "4237bc286bb9db7fec8ba663bfc42779af9b1372",
+        "rev": "da175871820e38446195f0b25c34f3d41f1e862e",
         "type": "github"
       },
       "original": {
@@ -491,11 +491,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791215772,
-        "narHash": "sha256-GBC/HfZM1Bh5dM/B0csBr8YoVGk3DTmCF/Qx646kThE=",
+        "lastModified": 1791488733,
+        "narHash": "sha256-9rIjqnq43mKaiUCv0DBe8H0HFZQue0fADosuJxemoaU=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "b5a8011df7e743d5bd992d25983d548f99e9ff83",
+        "rev": "01d245e20e19c9e283fce3b0db8719c2a6bba5f5",
         "type": "github"
       },
       "original": {
@@ -551,11 +551,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788981141,
-        "narHash": "sha256-7xWS16u13YGlRNKWaAPzRbEyh4OLOXJe31k7h4AnXNU=",
+        "lastModified": 1791440872,
+        "narHash": "sha256-PwiSn1VO3/6BD/Gxw/3Ei2sPB3SccyKyJ7nD72Y+WU4=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "1db3c116a6aa61823f8d8f3c47c306846428fc54",
+        "rev": "d82c328c504648fa952f25fac8332319eb425d4c",
         "type": "github"
       },
       "original": {
