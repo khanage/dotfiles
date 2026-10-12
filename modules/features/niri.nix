@@ -94,6 +94,25 @@
           {
             matches = [
               {
+                app-id = "^steam_app_[0-9]+$";
+                title = "^$";
+              }
+            ];
+            opacity = 0.0;
+            open-floating = true;
+          }
+          {
+            matches = [
+              {
+                app-id = "^steam_app_[0-9]+$";
+                title = "^Battle.net$";
+              }
+            ];
+            open-on-workspace = "games";
+          }
+          {
+            matches = [
+              {
                 app-id = "org.signal.Signal";
                 at-startup = true;
               }
@@ -128,6 +147,7 @@
             ];
             open-floating = true;
           }
+
           {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
@@ -145,7 +165,6 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           "${lib.getExe pkgs.thunderbird}"
-          "${lib.getExe' pkgs.gtk3 "gtk-launch"} battlenet"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
