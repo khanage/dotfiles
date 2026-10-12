@@ -126,28 +126,8 @@
                 at-startup = true;
               }
             ];
-            open-focused = false;
             open-on-workspace = "xcomms";
           }
-          {
-            matches = [
-              {
-                app-id = "thunderbird";
-              }
-            ];
-            open-focused = true;
-            open-on-workspace = "xcomms";
-          }
-          {
-            matches = [
-              {
-                app-id = "zoom";
-                title = "annotate_toolbar";
-              }
-            ];
-            open-floating = true;
-          }
-
           {
             geometry-corner-radius = 20;
             clip-to-geometry = true;
@@ -165,6 +145,7 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           "${lib.getExe pkgs.thunderbird}"
+          "${lib.getExe pkgs.steam} steam://rungameid/18016972595085180928"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
