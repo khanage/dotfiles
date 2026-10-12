@@ -145,6 +145,7 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           "${lib.getExe pkgs.thunderbird}"
+          "${lib.getExe' pkgs.gtk3 "gtk-launch"} battlenet"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
