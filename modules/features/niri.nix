@@ -117,6 +117,7 @@
                 at-startup = true;
               }
             ];
+            open-focused = false;
             open-on-workspace = "xcomms";
           }
           {
@@ -145,7 +146,6 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           "${lib.getExe pkgs.thunderbird}"
-          "${lib.getExe pkgs.steam} steam://rungameid/18016972595085180928"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
