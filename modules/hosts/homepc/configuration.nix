@@ -36,6 +36,9 @@
         ];
       };
       overlays = [
+        (_: prev: {
+          typescript-language-server = prev.callPackage ../../../pkgs/typescript-language-server.nix { };
+        })
         (_: prev: let
           openrazerSrc = {
             version = "3.12.3";
