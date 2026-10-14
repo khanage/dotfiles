@@ -224,7 +224,7 @@
               json.enable = true;
               markdown.enable = true;
               sql.enable = true;
-              typescript.enable = true;
+              # typescript.enable = true;
 
               python.enable = true;
             };
