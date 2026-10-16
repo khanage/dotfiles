@@ -225,7 +225,6 @@
               markdown.enable = true;
               sql.enable = true;
               typescript.enable = true;
-
               python.enable = true;
             };
 
