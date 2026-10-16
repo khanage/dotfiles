@@ -30,6 +30,9 @@ _: {
       fsType = "ext4";
       options = ["nofail" "noatime"];
     };
+    systemd.tmpfiles.rules = [
+      "d /games 0755 khan users - -"
+    ];
 
     swapDevices = [];
 
