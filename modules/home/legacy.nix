@@ -119,9 +119,9 @@ _: {
         enable = true;
         profiles.khan = {
           isDefault = true;
-          # settings = {
-          #   "extensions.autoDisableScopes" = 0;
-          # };
+          settings = {
+            "extensions.autoDisableScopes" = 0;
+          };
         };
         package = pkgs.thunderbird.override {
           extraPolicies = {
