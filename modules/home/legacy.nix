@@ -119,6 +119,19 @@ _: {
         enable = true;
         profiles.khan = {
           isDefault = true;
+          # settings = {
+          #   "extensions.autoDisableScopes" = 0;
+          # };
+        };
+        package = pkgs.thunderbird.override {
+          extraPolicies = {
+            ExtensionSettings = {
+              "auto-profile-picture@noamschmitt" = {
+                installation_mode = "force_install";
+                install_url = "https://thunderbird.net";
+              };
+            };
+          };
         };
       };
 
