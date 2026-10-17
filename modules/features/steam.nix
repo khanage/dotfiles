@@ -10,6 +10,11 @@ _: {
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
         extraPackages = with pkgs; [gamemode freetype];
+        package = pkgs.steam.override {
+          extraEnv = {
+            STEAM_COMPAT_MOUNTS = "/games";
+          };
+        };
       };
     };
   };
