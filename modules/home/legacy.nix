@@ -117,10 +117,17 @@ _: {
       home-manager.enable = true;
       thunderbird = {
         enable = true;
-        profiles.khan = {
-          isDefault = true;
-          settings = {
-            "extensions.autoDisableScopes" = 0;
+        profiles = {
+          default = {
+            settings = {
+              "extensions.autoDisableScopes" = 0;
+            };
+          };
+          khan = {
+            isDefault = true;
+            settings = {
+              "extensions.autoDisableScopes" = 0;
+            };
           };
         };
         package = pkgs.thunderbird.override {
