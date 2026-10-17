@@ -124,8 +124,8 @@ _: {
           extraPolicies = {
             ExtensionSettings = {
               "auto-profile-picture@noamschmitt" = {
-                installation_mode = "force_install";
-                install_url = "https://thunderbird.net";
+                installation_mode = "force_installed";
+                install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/auto-profile-picture/latest.xpi";
               };
             };
           };
