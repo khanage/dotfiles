@@ -99,15 +99,15 @@ _: {
         ls = "lsd -A";
         nbs = ''
           sudo nixos-rebuild switch \
-            --flake ${dotfiles} \
             --option warn-dirty false \
+            --flake ${dotfiles} \
           && git -C ${dotfiles} commit -am 'chore: sync dotfiles'\
           && git -C ${dotfiles} push
         '';
         nbb = ''
           sudo nixos-rebuild build \
-            --flake ${dotfiles} \
             --option warn-dirty false
+            --flake ${dotfiles} \
         '';
       };
     };

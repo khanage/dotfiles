@@ -1,5 +1,6 @@
 _: {
   flake.nixosModules.homepcHardware = {
+    pkgs,
     config,
     lib,
     modulesPath,
@@ -13,6 +14,8 @@ _: {
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-intel"];
     boot.extraModulePackages = [];
+    boot.supportedFilesystems = ["nfs"];
+    environment.systemPackages = [pkgs.nfs-utils];
 
     fileSystems."/" = {
       device = "/dev/disk/by-label/ROOT";
@@ -30,6 +33,13 @@ _: {
       fsType = "ext4";
       options = ["nofail" "noatime"];
     };
+
+    fileSystems."/mnt/docker" = {
+      device = "192.168.1.173:/volume1/docker";
+      fsType = "nfs";
+      options = ["nofail" "x-systemd.automount"];
+    };
+
     systemd.tmpfiles.rules = [
       "d /games 0755 khan users - -"
     ];
