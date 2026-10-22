@@ -276,7 +276,25 @@ _: {
         ) (import ./manifests/prowlarr.nix {inherit config;})
         // lib.mapAttrs' (
           name: value: lib.nameValuePair "1002-${name}" value
-        ) (import ./manifests/certificates.nix {inherit config;});
+        ) (import ./manifests/certificates.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1003-${name}" value
+        ) (import ./manifests/sonarr.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1004-${name}" value
+        ) (import ./manifests/radarr.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1005-${name}" value
+        ) (import ./manifests/jackett.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1006-${name}" value
+        ) (import ./manifests/nzbs.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1007-${name}" value
+        ) (import ./manifests/torrents.nix {inherit config;})
+        // lib.mapAttrs' (
+          name: value: lib.nameValuePair "1008-${name}" value
+        ) (import ./manifests/plex.nix {inherit config;});
     };
   };
 }
