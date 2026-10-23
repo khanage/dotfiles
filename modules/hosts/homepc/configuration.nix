@@ -53,12 +53,6 @@
             openrazer = p.openrazer.overrideAttrs (_: openrazerSrc);
           });
         })
-        # BUG: https://github.com/nixos/nixpkgs/issues/471331
-        (_: prev: {
-          openldap = prev.openldap.overrideAttrs (_: {
-            doCheck = false;
-          });
-        })
         # BUG: apm-cli missing websockets dep in nixpkgs
         (final: prev: {
           apm-cli = prev.apm-cli.overridePythonAttrs (old: {
