@@ -54,11 +54,11 @@
           });
         })
         # BUG: apm-cli missing websockets dep in nixpkgs
-        (final: prev: {
-          apm-cli = prev.apm-cli.overridePythonAttrs (old: {
-            propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [final.python3Packages.websockets];
-          });
-        })
+        # (final: prev: {
+        #   apm-cli = prev.apm-cli.overridePythonAttrs (old: {
+        #     propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [final.python3Packages.websockets];
+        #   });
+        # })
       ];
     };
     boot = {
