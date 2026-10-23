@@ -36,27 +36,21 @@
         ];
       };
       overlays = [
-        (_: prev: let
-          openrazerSrc = {
-            version = "3.12.3";
-            src = prev.fetchFromGitHub {
-              owner = "openrazer";
-              repo = "openrazer";
-              rev = "v3.12.3";
-              hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
-            };
-          };
-        in {
-          openrazer-daemon = prev.openrazer-daemon.overrideAttrs (_: openrazerSrc);
-          python3Packages = prev.python3Packages.overrideScope (_: p: {
-            openrazer-daemon = p.openrazer-daemon.overrideAttrs (_: openrazerSrc);
-            openrazer = p.openrazer.overrideAttrs (_: openrazerSrc);
-          });
-        })
-        # BUG: apm-cli missing websockets dep in nixpkgs
-        # (final: prev: {
-        #   apm-cli = prev.apm-cli.overridePythonAttrs (old: {
-        #     propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [final.python3Packages.websockets];
+        # (_: prev: let
+        #   openrazerSrc = {
+        #     version = "3.12.3";
+        #     src = prev.fetchFromGitHub {
+        #       owner = "openrazer";
+        #       repo = "openrazer";
+        #       rev = "v3.12.3";
+        #       hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
+        #     };
+        #   };
+        # in {
+        #   openrazer-daemon = prev.openrazer-daemon.overrideAttrs (_: openrazerSrc);
+        #   python3Packages = prev.python3Packages.overrideScope (_: p: {
+        #     openrazer-daemon = p.openrazer-daemon.overrideAttrs (_: openrazerSrc);
+        #     openrazer = p.openrazer.overrideAttrs (_: openrazerSrc);
         #   });
         # })
       ];
@@ -181,7 +175,7 @@
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
     environment.systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      vim
       wget
       glfw
       vulkan-headers
@@ -212,15 +206,15 @@
     hardware.openrazer = {
       enable = true;
       users = ["khan" "root"];
-      packages.kernel = pkgs.linuxPackages.openrazer.overrideAttrs (_: {
-        version = "3.12.3-${pkgs.linuxPackages.kernel.version}";
-        src = pkgs.fetchFromGitHub {
-          owner = "openrazer";
-          repo = "openrazer";
-          rev = "v3.12.3";
-          hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
-        };
-      });
+      # packages.kernel = pkgs.linuxPackages.openrazer.overrideAttrs (_: {
+      #   version = "3.12.3-${pkgs.linuxPackages.kernel.version}";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "openrazer";
+      #     repo = "openrazer";
+      #     rev = "v3.12.3";
+      #     hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
+      #   };
+      # });
     };
 
     # flatpak-spawn --sandbox sub-sandboxes inherit the HOST PATH (not the container's).
