@@ -47,6 +47,13 @@ _: {
                     default: true
                   port: 8443
                   protocol: TCP
+                web:
+                  http:
+                    redirections:
+                      entryPoint:
+                        to: websecure
+                        scheme: https
+                        permanent: true
               dashboard:
                 enabled: true
             '';

@@ -1,4 +1,144 @@
-_: {
+{...}: {
+  "1-plex-deployment".content = {
+    apiVersion = "apps/v1";
+    kind = "Deployment";
+    metadata = {
+      name = "plex";
+      namespace = "default";
+    };
+    spec = {
+      replicas = 1;
+      selector = {
+        matchLabels = {
+          app = "plex";
+        };
+      };
+      template = {
+        metadata = {
+          labels = {
+            app = "plex";
+          };
+        };
+        spec = {
+          volumes = [
+            {
+              name = "plex-config";
+              nfs = {
+                server = "192.168.1.171";
+                path = "/volume1/docker/plex";
+              };
+            }
+            {
+              name = "movies";
+              nfs = {
+                server = "192.168.1.171";
+                path = "/volume1/docker/movies";
+              };
+            }
+            {
+              name = "tv";
+              nfs = {
+                server = "192.168.1.171";
+                path = "/volume1/docker/tv";
+              };
+            }
+            {
+              name = "dri";
+              hostPath = {
+                path = "/dev/dri";
+                type = "Directory";
+              };
+            }
+          ];
+          containers = [
+            {
+              name = "plex";
+              image = "lscr.io/linuxserver/plex:latest";
+              securityContext = {
+                privileged = true;
+                allowPrivilegeEscalation = true;
+              };
+              env = [
+                {
+                  name = "PUID";
+                  value = "1000";
+                }
+                {
+                  name = "PGID";
+                  value = "1000";
+                }
+                {
+                  name = "TZ";
+                  value = "Australia/Melbourne";
+                }
+                {
+                  name = "VERSION";
+                  value = "docker";
+                }
+                {
+                  name = "PLEX_CLAIM";
+                  valueFrom = {
+                    secretKeyRef = {
+                      name = "plex-claim";
+                      key = "plex_claim";
+                    };
+                  };
+                }
+              ];
+              ports = [
+                {containerPort = 32400;}
+                {
+                  containerPort = 1900;
+                  protocol = "UDP";
+                }
+                {
+                  containerPort = 5353;
+                  protocol = "UDP";
+                }
+                {containerPort = 8324;}
+                {
+                  containerPort = 32410;
+                  protocol = "UDP";
+                }
+                {
+                  containerPort = 32412;
+                  protocol = "UDP";
+                }
+                {
+                  containerPort = 32413;
+                  protocol = "UDP";
+                }
+                {
+                  containerPort = 32414;
+                  protocol = "UDP";
+                }
+                {containerPort = 32469;}
+              ];
+              volumeMounts = [
+                {
+                  name = "plex-config";
+                  mountPath = "/config";
+                }
+                {
+                  name = "tv";
+                  mountPath = "/tv";
+                }
+                {
+                  name = "movies";
+                  mountPath = "/movies";
+                }
+                {
+                  name = "dri";
+                  mountPath = "/dev/dri";
+                }
+              ];
+            }
+          ];
+        };
+      };
+    };
+  };
+
   "2-plex-service".content = {
     apiVersion = "v1";
     kind = "Service";
@@ -7,6 +147,9 @@ _: {
       namespace = "default";
     };
     spec = {
+      selector = {
+        app = "plex";
+      };
       ports = [
         {
           name = "http";
@@ -15,31 +158,11 @@ _: {
           targetPort = 32400;
         }
       ];
+      type = "ClusterIP";
     };
   };
 
-  "3-plex-endpoints".content = {
-    apiVersion = "v1";
-    kind = "Endpoints";
-    metadata = {
-      name = "plex";
-      namespace = "default";
-    };
-    subsets = [
-      {
-        addresses = [{ip = "192.168.1.171";}];
-        ports = [
-          {
-            name = "http";
-            port = 32400;
-            protocol = "TCP";
-          }
-        ];
-      }
-    ];
-  };
-
-  "4-plex-ingress".content = {
+  "3-plex-ingress".content = {
     apiVersion = "traefik.io/v1alpha1";
     kind = "IngressRoute";
     metadata = {
