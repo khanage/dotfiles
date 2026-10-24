@@ -134,6 +134,24 @@
         path = "/var/lib/rancher/k3s/server/manifests/grafana-helm-values-secret.yaml";
         mode = "0600";
       };
+      secrets."plex_claim" = {
+        sopsFile = ../../secrets/homepc/plex.yaml;
+        format = "yaml";
+        key = "plex_claim";
+      };
+      templates."plex-claim-manifest" = {
+        content = ''
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: plex-claim
+            namespace: default
+          stringData:
+            plex_claim: ${config.sops.placeholder.plex_claim}
+        '';
+        path = "/var/lib/rancher/k3s/server/manifests/01-plex-claim-secret.yaml";
+        mode = "0600";
+      };
     };
   };
 

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   "1-plex-deployment".content = {
     apiVersion = "apps/v1";
     kind = "Deployment";
@@ -20,12 +20,15 @@
           };
         };
         spec = {
+          nodeSelector = {
+            "kubernetes.io/hostname" = "thebrain";
+          };
           volumes = [
             {
               name = "plex-config";
-              nfs = {
-                server = "192.168.1.171";
-                path = "/volume1/docker/plex";
+              hostPath = {
+                path = "/plex";
+                type = "DirectoryOrCreate";
               };
             }
             {
@@ -72,6 +75,10 @@
                   value = "Australia/Melbourne";
                 }
                 {
+                  name = "ADVERTISE_IP";
+                  value = "http://192.168.1.43:32400/";
+                }
+                {
                   name = "VERSION";
                   value = "docker";
                 }
@@ -114,6 +121,30 @@
                 }
                 {containerPort = 32469;}
               ];
+              startupProbe = {
+                httpGet = {
+                  path = "/identity";
+                  port = 32400;
+                };
+                periodSeconds = 10;
+                failureThreshold = 30;
+              };
+              readinessProbe = {
+                httpGet = {
+                  path = "/identity";
+                  port = 32400;
+                };
+                periodSeconds = 10;
+                timeoutSeconds = 5;
+              };
+              livenessProbe = {
+                httpGet = {
+                  path = "/identity";
+                  port = 32400;
+                };
+                periodSeconds = 30;
+                timeoutSeconds = 5;
+              };
               volumeMounts = [
                 {
                   name = "plex-config";
@@ -156,9 +187,10 @@
           protocol = "TCP";
           port = 32400;
           targetPort = 32400;
+          nodePort = 32400;
         }
       ];
-      type = "ClusterIP";
+      type = "NodePort";
     };
   };
 
