@@ -12,6 +12,20 @@ in {
     # Let Determinate Nix handle your Nix configuration
     nix.enable = false;
 
+    # nix.gc is unavailable when nix-darwin does not manage Nix; run GC via launchd instead.
+    launchd.daemons.nix-gc.serviceConfig = {
+      ProgramArguments = [
+        "/nix/var/nix/profiles/default/bin/nix-collect-garbage"
+        "--delete-older-than"
+        "14d"
+      ];
+      StartCalendarInterval = {
+        Weekday = 0;
+        Hour = 3;
+        Minute = 0;
+      };
+    };
+
     nixpkgs = {
       config = {
         allowUnfree = true;
