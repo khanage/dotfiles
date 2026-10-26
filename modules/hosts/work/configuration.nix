@@ -26,6 +26,18 @@ in {
           apm-cli = prev.apm-cli.overridePythonAttrs (old: {
             propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [final.python3Packages.websockets];
           });
+
+          # azure-cli depends on Fabric, which requires Invoke < 3. Keep its
+          # whole Python dependency set on the last known working nixpkgs pin;
+          # newer nixpkgs marks Fabric broken against Invoke 3.
+          # https://github.com/NixOS/nixpkgs/issues/575989
+          azure-cli = (import (builtins.fetchTarball {
+            url = "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2605.1012930%2Brev-c5c4a43b0e8056328ec4529f735cabdb8f1942bb/01a053c0-7061-7382-b001-102e9148a5b5/source.tar.gz";
+            sha256 = "sha256-u6z9VTZA4Kf3RkHQo9sQI7NI4Ei/uiU9vrMqOiwWP1Y=";
+          }) {
+            system = prev.stdenv.hostPlatform.system;
+            config.allowUnfree = true;
+          }).azure-cli;
         })
       ];
     };

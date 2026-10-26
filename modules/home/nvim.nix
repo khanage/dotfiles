@@ -20,6 +20,8 @@
             # '';
             viAlias = true;
             vimAlias = true;
+            clipboard.enable = true;
+            clipboard.registers = "unnamedplus";
             clipboard.providers =
               {}
               // (lib.optionalAttrs

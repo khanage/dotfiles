@@ -147,10 +147,15 @@ _: {
               "/nix/store" = "allow";
               "/nix/store/*" = "allow";
               "~/ai/*" = "allow";
+              "~/dotfiles/*" = "allow";
+              "~/pb/*" = "allow";
+              "~/dev/*" = "allow";
+              "~/of/*" = "allow";
+              "~/audit/*" = "allow";
             };
           };
         };
-        tui = {theme = "nord";};
+        cli = {theme = "nord";};
       };
     };
   };
