@@ -47,7 +47,6 @@
       };
 
       consoleLogLevel = 3;
-      initrd.verbose = false;
 
       loader = {
         systemd-boot.enable = true;

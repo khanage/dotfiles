@@ -12,6 +12,7 @@
         };
       });
       settings = builtins.fromJSON (builtins.readFile ./noctalia.json);
+      package = pkgs.noctalia;
     };
   };
 }
