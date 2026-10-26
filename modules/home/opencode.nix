@@ -155,7 +155,7 @@ _: {
             };
           };
         };
-        cli = {theme = "nord";};
+        cli = {theme = {name = "nord";};};
       };
     };
   };
