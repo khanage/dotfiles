@@ -49,8 +49,8 @@ _: {
 
       This system uses nix with direnv for all dependencies. The configuration is stored at ~/dotfiles regardless of the host.
 
-      - ALWAYS use a devshell loaded via direnv/.envrc with "use flake"
-      - If there is no .envrc at a project root, ask to create a new flake.nix, call the devshell with .envrc, and add the flake.nix to git.
+      - ALWAYS use a devshell loaded via direnv/.envrc with "use flake", except in ~/dotfiles
+      - If there is no .envrc at a project root, ask to create a new flake.nix, call the devshell with .envrc, and add the flake.nix to git, except in ~/dotfiles.
       - Run `direnv allow` if needed.
       - ALWAYS use the project flake.nix to add dependencies or introduce new tools to the command line
       - Ensure .direnv/ is in the .gitignore file
