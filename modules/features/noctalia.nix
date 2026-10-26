@@ -11,7 +11,7 @@
           '';
         };
       });
-      settings = builtins.fromJSON (builtins.readFile ./noctalia.json);
+      settings = builtins.fromTOML (builtins.readFile ./noctalia.toml);
       package = pkgs.noctalia;
     };
   };
