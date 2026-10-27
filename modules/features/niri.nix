@@ -180,7 +180,7 @@
           "Mod+T".spawn-sh = "${lib.getExe pkgs.ghostty}";
           "Mod+Q".close-window = _: {};
           "Mod+Ctrl+Q".quit = _: {};
-          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+          "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} msg panel-toggle launcher";
 
           "Mod+O".toggle-overview = _: {};
           "Mod+Shift+Slash".show-hotkey-overlay = _: {};
