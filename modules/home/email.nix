@@ -44,6 +44,8 @@ _: {
         };
       };
     };
-    home.file.".thunderbird/khan/chrome".source = fluentbird-src;
+    home.file.".thunderbird/khan/chrome/Icons".source = "${fluentbird-src}/Icons";
+    home.file.".thunderbird/khan/chrome/Titlebar_Icons".source = "${fluentbird-src}/Titlebar_Icons";
+    home.file.".thunderbird/khan/chrome/custom.css".source = "${fluentbird-src}/custom.css";
   };
 }
