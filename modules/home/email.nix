@@ -14,7 +14,30 @@ _: {
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
-        userChrome = builtins.readFile "${fluentbird-src}/userChrome.css";
+        userChrome =
+          builtins.readFile "${fluentbird-src}/userChrome.css"
+          + ''
+            /* NixOS/Linux Sidebar Transparency Fallback Fix */
+            #folderPane, 
+            #sidebar-box, 
+            .sidebar-panel, 
+            #background-box {
+              background-color: var(--sidebar-background, -moz-Dialog) !important;
+              opacity: 1 !important;
+            }
+
+            /* Forces a dark/light system adaptive background if variables mismatch */
+            @media (prefers-color-scheme: dark) {
+              #folderPane {
+                background-color: #1e1e1e !important; /* Standard Windows 11 Dark backdrop */
+              }
+            }
+            @media (prefers-color-scheme: light) {
+              #folderPane {
+                background-color: #f3f3f3 !important; /* Standard Windows 11 Light backdrop */
+              }
+            }
+          '';
       };
       # package = pkgs.thunderbird.override {
       #   extraPolicies = {
