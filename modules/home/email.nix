@@ -16,16 +16,17 @@ _: {
         };
         userChrome = builtins.readFile "${fluentbird-src}/userChrome.css";
       };
-      package = pkgs.thunderbird.override {
-        extraPolicies = {
-          ExtensionSettings = {
-            "autoprofilepicture@astucesweb.fr" = {
-              installation_mode = "force_installed";
-              install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/auto-profile-picture/latest.xpi";
-            };
-          };
-        };
-      };
+      # package = pkgs.thunderbird.override {
+      #   extraPolicies = {
+      #     ExtensionSettings = {
+      #       "autoprofilepicture@astucesweb.fr" = {
+      #         installation_mode = "force_installed";
+      #         install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/auto-profile-picture/latest.xpi";
+      #       };
+      #     };
+      #   };
+      # };
     };
+    home.file.".thunderbird/khan/chrome".source = fluentbird-src;
   };
 }
