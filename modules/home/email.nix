@@ -14,24 +14,7 @@ _: {
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
-        userChrome =
-          (builtins.readFile "${fluentbird-src}/userChrome.css")
-          + ''
-            /* Local fixes for Fluentbird in this Thunderbird setup. */
-            #messengerBody {
-              opacity: 1 !important;
-            }
-
-            #spacesToolbar {
-              background-color: #2e3440 !important;
-            }
-
-            .recipient-avatar {
-              width: 16px !important;
-              height: 16px !important;
-              font-size: 1rem !important;
-            }
-          '';
+        userChrome = builtins.readFile "${fluentbird-src}/userChrome.css";
       };
       package = pkgs.thunderbird.override {
         extraPolicies = {
@@ -44,8 +27,27 @@ _: {
         };
       };
     };
-    home.file.".thunderbird/khan/chrome/Icons".source = "${fluentbird-src}/Icons";
-    home.file.".thunderbird/khan/chrome/Titlebar_Icons".source = "${fluentbird-src}/Titlebar_Icons";
-    home.file.".thunderbird/khan/chrome/custom.css".source = "${fluentbird-src}/custom.css";
+    home.file = {
+      ".thunderbird/khan/chrome/Icons".source = "${fluentbird-src}/Icons";
+      ".thunderbird/khan/chrome/Titlebar_Icons".source = "${fluentbird-src}/Titlebar_Icons";
+      ".thunderbird/khan/chrome/custom.css".text =
+        (builtins.readFile "${fluentbird-src}/custom.css")
+        + ''
+          /* Local fixes for Fluentbird in this Thunderbird setup. */
+          #messengerBody {
+            opacity: 1 !important;
+          }
+
+          #spacesToolbar {
+            background-color: #2e3440 !important;
+          }
+
+          .recipient-avatar {
+            width: 16px !important;
+            height: 16px !important;
+            font-size: 1rem !important;
+          }
+        '';
+    };
   };
 }
