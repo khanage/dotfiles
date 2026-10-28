@@ -127,6 +127,15 @@
                 at-startup = true;
               }
             ];
+            open-focused = false;
+            open-on-workspace = "xcomms";
+          }
+          {
+            matches = [
+              {
+                app-id = "thunderbird";
+              }
+            ];
             open-on-workspace = "xcomms";
           }
           {
