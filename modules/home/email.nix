@@ -23,12 +23,12 @@ _: {
             }
 
             #spacesToolbar {
-              background-color: var(--toolbar-bgcolor, #f3f3f3) !important;
+              background-color: var(--toolbar-bgcolor, #fff3f3) !important;
             }
 
             .recipient-avatar {
-              width: 32px !important;
-              height: 32px !important;
+              width: 16px !important;
+              height: 16px !important;
               font-size: 1rem !important;
             }
           '';
