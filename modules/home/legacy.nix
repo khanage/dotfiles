@@ -115,22 +115,6 @@ _: {
     # Let Home Manager install and manage itself.
     programs = {
       home-manager.enable = true;
-      thunderbird = {
-        enable = true;
-        profiles.khan = {
-          isDefault = true;
-        };
-        package = pkgs.thunderbird.override {
-          extraPolicies = {
-            ExtensionSettings = {
-              "autoprofilepicture@astucesweb.fr" = {
-                installation_mode = "force_installed";
-                install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/auto-profile-picture/latest.xpi";
-              };
-            };
-          };
-        };
-      };
 
       git = {
         enable = true;
@@ -194,10 +178,10 @@ _: {
         "x-scheme-handler/https" = ["firefox.desktop"];
         "x-scheme-handler/about" = ["firefox.desktop"];
         "x-scheme-handler/unknown" = ["firefox.desktop"];
-        "x-scheme-handler/mailto" = ["Mailspring.desktop"];
+        "x-scheme-handler/mailto" = ["thunderbird.desktop"];
       };
       associations.added = {
-        "x-scheme-handler/mailto" = ["Mailspring.desktop"];
+        "x-scheme-handler/mailto" = ["thunderbird.desktop"];
       };
     };
   };

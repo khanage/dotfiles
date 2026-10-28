@@ -22,6 +22,7 @@
           self.homeModules.gimp
           self.homeModules.ssh
           self.homeModules.anki
+          self.homeModules.email
         ];
         home = {
           username = "khan";
