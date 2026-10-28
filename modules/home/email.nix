@@ -14,7 +14,24 @@ _: {
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
-        userChrome = builtins.readFile "${fluentbird-src}/userChrome.css";
+        userChrome =
+          (builtins.readFile "${fluentbird-src}/userChrome.css")
+          + ''
+            /* Local fixes for Fluentbird in this Thunderbird setup. */
+            #messengerBody {
+              opacity: 1 !important;
+            }
+
+            #spacesToolbar {
+              background-color: var(--toolbar-bgcolor, #f3f3f3) !important;
+            }
+
+            .recipient-avatar {
+              width: 32px !important;
+              height: 32px !important;
+              font-size: 1rem !important;
+            }
+          '';
       };
       package = pkgs.thunderbird.override {
         extraPolicies = {
