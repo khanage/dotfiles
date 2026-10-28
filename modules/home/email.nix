@@ -23,7 +23,7 @@ _: {
             }
 
             #spacesToolbar {
-              background-color: var(--toolbar-bgcolor, #fff3f3) !important;
+              background-color: #2e3440 !important;
             }
 
             .recipient-avatar {
