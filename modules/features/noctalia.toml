@@ -2,10 +2,10 @@
 enabled = true
 
 [bar.default]
+center = [ "control-center", "weather", "cpu", "ram", "network" ]
+end = [ "clock", "date", "tray", "notifications", "clipboard", "bluetooth", "volume", "brightness", "battery", "session" ]
 position = "bottom"
 start = [ "launcher", "workspaces", "media" ]
-center = [ "control-center", "cpu", "ram", "network" ]
-end = [ "clock", "date", "tray", "notifications", "clipboard", "bluetooth", "volume", "brightness", "battery", "session" ]
 
 [location]
 address = "Melbourne, Australia"
