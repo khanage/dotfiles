@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "aspire": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793335668,
+        "narHash": "sha256-SPNl/hVCRtKm6P9GkJxxCXt5N5wC62iQiXoR3yXQZbY=",
+        "owner": "microsoft",
+        "repo": "aspire",
+        "rev": "63c361dd3b0b32d55ab7c2276a660a8fd02dd127",
+        "type": "github"
+      },
+      "original": {
+        "owner": "microsoft",
+        "repo": "aspire",
+        "type": "github"
+      }
+    },
     "bdwgc": {
       "flake": false,
       "locked": {
@@ -506,6 +526,7 @@
     },
     "root": {
       "inputs": {
+        "aspire": "aspire",
         "determinate": "determinate",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",

@@ -31,10 +31,6 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
-    # Pinned to commits from 2026-07-20 to match brew 6.0.12 shipped by nix-homebrew.
-    # Newer taps use DSL features (InstallSteps, command_wrapper) that brew 6.0.12 lacks,
-    # which breaks `brew bundle` during darwin activation.
-    # TODO once https://github.com/zhaofengli/nix-homebrew/pull/164 is merged can remove
     homebrew-core.url = "github:homebrew/homebrew-core";
     homebrew-core.flake = false;
 
@@ -48,6 +44,9 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    aspire.url = "github:microsoft/aspire";
+    aspire.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree.matchNot "/features/k3s/manifests/.*" ./modules);
