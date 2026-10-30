@@ -3,7 +3,10 @@
     pkgs,
     lib,
     ...
-  }: {
+  }: let
+    aspire-cli =
+      inputs.aspire.packages.${pkgs.stdenv.hostPlatform.system}.aspire-cli;
+  in {
     fonts.fontconfig.enable = true;
 
     # Home Manager needs a bit of information about you and the paths it should
@@ -27,6 +30,7 @@
         nerd-fonts.iosevka-term
         nerd-fonts.go-mono
         azure-cli
+        aspire-cli
         powershell
         fnm
         tree-sitter
