@@ -1,5 +1,9 @@
 _: {
-  flake.homeModules.gaming = {pkgs, ...}: let
+  flake.homeModules.gaming = {
+    pkgs,
+    myDiscord,
+    ...
+  }: let
     battlenet = pkgs.makeDesktopItem {
       name = "Battle.net";
       desktopName = "battlenet";
@@ -12,6 +16,7 @@ _: {
   in {
     home.packages = with pkgs; [
       wowup-cf
+      myDiscord
       # xivlauncher
       battlenet
       # battlenetDesktop

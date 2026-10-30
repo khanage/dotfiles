@@ -3,10 +3,11 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.homepcHomeManager = {
+  flake.nixosModules.homepcHomeManager = {pkgs, ...}: {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      extraSpecialArgs.myDiscord = self.packages.${pkgs.stdenv.hostPlatform.system}.myDiscord;
       users.khan = {
         imports = [
           inputs.nvf.homeManagerModules.default
