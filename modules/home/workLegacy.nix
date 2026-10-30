@@ -1,4 +1,4 @@
-_: {
+{inputs, ...}: {
   flake.homeModules.workLegacy = {
     pkgs,
     lib,
