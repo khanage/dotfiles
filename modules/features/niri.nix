@@ -160,7 +160,6 @@
           (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.ghostty)
           (lib.getExe pkgs.firefox)
-          (lib.getExe pkgs.discord-ptb)
           (lib.getExe pkgs.steam)
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"

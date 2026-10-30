@@ -13,7 +13,6 @@ _: {
     home.packages = with pkgs; [
       wowup-cf
       # xivlauncher
-      discord-ptb
       battlenet
       # battlenetDesktop
     ];
