@@ -5,7 +5,7 @@
     ...
   }: {
     imports = [
-      self.nixosModules.sops
+      self.nixosModules.homepcSops
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
       self.nixosModules.niri
