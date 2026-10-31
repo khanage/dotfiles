@@ -11,7 +11,7 @@
       # Disable GnuPG; we use age exclusively.
       gnupg.sshKeyPaths = [];
       secrets."wifi_password" = {
-        sopsFile = ../../secrets/homepc/wifi.yaml;
+        sopsFile = ../../secrets/home/wifi.yaml;
         format = "yaml";
       };
       templates."wifi-env" = {
@@ -25,6 +25,16 @@
         owner = "khan";
         mode = "0400";
       };
+      # Private key used to access the home machines. This secret is
+      # encrypted only for homepc and the admin age key.
+      secrets."personal_ssh_private_key" = {
+        sopsFile = ../../secrets/homepc/ssh_ed25519.yaml;
+        format = "yaml";
+        key = "ssh_private_key";
+        path = "/home/khan/.ssh/id_ed25519";
+        owner = "khan";
+        mode = "0400";
+      };
     };
   };
 
@@ -35,7 +45,7 @@
       age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
       secrets."wifi_password" = {
-        sopsFile = ../../secrets/homepc/wifi.yaml;
+        sopsFile = ../../secrets/home/wifi.yaml;
         format = "yaml";
       };
       templates."wifi-env" = {
@@ -44,20 +54,20 @@
         '';
       };
       secrets."k8s_token" = {
-        sopsFile = ../../secrets/homepc/k8s_token.yaml;
+        sopsFile = ../../secrets/home/k8s_token.yaml;
         format = "yaml";
       };
       secrets."grafana_admin_password" = {
-        sopsFile = ../../secrets/homepc/grafana.yaml;
+        sopsFile = ../../secrets/home/grafana.yaml;
         format = "yaml";
       };
       secrets."spaceship-api-key" = {
-        sopsFile = ../../secrets/homepc/spaceship.yaml;
+        sopsFile = ../../secrets/home/spaceship.yaml;
         format = "yaml";
         key = "api_key";
       };
       secrets."spaceship-api-secret" = {
-        sopsFile = ../../secrets/homepc/spaceship.yaml;
+        sopsFile = ../../secrets/home/spaceship.yaml;
         format = "yaml";
         key = "api_secret";
       };
@@ -76,7 +86,7 @@
         mode = "0600";
       };
       secrets."plex_claim" = {
-        sopsFile = ../../secrets/homepc/plex.yaml;
+        sopsFile = ../../secrets/home/plex.yaml;
         format = "yaml";
         key = "plex_claim";
       };
@@ -103,7 +113,7 @@
       age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
       secrets."wifi_password" = {
-        sopsFile = ../../secrets/homepc/wifi.yaml;
+        sopsFile = ../../secrets/home/wifi.yaml;
         format = "yaml";
       };
       templates."wifi-env" = {
@@ -112,11 +122,11 @@
         '';
       };
       secrets."k8s_token" = {
-        sopsFile = ../../secrets/homepc/k8s_token.yaml;
+        sopsFile = ../../secrets/home/k8s_token.yaml;
         format = "yaml";
       };
       secrets."grafana_admin_password" = {
-        sopsFile = ../../secrets/homepc/grafana.yaml;
+        sopsFile = ../../secrets/home/grafana.yaml;
         format = "yaml";
       };
       templates."grafana-helm-values" = {
@@ -135,7 +145,66 @@
         mode = "0600";
       };
       secrets."plex_claim" = {
-        sopsFile = ../../secrets/homepc/plex.yaml;
+        sopsFile = ../../secrets/home/plex.yaml;
+        format = "yaml";
+        key = "plex_claim";
+      };
+      templates."plex-claim-manifest" = {
+        content = ''
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: plex-claim
+            namespace: default
+          stringData:
+            plex_claim: ${config.sops.placeholder.plex_claim}
+        '';
+        path = "/var/lib/rancher/k3s/server/manifests/01-plex-claim-secret.yaml";
+        mode = "0600";
+      };
+    };
+  };
+
+  flake.nixosModules.marvinSops = {config, ...}: {
+    imports = [inputs.sops-nix.nixosModules.sops];
+
+    sops = {
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+
+      secrets."wifi_password" = {
+        sopsFile = ../../secrets/home/wifi.yaml;
+        format = "yaml";
+      };
+      templates."wifi-env" = {
+        content = ''
+          wifi_password=${config.sops.placeholder.wifi_password}
+        '';
+      };
+      secrets."k8s_token" = {
+        sopsFile = ../../secrets/home/k8s_token.yaml;
+        format = "yaml";
+      };
+      secrets."grafana_admin_password" = {
+        sopsFile = ../../secrets/home/grafana.yaml;
+        format = "yaml";
+      };
+      templates."grafana-helm-values" = {
+        content = ''
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: grafana-helm-values
+            namespace: monitoring
+          stringData:
+            values.yaml: |
+              grafana:
+                adminPassword: ${config.sops.placeholder.grafana_admin_password}
+        '';
+        path = "/var/lib/rancher/k3s/server/manifests/grafana-helm-values-secret.yaml";
+        mode = "0600";
+      };
+      secrets."plex_claim" = {
+        sopsFile = ../../secrets/home/plex.yaml;
         format = "yaml";
         key = "plex_claim";
       };

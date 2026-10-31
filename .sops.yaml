@@ -6,6 +6,7 @@ keys:
   - &host_work age10mehjv050h2sefjhsq7spvn0qf92uvfpjng88sz8r3ey8px06ffql6v8uh
   - &host_thebrain age1pdh497dhk5pnwgrqxlk9u54pp2mj8yhjj2p6r47356j9f3q8pegsenet03
   - &host_pinky age1sfzx6l9pqrw28x2ve7evht9tqw8f46t98xtcw2a03jt036mrt3pqd4zgt5
+  - &host_marvin age1w6amlpghd0yvs342jw4xxc6kjp0rd0h4gxh5nhq0gnaun0wekcdszxkxk9
 
 creation_rules:
   # Secrets shared across every machine (e.g. wifi).
@@ -17,6 +18,7 @@ creation_rules:
           - *host_work
           - *host_thebrain
           - *host_pinky
+          - *host_marvin
 
   # Per-host secrets.
   - path_regex: secrets/homepc/[^/]+\.yaml$
@@ -24,8 +26,15 @@ creation_rules:
       - age:
           - *admin_khan
           - *host_homepc
+
+  - path_regex: secrets/home/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_khan
+          - *host_homepc
           - *host_thebrain
           - *host_pinky
+          - *host_marvin
 
   - path_regex: secrets/work/[^/]+\.yaml$
     key_groups:

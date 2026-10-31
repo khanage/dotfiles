@@ -73,6 +73,9 @@
       isNormalUser = true;
       extraGroups = ["wheel"];
       packages = with pkgs; [tree];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDizSO2Od/iKqov1SZ9rcgkF5UFRNgN7Zbzoi8nd/8t1 khanage@gmail.com"
+      ];
     };
 
     environment.variables = {
