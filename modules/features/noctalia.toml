@@ -4,7 +4,7 @@ enabled = true
 [bar.default]
 start = [ "launcher", "workspaces", "media" ]
 center = [ "control-center", "weather", "cpu", "ram", "network" ]
-end = [ "tray", "notifications", "clipboard", "bluetooth", "volume", "brightness", "battery", "clock", "date", "session" ]
+end = [ "tray", "notifications", "clipboard", "bluetooth", "volume", "brightness", "battery", "date", "clock", "session" ]
 position = "bottom"
 
 [location]
