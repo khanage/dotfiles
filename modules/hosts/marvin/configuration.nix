@@ -5,7 +5,7 @@
     ...
   }: {
     _module.args.k8sconfig = {
-      server_addr = "192.168.1.44";
+      server_addr = "192.168.1.43";
     };
     imports = [
       self.nixosModules.marvinSops
