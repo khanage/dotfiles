@@ -35,6 +35,12 @@ in {
       };
       overlays = [
         (_: prev: {
+          fnm = prev.fnm.overrideAttrs (old: {
+            # zstd-sys probes libzstd via pkg-config during the Cargo build.
+            nativeBuildInputs = (old.nativeBuildInputs or []) ++ [prev.pkg-config];
+            buildInputs = (old.buildInputs or []) ++ [prev.zstd];
+          });
+
           # azure-cli depends on Fabric, which requires Invoke < 3. Keep its
           # whole Python dependency set on the last known working nixpkgs pin;
           # newer nixpkgs marks Fabric broken against Invoke 3.
