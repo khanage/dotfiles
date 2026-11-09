@@ -35,7 +35,32 @@
           "openssl-1.1.1w"
         ];
       };
-      overlays = [];
+      overlays = [
+        (final: prev: {
+          fnm = prev.fnm.overrideAttrs (old: {
+            # zstd-sys probes libzstd via pkg-config during the Cargo build.
+            nativeBuildInputs = (old.nativeBuildInputs or []) ++ [prev.pkg-config];
+            buildInputs = (old.buildInputs or []) ++ [prev.zstd];
+          });
+
+          anki = prev.anki.overrideAttrs (old: {
+            nativeBuildInputs = (old.nativeBuildInputs or []) ++ [final.pkg-config];
+            buildInputs = (old.buildInputs or []) ++ [final.zstd];
+
+            # Anki's offline uv build resolves aqt's hatchling build dependency,
+            # but nixpkgs' wheel cache is missing hatchling's tomlkit dependency.
+            env =
+              old.env
+              // {
+                UV_FIND_LINKS = toString (final.runCommand "anki-uv-wheels" {} ''
+                  mkdir -p $out
+                  ln -s ${old.env.UV_FIND_LINKS}/*.whl $out/
+                  ln -s ${final.python3.pkgs.tomlkit.dist}/*.whl $out/
+                '');
+              };
+          });
+        })
+      ];
     };
     boot = {
       plymouth = {
