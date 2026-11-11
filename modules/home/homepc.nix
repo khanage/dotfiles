@@ -97,9 +97,16 @@
             nbs = ''
               sudo nixos-rebuild switch \
                 --option warn-dirty false \
+                --keep-going \
                 --flake ${dotfiles} \
               && git -C ${dotfiles} commit -am 'chore: sync dotfiles'\
               && git -C ${dotfiles} push
+            '';
+            nbb = ''
+              sudo nixos-rebuild build \
+                --option warn-dirty false \
+                --flake ${dotfiles} \
+                --keep-going
             '';
           };
         };

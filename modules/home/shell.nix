@@ -41,11 +41,6 @@ _: {
               --flake ${dotfiles}\
               --option warn-dirty false
           '';
-          nbb = ''
-            sudo nixos-rebuild build \
-              --option warn-dirty false \
-              --flake ${dotfiles}
-          '';
           pushdots = "git -C ${dotfiles} commit -am 'chore: sync dotfiles' && git -C ${dotfiles} push";
           replace-commit = "${dotfiles}/.local/bin/replace-commit";
           clanker = "ollama launch opencode --model gemma4:26b";

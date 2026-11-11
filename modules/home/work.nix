@@ -8,6 +8,13 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       users.khanthompson = {
+        pkgs,
+        lib,
+        ...
+      }: let
+        aspire-cli =
+          inputs.aspire.packages.${pkgs.stdenv.hostPlatform.system}.aspire-cli;
+      in {
         imports = [
           inputs.nvf.homeManagerModules.default
           self.homeModules.shell
@@ -16,12 +23,195 @@
           self.homeModules.opencode
           self.homeModules.ssh
           self.homeModules.ai
-          self.homeModules.workLegacy
         ];
         home = {
           username = "khanthompson";
           stateVersion = "25.05";
+
+          packages = with pkgs; [
+            pkg-config
+            openssl
+            gcc
+            nerd-fonts.iosevka-term
+            nerd-fonts.go-mono
+            azure-cli
+            aspire-cli
+            powershell
+            fnm
+            tree-sitter
+            cargo
+            clippy
+            rustc
+            rustfmt
+            rust-analyzer
+            cargo-generate
+            (with pkgs.dotnetCorePackages;
+              combinePackages [
+                sdk_6_0
+                sdk_8_0
+                sdk_9_0 # Or combinePackages [sdk_8_0_1xx] for specific subversions
+                sdk_10_0
+              ])
+          ];
+
+          sessionVariables = {
+            EDITOR = "nvim";
+            DOCKER_DEFAULT_PLATFORM = "linux/amd64";
+          };
+
+          file = {
+            ".hammerspoon/init.lua".source = ../conf/hammerspoon.lua;
+          };
+
+          # Import the sops-decrypted GPG signing key into the user keyring so
+          # git can sign commits. sops-nix (darwin system module) decrypts the
+          # armored private key to /run/secrets/gpg_private_key during system
+          # activation; this runs afterwards and imports it idempotently.
+          activation.importGpgSigningKey = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                      keyFile="/run/secrets/gpg_private_key"
+                      fpr="D7165CC734B85E82C754CA319F45EFB1E16BDC6F"
+                      if [ -r "$keyFile" ]; then
+                        if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys "$fpr" >/dev/null 2>&1; then
+                          $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import "$keyFile"
+                          # Mark the key ultimately trusted so gpg doesn't warn on sign.
+                          $DRY_RUN_CMD ${pkgs.gnupg}/bin/gpg --batch --import-ownertrust <<EOF
+            $fpr:6:
+            EOF
+                        fi
+                      else
+                        echo "warning: $keyFile not found; skipping GPG key import" >&2
+                      fi
+          '';
         };
+        # Let Home Manager install and manage itself.
+        programs = {
+          home-manager.enable = true;
+
+          # SSH alias for the PointsBet enterprise identity. The URL rewrites
+          # in the git config below route any PointsBet / PointsBet-Price org
+          # URL through `github.com-work`, which uses the sops-decrypted work
+          # SSH key. Non-org github.com traffic continues to use the personal
+          # key declared on the shared `github.com` block in modules/home/ssh.nix.
+          ssh.settings."github.com-work" = {
+            HostName = "github.com";
+            User = "git";
+            IdentityFile = "/run/secrets/github_work_ssh_key";
+            IdentitiesOnly = true;
+          };
+
+          zsh = {
+            shellAliases = let
+              dotfiles = "~/dotfiles";
+            in {
+              nbs = ''
+                sudo darwin-rebuild switch \
+                  --flake ${dotfiles} \
+                  --option warn-dirty false \
+                && brew upgrade -y \
+                && git -C ${dotfiles} commit -am 'chore: sync dotfiles' \
+                && git -C ${dotfiles} push
+              '';
+              nbb = ''
+                sudo darwin build \
+                  --option warn-dirty false \
+                  --flake ${dotfiles}
+              '';
+            };
+          };
+
+          git = {
+            enable = true;
+            settings = {
+              user.name = "Khan Thompson";
+              user.email = "khan.thompson@pointsbet.com";
+              user.signingkey = "9F45EFB1E16BDC6F";
+              init.defaultBranch = "main";
+              credential.helper = "store";
+              push.autoSetupRemote = true;
+              pull.rebase = true;
+              commit.gpgsign = true;
+              tag.gpgsign = true;
+              gpg.program = "${pkgs.gnupg}/bin/gpg";
+
+              # --- GitHub URL routing ---
+              # PointsBet enterprise orgs route to the work SSH alias
+              # (github.com-work -> work key). Longest-prefix `insteadOf`
+              # ensures these org rules win over the generic fallback below.
+              # Both PascalCase and lowercase org prefixes are covered because
+              # `insteadOf` is case-sensitive even though GitHub itself isn't.
+              "url \"git@github.com-work:PointsBet/\"".insteadOf = [
+                "git@github.com:PointsBet/"
+                "https://github.com/PointsBet/"
+                "ssh://git@github.com/PointsBet/"
+              ];
+              "url \"git@github.com-work:pointsbet/\"".insteadOf = [
+                "git@github.com:pointsbet/"
+                "https://github.com/pointsbet/"
+                "ssh://git@github.com/pointsbet/"
+              ];
+              "url \"git@github.com-work:PointsBet-Price/\"".insteadOf = [
+                "git@github.com:PointsBet-Price/"
+                "https://github.com/PointsBet-Price/"
+                "ssh://git@github.com/PointsBet-Price/"
+              ];
+              "url \"git@github.com-work:pointsbet-price/\"".insteadOf = [
+                "git@github.com:pointsbet-price/"
+                "https://github.com/pointsbet-price/"
+                "ssh://git@github.com/pointsbet-price/"
+              ];
+              "url \"git@github.com-work:PointsBet-Sandbox/\"".insteadOf = [
+                "git@github.com:PointsBet-Sandbox/"
+                "https://github.com/PointsBet-Sandbox/"
+                "ssh://git@github.com/PointsBet-Sandbox/"
+              ];
+              "url \"git@github.com-work:pointsbet-sandbox/\"".insteadOf = [
+                "git@github.com:pointsbet-sandbox/"
+                "https://github.com/pointsbet-sandbox/"
+                "ssh://git@github.com/pointsbet-sandbox/"
+              ];
+
+              # Generic fallback: any other github.com HTTPS URL becomes SSH
+              # so the personal key (see modules/home/ssh.nix) is used.
+              "url \"git@github.com:\"".insteadOf = "https://github.com/";
+            };
+
+            # Use the personal (khanage) GitHub identity for any repo under
+            # ~/dotfiles/. This is rendered with mkAfter (see home-manager's
+            # git module), so it is appended *after* the [user] block above and
+            # therefore wins the include precedence. Overrides the work identity
+            # and signs commits with SSH (not the work GPG key). Authentication
+            # AND signing both use the personal SSH key via the sops-decrypted
+            # path (declared in modules/features/sops.nix); the matching public
+            # key must be added to GitHub twice: once as an Authentication key
+            # and once as a Signing key (https://github.com/settings/keys).
+            includes = [
+              {
+                condition = "gitdir:~/dotfiles/";
+                contents = {
+                  user = {
+                    name = "khanage";
+                    email = "khanage@gmail.com";
+                    # For SSH signing, signingkey is the key to sign WITH. Point
+                    # it at the sops-decrypted private key; ssh-keygen derives the
+                    # public half automatically.
+                    signingkey = "/run/secrets/github_personal_ssh_key";
+                  };
+                  gpg = {
+                    format = "ssh";
+                    # Lets `git verify-commit` / `git log --show-signature` work
+                    # locally by trusting this key for the khanage email.
+                    ssh.allowedSignersFile = toString (pkgs.writeText "khanage-allowed-signers" ''
+                      khanage@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDy4fzvR5IuSk56fdGu23uJxjc9M9xOnReeT4pW8A6j
+                    '');
+                  };
+                  commit.gpgsign = true;
+                  tag.gpgsign = true;
+                };
+              }
+            ];
+          };
+        };
+        fonts.fontconfig.enable = true;
       };
     };
   };

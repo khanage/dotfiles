@@ -7,8 +7,6 @@
     aspire-cli =
       inputs.aspire.packages.${pkgs.stdenv.hostPlatform.system}.aspire-cli;
   in {
-    fonts.fontconfig.enable = true;
-
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home = {
@@ -47,9 +45,6 @@
             sdk_9_0 # Or combinePackages [sdk_8_0_1xx] for specific subversions
             sdk_10_0
           ])
-        # haskellPackages.cabal
-        # haskellPackages.hoogle
-        # haskellPackages.haskell-debug-adapter
       ];
 
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
