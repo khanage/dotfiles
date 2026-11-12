@@ -19,7 +19,6 @@
           self.homeModules.opencode
           self.homeModules.three_d_printing
           self.homeModules.ai
-          self.homeModules.gimp
           self.homeModules.ssh
           self.homeModules.anki
           self.homeModules.email
