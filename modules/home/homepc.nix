@@ -109,6 +109,10 @@
                 --keep-going
             '';
           };
+
+          file = {
+            ".config/hypr/hypridle.conf".source = ../conf/hypridle.conf;
+          };
         };
 
         programs = {
