@@ -10,7 +10,7 @@
       extraSpecialArgs.myDiscord = self.packages.${pkgs.stdenv.hostPlatform.system}.myDiscord;
       users.khan = {
         imports = [
-          inputs.nvf.homeManagerModules.default
+          inputs.nvf.homeModules.default
           self.homeModules.nordic-theme
           self.homeModules.shell
           self.homeModules.herdr

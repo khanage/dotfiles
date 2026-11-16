@@ -16,7 +16,7 @@
           inputs.aspire.packages.${pkgs.stdenv.hostPlatform.system}.aspire-cli;
       in {
         imports = [
-          inputs.nvf.homeManagerModules.default
+          inputs.nvf.homeModules.default
           self.homeModules.shell
           self.homeModules.herdr
           self.homeModules.nvim
