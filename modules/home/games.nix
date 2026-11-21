@@ -41,7 +41,12 @@ _: {
             name = "forever";
             addonDir = "${wow}/_forever_/Interface/Addons";
             flavour = "forever_classic";
-            addons = ["github:DustinChecketts/VendorPricePlus"];
+            addons = [
+              "curse:tradeskill-master"
+              "curse:gargul"
+              "curse:atlas-loot-forever"
+              "curse:auctionator"
+            ];
           }
         ];
       };
