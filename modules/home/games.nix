@@ -27,7 +27,7 @@ _: {
             addons = [
               "curse:tradeskill-master"
               "curse:gargul"
-              "curse:atlas-loot-forever"
+              "curse:atlasloot-forever"
               "curse:auctionator"
             ];
           }
