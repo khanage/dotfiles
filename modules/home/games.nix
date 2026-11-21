@@ -21,7 +21,10 @@ _: {
       enable = true;
       prefix = "/games/umu";
       games = [
-        {name = "Battle.net";}
+        {
+          name = "Battle.net";
+          launchArgs = "-d3d11";
+        }
         {
           name = "WoW Forever";
           path = "${wow}/_forever_/Wow.exe";
@@ -38,7 +41,7 @@ _: {
             addons = [
               "curse:tradeskill-master"
               "curse:gargul"
-              # "curse:atlasloot-forever"
+              "curse:atlasloot-forever"
               "curse:auctionator"
             ];
           }
