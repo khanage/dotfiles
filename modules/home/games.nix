@@ -21,6 +21,7 @@ _: {
       # battlenet
       battlenetDesktop
     ];
+
     programs.battlenet-umu = let
       wow = "Program Files (x86)/World of Warcraft";
     in {
