@@ -32,11 +32,32 @@
             owner = "khan";
             mode = "0400";
           };
+          "instawow_curseforge" = {
+            sopsFile = ../../secrets/home/instawow.yaml;
+            format = "yaml";
+            key = "curse_forge";
+            owner = "khan";
+            mode = "0400";
+          };
         };
         templates."wifi-env" = {
           content = ''
             wifi_password=${config.sops.placeholder.wifi_password}
           '';
+        };
+        templates."instawow-config" = {
+          content = ''
+            {
+              "access_tokens": {
+                "cfcore": "${config.sops.placeholder.instawow_curseforge}",
+                "github": null,
+                "wago_addons": null
+              }
+            }
+          '';
+          path = "/home/khan/.config/instawow/config.json";
+          owner = "khan";
+          mode = "0400";
         };
       };
     };
