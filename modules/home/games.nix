@@ -4,6 +4,11 @@ _: {
     myDiscord,
     ...
   }: {
+    home.sessionVariables = {
+      DXVK_ASYNC = "1";
+      STEAM_COMPAT_MOUNTS = "/games";
+    };
+
     home.packages = with pkgs; [
       myDiscord
       wowup-cf
@@ -20,6 +25,7 @@ _: {
         {
           name = "WoW Forever";
           path = "${wow}/_forever_/Wow.exe";
+          launchArgs = "-d3d11";
         }
       ];
       addons = {
