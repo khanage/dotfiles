@@ -47,6 +47,9 @@
 
     aspire.url = "github:microsoft/aspire";
     aspire.inputs.nixpkgs.follows = "nixpkgs";
+
+    battlenet-umu.url = "github:jacobjdowning/battlenet-umu";
+    battlenet-umu.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree.matchNot "/features/k3s/manifests/.*" ./modules);

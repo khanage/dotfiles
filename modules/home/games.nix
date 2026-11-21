@@ -4,7 +4,7 @@ _: {
     myDiscord,
     ...
   }: let
-    battlenet = pkgs.makeDesktopItem {
+    battlenetDesktop = pkgs.makeDesktopItem {
       name = "Battle.net";
       desktopName = "battlenet";
       comment = "Run battlenet";
@@ -18,8 +18,8 @@ _: {
       wowup-cf
       myDiscord
       # xivlauncher
-      battlenet
-      # battlenetDesktop
+      # battlenet
+      battlenetDesktop
     ];
   };
 }

@@ -7,16 +7,37 @@
         ]
       },
       "locked": {
-        "lastModified": 1795155565,
-        "narHash": "sha256-//2fJalztMy7eD6AzS+mE7AJKeAMTMt2lmWGh/zhXos=",
+        "lastModified": 1795209980,
+        "narHash": "sha256-6T1m1idwNwY3sPMy9cFklsFr4W3+YxfcWVyHiqZ9aPw=",
         "owner": "microsoft",
         "repo": "aspire",
-        "rev": "f04f1cb430285efc2602335ab04055c088330bfd",
+        "rev": "ff0bb26562a0be85920b4bb88f682c7a3412dba7",
         "type": "github"
       },
       "original": {
         "owner": "microsoft",
         "repo": "aspire",
+        "type": "github"
+      }
+    },
+    "battlenet-umu": {
+      "inputs": {
+        "instawow": "instawow",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793809818,
+        "narHash": "sha256-MMzDlxAX9LvDkytamrrhr0qYgCyhAWbJcIBWafbUPIE=",
+        "owner": "jacobjdowning",
+        "repo": "battlenet-umu",
+        "rev": "c4aab38d78aca0aa0b08610c4c876ffb2b971d9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jacobjdowning",
+        "repo": "battlenet-umu",
         "type": "github"
       }
     },
@@ -184,6 +205,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1791914995,
+        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "git-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -230,11 +269,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1795154956,
-        "narHash": "sha256-SozGHOKukuEx6VZpa/jXRsTTaLQ78yE4aH0rCi8NfYM=",
+        "lastModified": 1795214857,
+        "narHash": "sha256-xnjyuJ3Jx9guLR84gXrJic0FF9gOTujhB9rbyuHPCf0=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "9e812583902b32699423d701d76409ad1fca429d",
+        "rev": "fa157ed014767cdd1a6a28a488509c6bfee7ab28",
         "type": "github"
       },
       "original": {
@@ -246,11 +285,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1795155758,
-        "narHash": "sha256-5guGH7j5dtRPMpNuUi5Z9Ydak5nTOEoG5boMfEQl+fA=",
+        "lastModified": 1795216807,
+        "narHash": "sha256-zXZo5RDvz2FqCAGMJkoNzoNrcbSvmC2+YhCItslgWwU=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "c48641c08c6e44168cf99c51cd14e2e9af161289",
+        "rev": "527a925ce22a09d68fc70156b6c8b63d630b419a",
         "type": "github"
       },
       "original": {
@@ -271,6 +310,29 @@
       "original": {
         "owner": "vic",
         "repo": "import-tree",
+        "type": "github"
+      }
+    },
+    "instawow": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "battlenet-umu",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792768190,
+        "narHash": "sha256-NJDx1eUj+0Vq61lmR0y8R+H6sV8ajUFIpBrWzw2vATA=",
+        "owner": "layday",
+        "repo": "instawow",
+        "rev": "e4e964d3e188d5dfeb3a4d1cbd261130a28499db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "layday",
+        "ref": "v7.3.0",
+        "repo": "instawow",
         "type": "github"
       }
     },
@@ -489,11 +551,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795147210,
-        "narHash": "sha256-bjgMufwdsDaLQ/AZFUBilfy+RQkZlFKNLZIwpbJMA/c=",
+        "lastModified": 1795219340,
+        "narHash": "sha256-t6UjehRDduTgbij9nxThBnUB+j3BJbrvlbfihMeWCSk=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "230768446cd5073308de92f8f8e599be2ab2e629",
+        "rev": "d64595c6b4b566b091347fe8aeb7b75fd86718e4",
         "type": "github"
       },
       "original": {
@@ -527,6 +589,7 @@
     "root": {
       "inputs": {
         "aspire": "aspire",
+        "battlenet-umu": "battlenet-umu",
         "determinate": "determinate",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
@@ -565,6 +628,21 @@
         "type": "github"
       }
     },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "wrapper-modules": {
       "inputs": {
         "nixpkgs": [
@@ -572,11 +650,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794870394,
-        "narHash": "sha256-+e+EBD7g4ErCYLjtndYDajwyZGn3P573S3y2fd90gKY=",
+        "lastModified": 1795211946,
+        "narHash": "sha256-LodH0++UunNDQKi3ujeaEWQ6FfVvrxaVxDuacjzDY4M=",
         "owner": "nix-community",
         "repo": "nix-wrapper-modules",
-        "rev": "0e23367a94ea83bc678fb510984b369dae02bfd2",
+        "rev": "c35eea2a8bbc0d59c3ba124a1a846265b47cba13",
         "type": "github"
       },
       "original": {
