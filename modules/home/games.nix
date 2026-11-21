@@ -1,7 +1,12 @@
 _: {
-  flake.homeModules.gaming = {myDiscord, ...}: {
-    home.packages = [
+  flake.homeModules.gaming = {
+    pkgs,
+    myDiscord,
+    ...
+  }: {
+    home.packages = with pkgs; [
       myDiscord
+      wowup-cf
       # xivlauncher
     ];
 
