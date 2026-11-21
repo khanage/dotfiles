@@ -19,7 +19,7 @@ _: {
       myDiscord
       # xivlauncher
       # battlenet
-      battlenetDesktop
+      # battlenetDesktop
     ];
 
     programs.battlenet-umu = let
