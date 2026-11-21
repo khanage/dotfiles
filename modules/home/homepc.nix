@@ -11,6 +11,7 @@
       users.khan = {
         imports = [
           inputs.nvf.homeModules.default
+          inputs.battlenet-umu.homeModules.default
           self.homeModules.nordic-theme
           self.homeModules.shell
           self.homeModules.herdr
