@@ -104,10 +104,11 @@
           {
             matches = [
               {
-                app-id = "^steam_app_[0-9]+$";
+                app-id = "^steam_app_default$";
                 title = "^Battle.net$";
               }
             ];
+            open-focused = false;
             open-on-workspace = "games";
           }
           {
@@ -164,6 +165,7 @@
           (lib.getExe self'.packages.myDiscord)
           "org.signal.Signal"
           "${lib.getExe pkgs.thunderbird}"
+          "battle-net-umu"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
