@@ -8,6 +8,7 @@
       self.nixosModules.homepcSops
       self.nixosModules.homepcHardware
       self.nixosModules.homepcHomeManager
+      self.nixosModules.numlockOn
       self.nixosModules.niri
       self.nixosModules.steam
       self.nixosModules.flatpak
@@ -129,7 +130,7 @@
 
     services.openssh = {
       enable = true;
-      settings.PasswordAuthentication = false;
+      settings.PasswordAuthentication = true;
     };
 
     services.kmscon = {
