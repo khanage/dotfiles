@@ -172,6 +172,7 @@
 
         input.keyboard = {
           xkb.layout = "us";
+          numlock = true;
         };
 
         gestures.hot-corners.off = _: {};
