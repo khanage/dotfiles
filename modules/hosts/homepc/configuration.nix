@@ -79,6 +79,7 @@
             connection = {
               id = "QONOS";
               type = "wifi";
+              interface-name = "wlp4s0";
             };
             wifi = {
               ssid = "QONOS";
