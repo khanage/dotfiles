@@ -62,6 +62,7 @@
                 at-startup = true;
               }
             ];
+            open-focused = false;
             open-on-workspace = "games";
           }
           {
@@ -71,6 +72,7 @@
                 at-startup = true;
               }
             ];
+            open-focused = false;
             open-on-workspace = "games";
           }
           {
