@@ -96,6 +96,12 @@
                 silent = true;
                 action = ":Telescope buffers<CR>";
               }
+              {
+                key = "<Leader>ss";
+                mode = ["n"];
+                silent = true;
+                action = ":Telescope resume<CR>";
+              }
             ];
 
             options = {
