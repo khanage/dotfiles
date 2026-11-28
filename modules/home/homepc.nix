@@ -68,7 +68,6 @@
                 ])
               blender
               pulseaudio
-              input-remapper
             ]
             ++ (with haskellPackages; [
               ghc

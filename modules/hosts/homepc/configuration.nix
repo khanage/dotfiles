@@ -94,8 +94,6 @@
       };
     };
 
-    services.resolved.enable = true;
-
     time.timeZone = "Australia/Melbourne";
     fonts.packages = with pkgs; [
       nerd-fonts.go-mono
@@ -112,30 +110,37 @@
 
     security.polkit.enable = true;
 
-    services.xserver = {
-      enable = true;
-      autorun = false;
-      videoDrivers = ["nvidia"];
-      displayManager.lightdm.enable = false;
-    };
-
     programs.gdk-pixbuf = {
       modulePackages = [pkgs.librsvg];
     };
 
-    services.pipewire = {
-      enable = true;
-      wireplumber.enable = true;
-      pulse.enable = true;
-    };
+    services = {
+      resolved.enable = true;
 
-    services.openssh = {
-      enable = true;
-      settings.PasswordAuthentication = true;
-    };
+      xserver = {
+        enable = true;
+        autorun = false;
+        videoDrivers = ["nvidia"];
+        displayManager.lightdm.enable = false;
+      };
 
-    services.kmscon = {
-      enable = false;
+      pipewire = {
+        enable = true;
+        wireplumber.enable = true;
+        pulse.enable = true;
+      };
+
+      openssh = {
+        enable = true;
+        settings.PasswordAuthentication = true;
+      };
+
+      kmscon = {
+        enable = false;
+      };
+
+      flatpak.enable = true;
+      input-remapper.enable = true;
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -176,36 +181,38 @@
       openrazer-daemon
     ];
 
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
+    hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
 
-    hardware.nvidia = {
-      open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
-      nvidiaSettings = true;
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
-    };
+      nvidia = {
+        open = false;
+        package = config.boot.kernelPackages.nvidiaPackages.production;
+        nvidiaSettings = true;
+        modesetting.enable = true;
+        powerManagement.enable = true;
+        powerManagement.finegrained = false;
+      };
 
-    hardware.xone.enable = true;
+      xone.enable = true;
 
-    hardware.keyboard.zsa.enable = true;
+      keyboard.zsa.enable = true;
 
-    hardware.openrazer = {
-      enable = true;
-      users = ["khan" "root"];
-      # packages.kernel = pkgs.linuxPackages.openrazer.overrideAttrs (_: {
-      #   version = "3.12.3-${pkgs.linuxPackages.kernel.version}";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "openrazer";
-      #     repo = "openrazer";
-      #     rev = "v3.12.3";
-      #     hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
-      #   };
-      # });
+      openrazer = {
+        enable = true;
+        users = ["khan" "root"];
+        # packages.kernel = pkgs.linuxPackages.openrazer.overrideAttrs (_: {
+        #   version = "3.12.3-${pkgs.linuxPackages.kernel.version}";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "openrazer";
+        #     repo = "openrazer";
+        #     rev = "v3.12.3";
+        #     hash = "sha256-X1NPqbugBdxD5Nt9wIwQADV4CuydGLpgKhlNazVdrIY=";
+        #   };
+        # });
+      };
     };
 
     # flatpak-spawn --sandbox sub-sandboxes inherit the HOST PATH (not the container's).
@@ -214,8 +221,6 @@
     # Adding /usr/bin here makes it findable in glycin's sub-sandbox without polluting
     # the NixOS shell PATH for executables (NixOS /usr/bin only has `env` anyway).
     environment.sessionVariables.PATH = ["/usr/bin"];
-
-    services.flatpak.enable = true;
     systemd.services = {
       flatpak-repo = {
         wantedBy = ["multi-user.target"];
